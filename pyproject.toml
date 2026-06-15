@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nes-lattice"
+version = "0.2.0"
+description = "Stochastic Natural Excited States for discrete spin lattices"
+requires-python = ">=3.10"
+dependencies = [
+  "jax",
+  "jaxlib",
+  "numpy",
+  "scipy",
+  "matplotlib",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
