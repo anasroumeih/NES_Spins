@@ -1,0 +1,3280 @@
+{
+  "config": {
+    "shape": [
+      2,
+      2
+    ],
+    "hamiltonian": "toric_code",
+    "k": 4,
+    "J": 1.0,
+    "g": 1.0,
+    "Je": 1.0,
+    "Jm": 1.0,
+    "pbc": true,
+    "magnetization": null,
+    "model": "ffn",
+    "hidden": [
+      64,
+      64
+    ],
+    "rbm_hidden": 32,
+    "channels": [
+      16,
+      16
+    ],
+    "kernel_size": 3,
+    "init_scale": 0.05,
+    "dtype": "float32",
+    "steps": 10000,
+    "lr": 0.002,
+    "n_chains": 96,
+    "n_samples": 8,
+    "sweep_steps": 8,
+    "burn_in": 80,
+    "det_jitter": 1e-08,
+    "grad_clip": 10.0,
+    "print_every": 100,
+    "eval_exact_if_sites_leq": 12,
+    "eval_samples": 32,
+    "eval_chains": 128,
+    "reference": "auto",
+    "own_ed_max_sites": 14,
+    "netket_max_states": 2000000,
+    "jitter": 1e-08,
+    "seed": 0
+  },
+  "history": [
+    {
+      "step": 0,
+      "loss_sum": -4.1198564712641845,
+      "train_energy_estimator": NaN,
+      "energies": [
+        -4.002946346095682,
+        -0.11948830683960185,
+        -0.001072112516985249,
+        0.003650294188085364
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.9970536539043184,
+        7.880511693160398,
+        7.998927887483014,
+        8.003650294188086
+      ],
+      "trace_error": 27.880143528735815,
+      "condition_number_S": 425779.7097951964,
+      "sampler_accept_rate": NaN,
+      "grad_norm": NaN,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 100,
+      "loss_sum": -3.9975289180631313,
+      "train_energy_estimator": -3.787461757659912,
+      "energies": [
+        -3.9999772273830665,
+        -0.0008812306699905654,
+        -0.00037796414414934735,
+        0.0037075041340754065
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.0000227726169335,
+        7.99911876933001,
+        7.99962203585585,
+        8.003707504134075
+      ],
+      "trace_error": 28.002471081936868,
+      "condition_number_S": 5.138570476618061,
+      "sampler_accept_rate": 0.60595703125,
+      "grad_norm": 3.6008455753326416,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 200,
+      "loss_sum": -4.007257091824086,
+      "train_energy_estimator": -4.1943559646606445,
+      "energies": [
+        -3.999774066959474,
+        -0.003943830537831783,
+        -0.0031089921382011537,
+        -0.0004302021885798017
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.000225933040526,
+        7.996056169462168,
+        7.996891007861799,
+        7.999569797811421
+      ],
+      "trace_error": 27.992742908175913,
+      "condition_number_S": 2.890131271426305,
+      "sampler_accept_rate": 0.6285807490348816,
+      "grad_norm": 2.4361870288848877,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 300,
+      "loss_sum": -4.013993545694639,
+      "train_energy_estimator": -4.048193454742432,
+      "energies": [
+        -3.999822744940237,
+        -0.007166151170662512,
+        -0.006439999775805367,
+        -0.0005646498079330447
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.0001772550597625,
+        7.992833848829338,
+        7.993560000224194,
+        7.9994353501920665
+      ],
+      "trace_error": 27.98600645430536,
+      "condition_number_S": 3.6878486920513205,
+      "sampler_accept_rate": 0.6311849355697632,
+      "grad_norm": 3.1969411373138428,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 400,
+      "loss_sum": -4.047011931540808,
+      "train_energy_estimator": -4.092794895172119,
+      "energies": [
+        -3.997745338391642,
+        -0.036491610860010126,
+        -0.006876822784358868,
+        -0.005898159504797432
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.002254661608358,
+        7.96350838913999,
+        7.993123177215641,
+        7.994101840495203
+      ],
+      "trace_error": 27.95298806845919,
+      "condition_number_S": 5.8364358230359095,
+      "sampler_accept_rate": 0.65185546875,
+      "grad_norm": 3.3032450675964355,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 500,
+      "loss_sum": -4.996557222260386,
+      "train_energy_estimator": -4.767920970916748,
+      "energies": [
+        -3.9996927274422536,
+        -0.9845488704253847,
+        -0.013587800949026979,
+        0.0012721765562787944
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.000307272557746,
+        7.015451129574616,
+        7.986412199050973,
+        8.001272176556279
+      ],
+      "trace_error": 27.003442777739615,
+      "condition_number_S": 29.468406849973164,
+      "sampler_accept_rate": 0.5908203125,
+      "grad_norm": 5.592217922210693,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 600,
+      "loss_sum": -5.15520865010942,
+      "train_energy_estimator": -5.349688529968262,
+      "energies": [
+        -3.9989885103301184,
+        -1.0485968696041827,
+        -0.11161205947790326,
+        0.003988789302784286
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.001011489669882,
+        6.951403130395818,
+        7.8883879405220965,
+        8.003988789302785
+      ],
+      "trace_error": 26.84479134989058,
+      "condition_number_S": 22.896495833566888,
+      "sampler_accept_rate": 0.6031901240348816,
+      "grad_norm": 3.2261130809783936,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 700,
+      "loss_sum": -7.954864874768259,
+      "train_energy_estimator": -7.991888046264648,
+      "energies": [
+        -4.480892892040125,
+        -2.501457661660398,
+        -0.9594896264172706,
+        -0.013024694650466103
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.519107107959875,
+        5.498542338339602,
+        7.0405103735827295,
+        7.986975305349534
+      ],
+      "trace_error": 24.04513512523174,
+      "condition_number_S": 102.47477192212044,
+      "sampler_accept_rate": 0.54638671875,
+      "grad_norm": 17.022470474243164,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 800,
+      "loss_sum": -8.873900178164467,
+      "train_energy_estimator": -9.07060432434082,
+      "energies": [
+        -4.845860335495534,
+        -2.930194922660394,
+        -1.0620379130156814,
+        -0.0358070069928583
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.1541396645044664,
+        5.0698050773396055,
+        6.937962086984319,
+        7.964192993007142
+      ],
+      "trace_error": 23.12609982183553,
+      "condition_number_S": 220.76466643903635,
+      "sampler_accept_rate": 0.49853515625,
+      "grad_norm": 19.448484420776367,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 900,
+      "loss_sum": -9.025506028184468,
+      "train_energy_estimator": -8.661901473999023,
+      "energies": [
+        -4.909094753902719,
+        -2.8905035309654417,
+        -1.1085188505759107,
+        -0.11738889274039709
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.0909052460972806,
+        5.109496469034559,
+        6.89148114942409,
+        7.882611107259603
+      ],
+      "trace_error": 22.974493971815534,
+      "condition_number_S": 150.36896533940728,
+      "sampler_accept_rate": 0.5115560293197632,
+      "grad_norm": 9.516195297241211,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1000,
+      "loss_sum": -9.462531790680297,
+      "train_energy_estimator": -9.719019889831543,
+      "energies": [
+        -4.8828564110554975,
+        -2.8763439179377706,
+        -1.1759930999137236,
+        -0.5273383617733055
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.1171435889445025,
+        5.1236560820622294,
+        6.824006900086276,
+        7.472661638226694
+      ],
+      "trace_error": 22.537468209319705,
+      "condition_number_S": 154.46095780765108,
+      "sampler_accept_rate": 0.4762369990348816,
+      "grad_norm": 41.5974235534668,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1100,
+      "loss_sum": -10.632320836921593,
+      "train_energy_estimator": -10.639219284057617,
+      "energies": [
+        -4.946131868111944,
+        -2.971745887579141,
+        -1.723482273867,
+        -0.990960807363507
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.0538681318880556,
+        5.028254112420859,
+        6.276517726133,
+        7.009039192636493
+      ],
+      "trace_error": 21.367679163078407,
+      "condition_number_S": 129.04472087457114,
+      "sampler_accept_rate": 0.4308268427848816,
+      "grad_norm": 30.108684539794922,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1200,
+      "loss_sum": -12.61468357291682,
+      "train_energy_estimator": -12.127073287963867,
+      "energies": [
+        -4.938077468077764,
+        -3.668779724127277,
+        -2.9614121742815684,
+        -1.0464142064302107
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.061922531922236,
+        4.331220275872723,
+        5.038587825718432,
+        6.95358579356979
+      ],
+      "trace_error": 19.385316427083183,
+      "condition_number_S": 195.2895100196631,
+      "sampler_accept_rate": 0.3665364682674408,
+      "grad_norm": 69.96883392333984,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1300,
+      "loss_sum": -12.950504521741223,
+      "train_energy_estimator": -12.887927055358887,
+      "energies": [
+        -4.939778628552863,
+        -3.8869958414334294,
+        -2.99467619691762,
+        -1.129053854837311
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.0602213714471374,
+        4.113004158566571,
+        5.00532380308238,
+        6.870946145162689
+      ],
+      "trace_error": 19.049495478258777,
+      "condition_number_S": 174.63055756635663,
+      "sampler_accept_rate": 0.3557942807674408,
+      "grad_norm": 44.197113037109375,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1400,
+      "loss_sum": -13.205216445594711,
+      "train_energy_estimator": -13.319483757019043,
+      "energies": [
+        -4.941155253810832,
+        -3.906946147913862,
+        -2.9815257660512704,
+        -1.3755892778187482
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.058844746189168,
+        4.093053852086138,
+        5.01847423394873,
+        6.624410722181252
+      ],
+      "trace_error": 18.79478355440529,
+      "condition_number_S": 191.04300339796393,
+      "sampler_accept_rate": 0.3538411557674408,
+      "grad_norm": 25.65938377380371,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1500,
+      "loss_sum": -13.399520615105873,
+      "train_energy_estimator": -13.339792251586914,
+      "energies": [
+        -4.9488536844904445,
+        -3.9318551647173843,
+        -2.9844606464538583,
+        -1.5343511194441863
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.0511463155095555,
+        4.068144835282616,
+        5.015539353546142,
+        6.465648880555814
+      ],
+      "trace_error": 18.60047938489413,
+      "condition_number_S": 192.42236005945819,
+      "sampler_accept_rate": 0.31201171875,
+      "grad_norm": 34.31971740722656,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1600,
+      "loss_sum": -13.069771068594696,
+      "train_energy_estimator": -12.638094902038574,
+      "energies": [
+        -4.747624717305751,
+        -3.8579010813008754,
+        -2.804900874906756,
+        -1.6593443950813147
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.252375282694249,
+        4.142098918699125,
+        5.195099125093244,
+        6.340655604918686
+      ],
+      "trace_error": 18.930228931405303,
+      "condition_number_S": 159.0903756348611,
+      "sampler_accept_rate": 0.3351237177848816,
+      "grad_norm": 115.6856689453125,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1700,
+      "loss_sum": -13.512379757826249,
+      "train_energy_estimator": -13.383049011230469,
+      "energies": [
+        -4.982271869586291,
+        -3.814723477323232,
+        -2.996627241494909,
+        -1.7187571694218167
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.017728130413709,
+        4.185276522676768,
+        5.0033727585050904,
+        6.281242830578183
+      ],
+      "trace_error": 18.48762024217375,
+      "condition_number_S": 200.7044851240165,
+      "sampler_accept_rate": 0.3028971552848816,
+      "grad_norm": 33.288387298583984,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1800,
+      "loss_sum": -14.066654385639072,
+      "train_energy_estimator": -14.035667419433594,
+      "energies": [
+        -5.155501195121023,
+        -4.1158243846759435,
+        -3.0007399315866423,
+        -1.7945888742554659
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.8444988048789774,
+        3.8841756153240565,
+        4.999260068413358,
+        6.205411125744535
+      ],
+      "trace_error": 17.933345614360928,
+      "condition_number_S": 289.36245026383017,
+      "sampler_accept_rate": 0.3043619990348816,
+      "grad_norm": 46.40634536743164,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1900,
+      "loss_sum": -14.358614835714395,
+      "train_energy_estimator": -13.995153427124023,
+      "energies": [
+        -5.247058594312292,
+        -4.212826640789253,
+        -2.99524590478164,
+        -1.9034836958312094
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.752941405687708,
+        3.7871733592107466,
+        5.00475409521836,
+        6.096516304168791
+      ],
+      "trace_error": 17.641385164285605,
+      "condition_number_S": 267.85837768945885,
+      "sampler_accept_rate": 0.310546875,
+      "grad_norm": 129.81661987304688,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2000,
+      "loss_sum": -14.80673973225571,
+      "train_energy_estimator": -15.10971450805664,
+      "energies": [
+        -5.2911990456825295,
+        -4.293205851522967,
+        -3.051589180175406,
+        -2.170745654874806
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.7088009543174705,
+        3.706794148477033,
+        4.948410819824594,
+        5.829254345125194
+      ],
+      "trace_error": 17.19326026774429,
+      "condition_number_S": 271.7099090774324,
+      "sampler_accept_rate": 0.29931640625,
+      "grad_norm": 41.65245819091797,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2100,
+      "loss_sum": -15.264537622555071,
+      "train_energy_estimator": -15.119410514831543,
+      "energies": [
+        -5.2555024130460835,
+        -4.393897401640227,
+        -3.058570619526483,
+        -2.556567188342279
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.7444975869539165,
+        3.606102598359773,
+        4.941429380473517,
+        5.443432811657721
+      ],
+      "trace_error": 16.73546237744493,
+      "condition_number_S": 248.4660216551811,
+      "sampler_accept_rate": 0.2755534052848816,
+      "grad_norm": 58.13525390625,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2200,
+      "loss_sum": -15.48384553943232,
+      "train_energy_estimator": -15.269147872924805,
+      "energies": [
+        -5.352020272035551,
+        -4.294483618466657,
+        -3.0972699962021073,
+        -2.740071652728005
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.647979727964449,
+        3.705516381533343,
+        4.902730003797893,
+        5.259928347271995
+      ],
+      "trace_error": 16.51615446056768,
+      "condition_number_S": 249.88062281482715,
+      "sampler_accept_rate": 0.2752278745174408,
+      "grad_norm": 127.19771575927734,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2300,
+      "loss_sum": -15.811120987408481,
+      "train_energy_estimator": -16.052265167236328,
+      "energies": [
+        -5.4829398835557175,
+        -4.290227345916703,
+        -3.140780299504029,
+        -2.897173458432031
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.5170601164442825,
+        3.709772654083297,
+        4.859219700495971,
+        5.102826541567969
+      ],
+      "trace_error": 16.18887901259152,
+      "condition_number_S": 310.1473318747024,
+      "sampler_accept_rate": 0.25537109375,
+      "grad_norm": 37.68587112426758,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2400,
+      "loss_sum": -15.884286365317836,
+      "train_energy_estimator": -16.00067901611328,
+      "energies": [
+        -5.40164042520437,
+        -4.33830840241783,
+        -3.147228096866578,
+        -2.997109440829058
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.59835957479563,
+        3.6616915975821698,
+        4.852771903133422,
+        5.002890559170941
+      ],
+      "trace_error": 16.115713634682166,
+      "condition_number_S": 289.6089110121375,
+      "sampler_accept_rate": 0.26806640625,
+      "grad_norm": 52.40651321411133,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2500,
+      "loss_sum": -16.146691794967243,
+      "train_energy_estimator": -15.80897331237793,
+      "energies": [
+        -5.408126797342619,
+        -4.367975275806954,
+        -3.3520234495197165,
+        -3.018566272297952
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.591873202657381,
+        3.6320247241930463,
+        4.6479765504802835,
+        4.981433727702048
+      ],
+      "trace_error": 15.853308205032757,
+      "condition_number_S": 318.0498359847796,
+      "sampler_accept_rate": 0.2775065302848816,
+      "grad_norm": 87.15138244628906,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2600,
+      "loss_sum": -16.15401719111952,
+      "train_energy_estimator": -16.424535751342773,
+      "energies": [
+        -5.63757284973972,
+        -4.379816854355196,
+        -3.2297826612835507,
+        -2.906844825741052
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.36242715026028,
+        3.6201831456448037,
+        4.770217338716449,
+        5.093155174258948
+      ],
+      "trace_error": 15.845982808880478,
+      "condition_number_S": 423.532067492654,
+      "sampler_accept_rate": 0.2659505307674408,
+      "grad_norm": 103.62944793701172,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2700,
+      "loss_sum": -16.224948538711143,
+      "train_energy_estimator": -16.612030029296875,
+      "energies": [
+        -5.56854251069514,
+        -4.187417803999606,
+        -3.35832530785283,
+        -3.110662916163566
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.4314574893048597,
+        3.8125821960003936,
+        4.64167469214717,
+        4.889337083836434
+      ],
+      "trace_error": 15.775051461288857,
+      "condition_number_S": 377.7979437533975,
+      "sampler_accept_rate": 0.2565104365348816,
+      "grad_norm": 86.78296661376953,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2800,
+      "loss_sum": -16.842344737760474,
+      "train_energy_estimator": -17.01485252380371,
+      "energies": [
+        -5.721029502683785,
+        -4.474257324187775,
+        -3.5293588484419542,
+        -3.1176990624469596
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.278970497316215,
+        3.525742675812225,
+        4.470641151558046,
+        4.88230093755304
+      ],
+      "trace_error": 15.157655262239526,
+      "condition_number_S": 381.57119676225284,
+      "sampler_accept_rate": 0.26123046875,
+      "grad_norm": 62.10963439941406,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2900,
+      "loss_sum": -17.336230514158892,
+      "train_energy_estimator": -17.64946746826172,
+      "energies": [
+        -5.979058014901361,
+        -4.598444230599239,
+        -3.5644730648587837,
+        -3.194255203799509
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.0209419850986388,
+        3.401555769400761,
+        4.435526935141216,
+        4.805744796200491
+      ],
+      "trace_error": 14.663769485841108,
+      "condition_number_S": 453.5897714976866,
+      "sampler_accept_rate": 0.2285156399011612,
+      "grad_norm": 39.79588317871094,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 3000,
+      "loss_sum": -17.537006609860217,
+      "train_energy_estimator": -17.81019401550293,
+      "energies": [
+        -5.867083956519789,
+        -4.681585396299381,
+        -3.7665519252469264,
+        -3.221785331794122
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.1329160434802112,
+        3.318414603700619,
+        4.233448074753074,
+        4.778214668205878
+      ],
+      "trace_error": 14.462993390139783,
+      "condition_number_S": 510.0146128438396,
+      "sampler_accept_rate": 0.2343750149011612,
+      "grad_norm": 39.035667419433594,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 3100,
+      "loss_sum": -17.682086112273872,
+      "train_energy_estimator": -18.074874877929688,
+      "energies": [
+        -6.024815433336493,
+        -4.770166883280816,
+        -3.664894208295292,
+        -3.222209587361269
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.9751845666635068,
+        3.229833116719184,
+        4.335105791704708,
+        4.777790412638732
+      ],
+      "trace_error": 14.317913887726128,
+      "condition_number_S": 479.2482530625053,
+      "sampler_accept_rate": 0.24267578125,
+      "grad_norm": 79.95674133300781,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 3200,
+      "loss_sum": -17.979467549256213,
+      "train_energy_estimator": -17.6320858001709,
+      "energies": [
+        -6.126632955591039,
+        -4.846209915052651,
+        -3.704135245452369,
+        -3.302489433160156
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.873367044408961,
+        3.1537900849473486,
+        4.295864754547631,
+        4.697510566839844
+      ],
+      "trace_error": 14.020532450743787,
+      "condition_number_S": 411.95810545894466,
+      "sampler_accept_rate": 0.2470703274011612,
+      "grad_norm": 67.14505767822266,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 3300,
+      "loss_sum": -18.07949666267725,
+      "train_energy_estimator": -18.477012634277344,
+      "energies": [
+        -6.059139201032963,
+        -4.918318870791812,
+        -3.7464829678563816,
+        -3.355555622996094
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.9408607989670372,
+        3.081681129208188,
+        4.253517032143618,
+        4.6444443770039054
+      ],
+      "trace_error": 13.92050333732275,
+      "condition_number_S": 336.2329157888672,
+      "sampler_accept_rate": 0.25,
+      "grad_norm": 44.689170837402344,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 3400,
+      "loss_sum": -18.56745637165527,
+      "train_energy_estimator": -18.15757179260254,
+      "energies": [
+        -6.14579662686295,
+        -5.2054141622852415,
+        -3.820851504799106,
+        -3.395394077707971
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.8542033731370502,
+        2.7945858377147585,
+        4.179148495200894,
+        4.604605922292029
+      ],
+      "trace_error": 13.432543628344732,
+      "condition_number_S": 291.60459372849624,
+      "sampler_accept_rate": 0.2626953125,
+      "grad_norm": 71.67353057861328,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 3500,
+      "loss_sum": -18.892014513070954,
+      "train_energy_estimator": -19.04070281982422,
+      "energies": [
+        -6.135422563886906,
+        -5.443869032190157,
+        -3.8697315949095303,
+        -3.4429913220843584
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.8645774361130938,
+        2.5561309678098434,
+        4.13026840509047,
+        4.557008677915642
+      ],
+      "trace_error": 13.107985486929046,
+      "condition_number_S": 261.85353960125815,
+      "sampler_accept_rate": 0.2457682341337204,
+      "grad_norm": 23.555028915405273,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 3600,
+      "loss_sum": -19.06103020084176,
+      "train_energy_estimator": -19.154687881469727,
+      "energies": [
+        -6.065515727063807,
+        -5.602585186677902,
+        -3.8767492209050554,
+        -3.5161800661949956
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.934484272936193,
+        2.397414813322098,
+        4.123250779094945,
+        4.483819933805004
+      ],
+      "trace_error": 12.93896979915824,
+      "condition_number_S": 223.36644550079686,
+      "sampler_accept_rate": 0.2596028745174408,
+      "grad_norm": 66.62129211425781,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 3700,
+      "loss_sum": -19.12492688069476,
+      "train_energy_estimator": -19.353252410888672,
+      "energies": [
+        -6.12877317883403,
+        -5.599052840419605,
+        -3.9046315841507173,
+        -3.4924692772904056
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.87122682116597,
+        2.4009471595803946,
+        4.095368415849283,
+        4.507530722709594
+      ],
+      "trace_error": 12.875073119305242,
+      "condition_number_S": 195.69280438746225,
+      "sampler_accept_rate": 0.2633463740348816,
+      "grad_norm": 39.57951354980469,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 3800,
+      "loss_sum": -19.35965773965478,
+      "train_energy_estimator": -19.247854232788086,
+      "energies": [
+        -6.163915597914285,
+        -5.795129181631295,
+        -3.875989273198696,
+        -3.5246236869105045
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.8360844020857154,
+        2.204870818368705,
+        4.124010726801304,
+        4.4753763130894955
+      ],
+      "trace_error": 12.640342260345221,
+      "condition_number_S": 139.08958954828807,
+      "sampler_accept_rate": 0.2633463740348816,
+      "grad_norm": 47.07913589477539,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 3900,
+      "loss_sum": -19.49881005743188,
+      "train_energy_estimator": -19.57052993774414,
+      "energies": [
+        -6.241880600841442,
+        -5.825841041282545,
+        -3.8769180560987064,
+        -3.554170359209187
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.7581193991585584,
+        2.174158958717455,
+        4.123081943901294,
+        4.445829640790813
+      ],
+      "trace_error": 12.501189942568121,
+      "condition_number_S": 104.99663408013193,
+      "sampler_accept_rate": 0.2381184995174408,
+      "grad_norm": 27.192955017089844,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 4000,
+      "loss_sum": -19.240423739288296,
+      "train_energy_estimator": -19.667964935302734,
+      "energies": [
+        -6.125712220155966,
+        -5.706829883812626,
+        -3.8697882011160636,
+        -3.5380934342036396
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.8742877798440336,
+        2.2931701161873743,
+        4.130211798883936,
+        4.46190656579636
+      ],
+      "trace_error": 12.759576260711704,
+      "condition_number_S": 63.192891532708224,
+      "sampler_accept_rate": 0.2420247495174408,
+      "grad_norm": 102.54293060302734,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 4100,
+      "loss_sum": -19.682757393365765,
+      "train_energy_estimator": -19.834766387939453,
+      "energies": [
+        -6.1963131827411875,
+        -6.013410536375247,
+        -3.8895028867194315,
+        -3.5835307875298974
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.8036868172588125,
+        1.9865894636247532,
+        4.1104971132805685,
+        4.416469212470103
+      ],
+      "trace_error": 12.317242606634235,
+      "condition_number_S": 30.70061377232878,
+      "sampler_accept_rate": 0.2425130307674408,
+      "grad_norm": 77.39247131347656,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 4200,
+      "loss_sum": -19.81272793772658,
+      "train_energy_estimator": -20.327728271484375,
+      "energies": [
+        -6.196132074319461,
+        -6.13144966833577,
+        -3.8979925608655406,
+        -3.5871536342058112
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.8038679256805388,
+        1.8685503316642302,
+        4.102007439134459,
+        4.412846365794189
+      ],
+      "trace_error": 12.187272062273419,
+      "condition_number_S": 22.3948289992494,
+      "sampler_accept_rate": 0.2307942807674408,
+      "grad_norm": 58.70542526245117,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 4300,
+      "loss_sum": -19.66679673727161,
+      "train_energy_estimator": -19.317184448242188,
+      "energies": [
+        -6.2859168939482695,
+        -5.861464220267431,
+        -3.9064748958114808,
+        -3.6129407272444265
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.7140831060517305,
+        2.1385357797325693,
+        4.093525104188519,
+        4.3870592727555735
+      ],
+      "trace_error": 12.33320326272839,
+      "condition_number_S": 12.547019190092852,
+      "sampler_accept_rate": 0.2303059995174408,
+      "grad_norm": 57.800941467285156,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 4400,
+      "loss_sum": -20.026692099753884,
+      "train_energy_estimator": -19.860576629638672,
+      "energies": [
+        -6.314618965638564,
+        -6.252850819042745,
+        -3.8913345180352317,
+        -3.5678877970373435
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.685381034361436,
+        1.7471491809572548,
+        4.108665481964769,
+        4.4321122029626565
+      ],
+      "trace_error": 11.973307900246116,
+      "condition_number_S": 11.105634898420837,
+      "sampler_accept_rate": 0.2421875,
+      "grad_norm": 59.515323638916016,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 4500,
+      "loss_sum": -20.41151362834975,
+      "train_energy_estimator": -20.494674682617188,
+      "energies": [
+        -6.678901572914323,
+        -6.151392641883932,
+        -3.9208030506207816,
+        -3.6604163629307136
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.3210984270856772,
+        1.8486073581160678,
+        4.079196949379218,
+        4.339583637069286
+      ],
+      "trace_error": 11.588486371650252,
+      "condition_number_S": 7.42747306590655,
+      "sampler_accept_rate": 0.2062174528837204,
+      "grad_norm": 60.04939651489258,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 4600,
+      "loss_sum": -20.588862808959185,
+      "train_energy_estimator": -20.43166160583496,
+      "energies": [
+        -6.776492064240619,
+        -6.292902146955399,
+        -3.8616850891095145,
+        -3.657783508653649
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        1.2235079357593808,
+        1.7070978530446013,
+        4.138314910890486,
+        4.342216491346351
+      ],
+      "trace_error": 11.411137191040815,
+      "condition_number_S": 8.063420593637591,
+      "sampler_accept_rate": 0.20263671875,
+      "grad_norm": 101.99082946777344,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 4700,
+      "loss_sum": -20.816707725761656,
+      "train_energy_estimator": -21.08260154724121,
+      "energies": [
+        -7.062919617386587,
+        -6.366464414165844,
+        -3.9120780724996065,
+        -3.475245621709619
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.9370803826134129,
+        1.6335355858341556,
+        4.0879219275003935,
+        4.524754378290381
+      ],
+      "trace_error": 11.183292274238344,
+      "condition_number_S": 7.109086326101979,
+      "sampler_accept_rate": 0.1818033903837204,
+      "grad_norm": 73.20696258544922,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 4800,
+      "loss_sum": -21.173492994636188,
+      "train_energy_estimator": -20.80963134765625,
+      "energies": [
+        -7.1280082129588545,
+        -6.422002794270196,
+        -3.908586422858523,
+        -3.714895564548616
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.8719917870411455,
+        1.5779972057298037,
+        4.091413577141477,
+        4.285104435451384
+      ],
+      "trace_error": 10.826507005363812,
+      "condition_number_S": 4.9558187256810005,
+      "sampler_accept_rate": 0.1570638120174408,
+      "grad_norm": 70.38006591796875,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 4900,
+      "loss_sum": -21.27466507306261,
+      "train_energy_estimator": -21.039352416992188,
+      "energies": [
+        -7.303891969738956,
+        -6.322275070553646,
+        -3.8773383907439705,
+        -3.771159642026037
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.6961080302610441,
+        1.677724929446354,
+        4.1226616092560295,
+        4.228840357973963
+      ],
+      "trace_error": 10.72533492693739,
+      "condition_number_S": 5.350091169676564,
+      "sampler_accept_rate": 0.1775716245174408,
+      "grad_norm": 136.04612731933594,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 5000,
+      "loss_sum": -20.994613941640935,
+      "train_energy_estimator": -21.23984146118164,
+      "energies": [
+        -7.1013034114799,
+        -6.325938689532015,
+        -3.8870098697397837,
+        -3.680361970889238
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.8986965885201004,
+        1.6740613104679847,
+        4.112990130260217,
+        4.319638029110762
+      ],
+      "trace_error": 11.005386058359065,
+      "condition_number_S": 4.04294668731938,
+      "sampler_accept_rate": 0.1507161557674408,
+      "grad_norm": 118.1865234375,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 5100,
+      "loss_sum": -21.607395465142993,
+      "train_energy_estimator": -21.381574630737305,
+      "energies": [
+        -7.403781763457224,
+        -6.557556454328508,
+        -3.865148785571899,
+        -3.780908461785364
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.596218236542776,
+        1.442443545671492,
+        4.134851214428101,
+        4.219091538214636
+      ],
+      "trace_error": 10.392604534857007,
+      "condition_number_S": 3.2150861799906583,
+      "sampler_accept_rate": 0.1451822966337204,
+      "grad_norm": 75.42716979980469,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 5200,
+      "loss_sum": -21.770647606112096,
+      "train_energy_estimator": -21.385969161987305,
+      "energies": [
+        -7.4254697289855685,
+        -6.643800374632834,
+        -3.955876573641892,
+        -3.7455009288518006
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.5745302710144315,
+        1.3561996253671662,
+        4.044123426358108,
+        4.254499071148199
+      ],
+      "trace_error": 10.229352393887904,
+      "condition_number_S": 3.028615219031206,
+      "sampler_accept_rate": 0.1180013045668602,
+      "grad_norm": 90.24517822265625,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 5300,
+      "loss_sum": -21.665036452315587,
+      "train_energy_estimator": -21.626007080078125,
+      "energies": [
+        -7.376818292826767,
+        -6.637016733340794,
+        -3.921248402443526,
+        -3.7299530237045
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.6231817071732326,
+        1.3629832666592057,
+        4.078751597556474,
+        4.2700469762955
+      ],
+      "trace_error": 10.334963547684413,
+      "condition_number_S": 3.20925377035672,
+      "sampler_accept_rate": 0.1399739682674408,
+      "grad_norm": 333.579345703125,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 5400,
+      "loss_sum": -21.819089122364204,
+      "train_energy_estimator": -21.933889389038086,
+      "energies": [
+        -7.352298394850833,
+        -6.772783106040577,
+        -3.937786952253087,
+        -3.756220669219709
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.6477016051491669,
+        1.2272168939594232,
+        4.062213047746913,
+        4.243779330780291
+      ],
+      "trace_error": 10.180910877635796,
+      "condition_number_S": 2.5787576361192763,
+      "sampler_accept_rate": 0.1095377653837204,
+      "grad_norm": 83.57109832763672,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 5500,
+      "loss_sum": -22.045552530299346,
+      "train_energy_estimator": -22.28793716430664,
+      "energies": [
+        -7.545285195748851,
+        -6.724825521237079,
+        -3.9720114556650863,
+        -3.8034303576483315
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.4547148042511493,
+        1.2751744787629207,
+        4.027988544334914,
+        4.196569642351669
+      ],
+      "trace_error": 9.954447469700654,
+      "condition_number_S": 2.137473754436214,
+      "sampler_accept_rate": 0.0999348983168602,
+      "grad_norm": 53.65061950683594,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 5600,
+      "loss_sum": -22.194345549563295,
+      "train_energy_estimator": -21.87668228149414,
+      "energies": [
+        -7.603830400943097,
+        -6.935662246610601,
+        -3.947253463401995,
+        -3.7075994386076
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.3961695990569032,
+        1.064337753389399,
+        4.052746536598005,
+        4.2924005613924
+      ],
+      "trace_error": 9.805654450436705,
+      "condition_number_S": 2.471752533267663,
+      "sampler_accept_rate": 0.0929362028837204,
+      "grad_norm": 65.88983917236328,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 5700,
+      "loss_sum": -22.407505349586124,
+      "train_energy_estimator": -22.332494735717773,
+      "energies": [
+        -7.577207031072522,
+        -7.070475175353373,
+        -3.961698881674757,
+        -3.798124261485472
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.4227929689274781,
+        0.9295248246466272,
+        4.0383011183252435,
+        4.201875738514528
+      ],
+      "trace_error": 9.592494650413876,
+      "condition_number_S": 2.1008939101802597,
+      "sampler_accept_rate": 0.0769856870174408,
+      "grad_norm": 53.66012191772461,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 5800,
+      "loss_sum": -22.56776047400748,
+      "train_energy_estimator": -22.420486450195312,
+      "energies": [
+        -7.689216287189224,
+        -7.1949681841812865,
+        -3.9147505285631974,
+        -3.76882547407377
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.31078371281077644,
+        0.8050318158187135,
+        4.085249471436803,
+        4.23117452592623
+      ],
+      "trace_error": 9.432239525992522,
+      "condition_number_S": 2.1546897600967014,
+      "sampler_accept_rate": 0.1139322966337204,
+      "grad_norm": 99.34135437011719,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 5900,
+      "loss_sum": -22.642454209575494,
+      "train_energy_estimator": -22.275341033935547,
+      "energies": [
+        -7.652727056978435,
+        -7.265733377009524,
+        -3.9189014168939673,
+        -3.8050923586935688
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.3472729430215651,
+        0.734266622990476,
+        4.081098583106033,
+        4.194907641306431
+      ],
+      "trace_error": 9.357545790424506,
+      "condition_number_S": 2.0787722962266364,
+      "sampler_accept_rate": 0.08251953125,
+      "grad_norm": 62.58113098144531,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 6000,
+      "loss_sum": -22.491702063147724,
+      "train_energy_estimator": -22.708187103271484,
+      "energies": [
+        -7.4776172126218095,
+        -7.249606323613581,
+        -3.962932884487574,
+        -3.8015456424247605
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.5223827873781905,
+        0.7503936763864187,
+        4.037067115512426,
+        4.1984543575752395
+      ],
+      "trace_error": 9.508297936852276,
+      "condition_number_S": 2.0204217448621504,
+      "sampler_accept_rate": 0.0636393278837204,
+      "grad_norm": 52.508460998535156,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 6100,
+      "loss_sum": -22.880897199404657,
+      "train_energy_estimator": -22.74435043334961,
+      "energies": [
+        -7.695929875713794,
+        -7.37798046599813,
+        -3.9459010381092385,
+        -3.861085819583494
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.3040701242862056,
+        0.6220195340018702,
+        4.0540989618907615,
+        4.138914180416506
+      ],
+      "trace_error": 9.119102800595343,
+      "condition_number_S": 2.0491688732156446,
+      "sampler_accept_rate": 0.0595703162252903,
+      "grad_norm": 48.28460693359375,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 6200,
+      "loss_sum": -22.61176039734336,
+      "train_energy_estimator": -22.600067138671875,
+      "energies": [
+        -7.714225263130732,
+        -7.318178057065581,
+        -3.942277906123953,
+        -3.637079171023095
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.2857747368692678,
+        0.6818219429344188,
+        4.0577220938760465,
+        4.362920828976905
+      ],
+      "trace_error": 9.38823960265664,
+      "condition_number_S": 2.336202015312506,
+      "sampler_accept_rate": 0.0343424491584301,
+      "grad_norm": 75.19244384765625,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 6300,
+      "loss_sum": -22.808960380932103,
+      "train_energy_estimator": -22.69568634033203,
+      "energies": [
+        -7.671791098902849,
+        -7.429483325568299,
+        -3.9402490283980565,
+        -3.7674369280629
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.32820890109715073,
+        0.5705166744317012,
+        4.059750971601943,
+        4.232563071937101
+      ],
+      "trace_error": 9.191039619067897,
+      "condition_number_S": 2.167548443624184,
+      "sampler_accept_rate": 0.0538736991584301,
+      "grad_norm": 81.37113952636719,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 6400,
+      "loss_sum": -22.930531258958446,
+      "train_energy_estimator": -22.576793670654297,
+      "energies": [
+        -7.760939079585367,
+        -7.434018390885024,
+        -3.9277109023125445,
+        -3.8078628861755113
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.23906092041463278,
+        0.5659816091149761,
+        4.072289097687456,
+        4.192137113824488
+      ],
+      "trace_error": 9.069468741041554,
+      "condition_number_S": 2.2179520940047266,
+      "sampler_accept_rate": 0.0361328125,
+      "grad_norm": 101.6446533203125,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 6500,
+      "loss_sum": -23.14225154577537,
+      "train_energy_estimator": -22.93292808532715,
+      "energies": [
+        -7.770645509848842,
+        -7.57208253034789,
+        -3.925531089586904,
+        -3.873992415991732
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.22935449015115772,
+        0.42791746965210997,
+        4.074468910413096,
+        4.126007584008268
+      ],
+      "trace_error": 8.85774845422463,
+      "condition_number_S": 2.194164455510201,
+      "sampler_accept_rate": 0.0426432304084301,
+      "grad_norm": 75.38261413574219,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 6600,
+      "loss_sum": -23.0821429038982,
+      "train_energy_estimator": -22.753372192382812,
+      "energies": [
+        -7.733796612320456,
+        -7.578329998176127,
+        -3.941350613660619,
+        -3.828665679740997
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.26620338767954443,
+        0.42167000182387326,
+        4.058649386339381,
+        4.171334320259003
+      ],
+      "trace_error": 8.917857096101802,
+      "condition_number_S": 2.027207090064816,
+      "sampler_accept_rate": 0.0379231795668602,
+      "grad_norm": 94.2596206665039,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 6700,
+      "loss_sum": -22.974489531029604,
+      "train_energy_estimator": -23.065481185913086,
+      "energies": [
+        -7.715686664662957,
+        -7.540520739467649,
+        -3.947714700533194,
+        -3.770567426365804
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.2843133353370426,
+        0.4594792605323512,
+        4.052285299466806,
+        4.229432573634195
+      ],
+      "trace_error": 9.025510468970396,
+      "condition_number_S": 1.9041602307797012,
+      "sampler_accept_rate": 0.029296875,
+      "grad_norm": 59.384647369384766,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 6800,
+      "loss_sum": -22.860268719226028,
+      "train_energy_estimator": -22.88051414489746,
+      "energies": [
+        -7.676478138838416,
+        -7.4854562060170196,
+        -3.955091906427405,
+        -3.7432424679431877
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.3235218611615842,
+        0.5145437939829804,
+        4.0449080935725945,
+        4.256757532056812
+      ],
+      "trace_error": 9.139731280773972,
+      "condition_number_S": 2.011417882278504,
+      "sampler_accept_rate": 0.02815755270421505,
+      "grad_norm": 77.61573028564453,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 6900,
+      "loss_sum": -22.964901723834284,
+      "train_energy_estimator": -23.196834564208984,
+      "energies": [
+        -7.784094615785447,
+        -7.621370963120423,
+        -3.9402518690242467,
+        -3.6191842759041677
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.21590538421455285,
+        0.37862903687957683,
+        4.059748130975754,
+        4.380815724095832
+      ],
+      "trace_error": 9.035098276165716,
+      "condition_number_S": 2.1554141296215503,
+      "sampler_accept_rate": 0.0330403670668602,
+      "grad_norm": 36.38020324707031,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 7000,
+      "loss_sum": -23.338406199185513,
+      "train_energy_estimator": -23.516311645507812,
+      "energies": [
+        -7.805682984926971,
+        -7.695473444754095,
+        -3.9428931239474196,
+        -3.894356645557028
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.1943170150730289,
+        0.30452655524590533,
+        4.057106876052581,
+        4.105643354442972
+      ],
+      "trace_error": 8.661593800814487,
+      "condition_number_S": 2.040468234120613,
+      "sampler_accept_rate": 0.02685546875,
+      "grad_norm": 36.53104782104492,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 7100,
+      "loss_sum": -23.011544585215905,
+      "train_energy_estimator": -23.46949005126953,
+      "energies": [
+        -7.832843539007316,
+        -7.4825264854684645,
+        -3.9477734240953315,
+        -3.748401136644793
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.16715646099268433,
+        0.5174735145315355,
+        4.052226575904669,
+        4.251598863355207
+      ],
+      "trace_error": 8.988455414784095,
+      "condition_number_S": 2.09167337660577,
+      "sampler_accept_rate": 0.0338541679084301,
+      "grad_norm": 66.75362396240234,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 7200,
+      "loss_sum": -23.29854561028733,
+      "train_energy_estimator": -23.212848663330078,
+      "energies": [
+        -7.7918032579232035,
+        -7.743589577304524,
+        -3.9625402340598623,
+        -3.8006125409997407
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.2081967420767965,
+        0.25641042269547576,
+        4.037459765940138,
+        4.19938745900026
+      ],
+      "trace_error": 8.70145438971267,
+      "condition_number_S": 1.92134353653666,
+      "sampler_accept_rate": 0.02278645895421505,
+      "grad_norm": 57.15249252319336,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 7300,
+      "loss_sum": -23.35058551892827,
+      "train_energy_estimator": -23.251842498779297,
+      "energies": [
+        -7.806610655360966,
+        -7.721104784231457,
+        -3.9751650903537072,
+        -3.847704988982138
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.19338934463903357,
+        0.2788952157685429,
+        4.024834909646293,
+        4.152295011017862
+      ],
+      "trace_error": 8.64941448107173,
+      "condition_number_S": 2.0396191674407325,
+      "sampler_accept_rate": 0.01448567770421505,
+      "grad_norm": 87.0444107055664,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 7400,
+      "loss_sum": -23.48604811737755,
+      "train_energy_estimator": -23.406749725341797,
+      "energies": [
+        -7.827627746772986,
+        -7.763847490528261,
+        -3.9731464350461456,
+        -3.921426445030157
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.17237225322701377,
+        0.23615250947173916,
+        4.026853564953854,
+        4.078573554969843
+      ],
+      "trace_error": 8.51395188262245,
+      "condition_number_S": 2.0640233122190947,
+      "sampler_accept_rate": 0.0166015625,
+      "grad_norm": 39.85517883300781,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 7500,
+      "loss_sum": -23.37068150788574,
+      "train_energy_estimator": -23.43130111694336,
+      "energies": [
+        -7.8787426149799975,
+        -7.73763802209543,
+        -3.9168214958571044,
+        -3.8374793749532103
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.1212573850200025,
+        0.26236197790457005,
+        4.083178504142896,
+        4.16252062504679
+      ],
+      "trace_error": 8.629318492114258,
+      "condition_number_S": 2.0659564672910484,
+      "sampler_accept_rate": 0.012369791977107525,
+      "grad_norm": 38.057945251464844,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 7600,
+      "loss_sum": -23.43188265938847,
+      "train_energy_estimator": -23.35128402709961,
+      "energies": [
+        -7.877393519825855,
+        -7.797255092269719,
+        -3.9377735265109965,
+        -3.8194605207819015
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.1226064801741451,
+        0.2027449077302812,
+        4.0622264734890035,
+        4.1805394792180985
+      ],
+      "trace_error": 8.56811734061153,
+      "condition_number_S": 2.048147793871691,
+      "sampler_accept_rate": 0.0245768241584301,
+      "grad_norm": 47.26301956176758,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 7700,
+      "loss_sum": -23.34830494207548,
+      "train_energy_estimator": -23.315143585205078,
+      "energies": [
+        -7.826232283828345,
+        -7.7793602630495675,
+        -3.9581323332750262,
+        -3.784580061922541
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.1737677161716551,
+        0.22063973695043249,
+        4.041867666724974,
+        4.215419938077459
+      ],
+      "trace_error": 8.65169505792452,
+      "condition_number_S": 2.0089799630664706,
+      "sampler_accept_rate": 0.0224609375,
+      "grad_norm": 107.69639587402344,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 7800,
+      "loss_sum": -23.431124000246218,
+      "train_energy_estimator": -23.538192749023438,
+      "energies": [
+        -7.896152948521696,
+        -7.711205787129741,
+        -3.97663698657473,
+        -3.8471282780200524
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.10384705147830431,
+        0.2887942128702594,
+        4.02336301342527,
+        4.152871721979947
+      ],
+      "trace_error": 8.568875999753782,
+      "condition_number_S": 2.0322049857729665,
+      "sampler_accept_rate": 0.01546224020421505,
+      "grad_norm": 66.20026397705078,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 7900,
+      "loss_sum": -23.53174455499928,
+      "train_energy_estimator": -23.638046264648438,
+      "energies": [
+        -7.882404409105758,
+        -7.752001700704963,
+        -3.9723418707232097,
+        -3.9249965744653466
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.11759559089424165,
+        0.2479982992950367,
+        4.027658129276791,
+        4.0750034255346534
+      ],
+      "trace_error": 8.468255445000722,
+      "condition_number_S": 2.130563597882727,
+      "sampler_accept_rate": 0.01806640625,
+      "grad_norm": 30.8009033203125,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 8000,
+      "loss_sum": -23.226966603075283,
+      "train_energy_estimator": -23.072021484375,
+      "energies": [
+        -7.847781537006641,
+        -7.529176620019328,
+        -3.9638553794787583,
+        -3.886153066570558
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.15221846299335873,
+        0.47082337998067203,
+        4.036144620521242,
+        4.113846933429442
+      ],
+      "trace_error": 8.773033396924717,
+      "condition_number_S": 2.1407161396301455,
+      "sampler_accept_rate": 0.0205078125,
+      "grad_norm": 69.99906158447266,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 8100,
+      "loss_sum": -23.449918568594267,
+      "train_energy_estimator": -23.476776123046875,
+      "energies": [
+        -7.871711869164378,
+        -7.728426993270925,
+        -3.946398078752356,
+        -3.903381627406605
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.12828813083562185,
+        0.27157300672907514,
+        4.053601921247644,
+        4.096618372593396
+      ],
+      "trace_error": 8.550081431405733,
+      "condition_number_S": 2.0984289971189716,
+      "sampler_accept_rate": 0.01171875,
+      "grad_norm": 42.1728401184082,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 8200,
+      "loss_sum": -23.4756637099809,
+      "train_energy_estimator": -23.70996856689453,
+      "energies": [
+        -7.881377653357116,
+        -7.704353979621534,
+        -3.956242253469456,
+        -3.933689823532796
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.1186223466428844,
+        0.29564602037846566,
+        4.043757746530543,
+        4.066310176467204
+      ],
+      "trace_error": 8.5243362900191,
+      "condition_number_S": 2.1931725911528916,
+      "sampler_accept_rate": 0.01171875,
+      "grad_norm": 30.580902099609375,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 8300,
+      "loss_sum": -23.34138957179302,
+      "train_energy_estimator": -23.356090545654297,
+      "energies": [
+        -7.848738211227459,
+        -7.805192032014905,
+        -3.9314735023673353,
+        -3.7559858261833186
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.15126178877254137,
+        0.1948079679850947,
+        4.068526497632664,
+        4.244014173816682
+      ],
+      "trace_error": 8.65861042820698,
+      "condition_number_S": 2.1480478126795206,
+      "sampler_accept_rate": 0.02001953125,
+      "grad_norm": 49.12352752685547,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 8400,
+      "loss_sum": -23.426616509122333,
+      "train_energy_estimator": -23.481666564941406,
+      "energies": [
+        -7.89907336994458,
+        -7.72635578611585,
+        -3.948208584586315,
+        -3.8529787684755856
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.10092663005541969,
+        0.2736442138841504,
+        4.051791415413685,
+        4.147021231524414
+      ],
+      "trace_error": 8.573383490877667,
+      "condition_number_S": 2.234406539599557,
+      "sampler_accept_rate": 0.0216471366584301,
+      "grad_norm": 39.841670989990234,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 8500,
+      "loss_sum": -23.597927030122865,
+      "train_energy_estimator": -23.62841033935547,
+      "energies": [
+        -7.908859725976944,
+        -7.799118692863686,
+        -3.9884554121377924,
+        -3.9014931991444435
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.09114027402305602,
+        0.20088130713631358,
+        4.011544587862208,
+        4.0985068008555565
+      ],
+      "trace_error": 8.402072969877135,
+      "condition_number_S": 2.1900882466599483,
+      "sampler_accept_rate": 0.014322916977107525,
+      "grad_norm": 35.65709686279297,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 8600,
+      "loss_sum": -23.46777432136114,
+      "train_energy_estimator": -23.542150497436523,
+      "energies": [
+        -7.87318784920444,
+        -7.848141873031848,
+        -3.9281099875793104,
+        -3.8183346115455405
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.12681215079556019,
+        0.15185812696815226,
+        4.07189001242069,
+        4.1816653884544595
+      ],
+      "trace_error": 8.53222567863886,
+      "condition_number_S": 2.1283406924108346,
+      "sampler_accept_rate": 0.010904948227107525,
+      "grad_norm": 42.677703857421875,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 8700,
+      "loss_sum": -23.493780623774565,
+      "train_energy_estimator": -23.44015884399414,
+      "energies": [
+        -7.9254223732263585,
+        -7.751721942839114,
+        -3.9497716577002864,
+        -3.8668646500088064
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.07457762677364155,
+        0.2482780571608858,
+        4.050228342299714,
+        4.133135349991194
+      ],
+      "trace_error": 8.506219376225435,
+      "condition_number_S": 2.3000314715822125,
+      "sampler_accept_rate": 0.01464843936264515,
+      "grad_norm": 149.2853546142578,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 8800,
+      "loss_sum": -23.50681621539954,
+      "train_energy_estimator": -23.721166610717773,
+      "energies": [
+        -7.859363193292866,
+        -7.730917407194377,
+        -3.9740087289863086,
+        -3.942526885925986
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.14063680670713374,
+        0.2690825928056233,
+        4.025991271013691,
+        4.057473114074014
+      ],
+      "trace_error": 8.493183784600461,
+      "condition_number_S": 2.136923811423996,
+      "sampler_accept_rate": 0.009928385727107525,
+      "grad_norm": 33.81502151489258,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 8900,
+      "loss_sum": -23.63295344564075,
+      "train_energy_estimator": -23.653499603271484,
+      "energies": [
+        -7.9205943575674045,
+        -7.820145134032978,
+        -3.980279253294378,
+        -3.911934700745993
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.07940564243259551,
+        0.17985486596702227,
+        4.019720746705622,
+        4.088065299254007
+      ],
+      "trace_error": 8.367046554359248,
+      "condition_number_S": 2.108562946995705,
+      "sampler_accept_rate": 0.006022135727107525,
+      "grad_norm": 45.04610061645508,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 9000,
+      "loss_sum": -23.569233619043715,
+      "train_energy_estimator": -23.472028732299805,
+      "energies": [
+        -7.9005115638617935,
+        -7.813864302271827,
+        -3.9439115784574494,
+        -3.910946174452643
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.09948843613820646,
+        0.18613569772817318,
+        4.056088421542551,
+        4.0890538255473565
+      ],
+      "trace_error": 8.430766380956285,
+      "condition_number_S": 2.142079825551113,
+      "sampler_accept_rate": 0.01888020895421505,
+      "grad_norm": 37.01591491699219,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 9100,
+      "loss_sum": -23.57682661155234,
+      "train_energy_estimator": -23.633953094482422,
+      "energies": [
+        -7.911061438652928,
+        -7.824229446249684,
+        -3.9886345815572724,
+        -3.8529011450924577
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.08893856134707168,
+        0.1757705537503158,
+        4.011365418442727,
+        4.147098854907542
+      ],
+      "trace_error": 8.423173388447658,
+      "condition_number_S": 2.1951959093408053,
+      "sampler_accept_rate": 0.00911458395421505,
+      "grad_norm": 27.1558780670166,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 9200,
+      "loss_sum": -23.62717527381456,
+      "train_energy_estimator": -23.661205291748047,
+      "energies": [
+        -7.915201167566257,
+        -7.811947486039909,
+        -3.9577973794518813,
+        -3.9422292407565145
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.08479883243374342,
+        0.18805251396009126,
+        4.042202620548119,
+        4.0577707592434855
+      ],
+      "trace_error": 8.372824726185438,
+      "condition_number_S": 2.5045201348763815,
+      "sampler_accept_rate": 0.010416666977107525,
+      "grad_norm": 23.52103614807129,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 9300,
+      "loss_sum": -23.49460408396858,
+      "train_energy_estimator": -23.582687377929688,
+      "energies": [
+        -7.908027042962828,
+        -7.791403611601223,
+        -3.970364304871796,
+        -3.8248091245327314
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.09197295703717234,
+        0.20859638839877714,
+        4.029635695128205,
+        4.175190875467269
+      ],
+      "trace_error": 8.505395916031421,
+      "condition_number_S": 2.2866802879254466,
+      "sampler_accept_rate": 0.008951823227107525,
+      "grad_norm": 138.6016845703125,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 9400,
+      "loss_sum": -23.57156062401132,
+      "train_energy_estimator": -23.274206161499023,
+      "energies": [
+        -7.906511267019038,
+        -7.794303129739058,
+        -3.9782843283720624,
+        -3.8924618988811583
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.09348873298096194,
+        0.20569687026094208,
+        4.021715671627938,
+        4.107538101118841
+      ],
+      "trace_error": 8.428439375988681,
+      "condition_number_S": 2.5661292593093328,
+      "sampler_accept_rate": 0.02132161520421505,
+      "grad_norm": 68.61646270751953,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 9500,
+      "loss_sum": -23.657405176569988,
+      "train_energy_estimator": -23.52005386352539,
+      "energies": [
+        -7.916657986021891,
+        -7.868874571156542,
+        -3.9937373724348344,
+        -3.8781352469567216
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.08334201397810936,
+        0.13112542884345757,
+        4.006262627565166,
+        4.121864753043278
+      ],
+      "trace_error": 8.342594823430012,
+      "condition_number_S": 2.418828276631213,
+      "sampler_accept_rate": 0.009928385727107525,
+      "grad_norm": 53.76406478881836,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 9600,
+      "loss_sum": -23.44188176630079,
+      "train_energy_estimator": -23.317363739013672,
+      "energies": [
+        -7.898933885079579,
+        -7.690025687532364,
+        -3.958493422062832,
+        -3.894428771626015
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.10106611492042106,
+        0.3099743124676362,
+        4.041506577937168,
+        4.105571228373985
+      ],
+      "trace_error": 8.558118233699211,
+      "condition_number_S": 2.5184508687218186,
+      "sampler_accept_rate": 0.01643880270421505,
+      "grad_norm": 55.55064392089844,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 9700,
+      "loss_sum": -23.681126951486632,
+      "train_energy_estimator": -23.573974609375,
+      "energies": [
+        -7.920199507724943,
+        -7.8508635702643605,
+        -3.9739970773737863,
+        -3.9360667961235425
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.07980049227505681,
+        0.14913642973563945,
+        4.026002922626214,
+        4.0639332038764575
+      ],
+      "trace_error": 8.318873048513368,
+      "condition_number_S": 2.3452208407780346,
+      "sampler_accept_rate": 0.009928385727107525,
+      "grad_norm": 32.86842346191406,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 9800,
+      "loss_sum": -23.513608448737273,
+      "train_energy_estimator": -23.478734970092773,
+      "energies": [
+        -7.88696572059745,
+        -7.701917011103973,
+        -3.978769159586643,
+        -3.945956557449207
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.11303427940254984,
+        0.29808298889602725,
+        4.021230840413358,
+        4.0540434425507925
+      ],
+      "trace_error": 8.486391551262727,
+      "condition_number_S": 2.3226727806571534,
+      "sampler_accept_rate": 0.01350911520421505,
+      "grad_norm": 59.385284423828125,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 9900,
+      "loss_sum": -23.625857179117773,
+      "train_energy_estimator": -23.593154907226562,
+      "energies": [
+        -7.9227976258794035,
+        -7.757168392875744,
+        -3.98520057059418,
+        -3.960690589768446
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.0772023741205965,
+        0.24283160712425644,
+        4.014799429405819,
+        4.039309410231554
+      ],
+      "trace_error": 8.374142820882227,
+      "condition_number_S": 2.5772879698027515,
+      "sampler_accept_rate": 0.00813802145421505,
+      "grad_norm": 44.376564025878906,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 10000,
+      "loss_sum": -23.6117588233723,
+      "train_energy_estimator": -23.57119369506836,
+      "energies": [
+        -7.917294706869604,
+        -7.781123540883972,
+        -3.9646436102125695,
+        -3.948696965406155
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.0827052931303962,
+        0.2188764591160277,
+        4.035356389787431,
+        4.051303034593845
+      ],
+      "trace_error": 8.388241176627702,
+      "condition_number_S": 2.4281768971083535,
+      "sampler_accept_rate": 0.01106770895421505,
+      "grad_norm": 46.71040725708008,
+      "eval": {
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    }
+  ]
+}
