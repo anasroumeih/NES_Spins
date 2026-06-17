@@ -59,10 +59,80 @@ def nearest_neighbor_bonds(shape: int | Iterable[int], pbc: bool = True) -> np.n
     return np.array(sorted(bonds), dtype=np.int32)
 
 
+def toric_code_edge_index(x: int, y: int, direction: int, shape: int | Iterable[int]) -> int:
+    """Index an edge spin of the periodic square-lattice toric code.
+
+    shape=(Lx,Ly).  Each unit cell has two edge qubits:
+        direction=0: horizontal edge from (x,y) to (x+1,y)
+        direction=1: vertical edge from (x,y) to (x,y+1)
+
+    The flat spin index is 2 * cell_index + direction.
+    """
+    Lx, Ly = normalize_shape(shape)
+    x %= Lx
+    y %= Ly
+    return 2 * (x * Ly + y) + int(direction)
+
+
+def toric_code_num_edges(shape: int | Iterable[int]) -> int:
+    """Number of edge qubits for the periodic square-lattice toric code."""
+    shape = normalize_shape(shape)
+    if len(shape) != 2:
+        raise ValueError("Toric code requires a 2D shape, e.g. shape=(Lx,Ly).")
+    return 2 * num_sites(shape)
+
+
+def toric_code_terms(shape: int | Iterable[int], pbc: bool = True) -> tuple[np.ndarray, np.ndarray]:
+    """Return star and plaquette terms for the periodic 2D toric code.
+
+    Returns
+    -------
+    stars, plaquettes:
+        Arrays with shape (Lx*Ly, 4).  Each row contains the four edge-qubit
+        indices belonging to a star A_s or plaquette B_p.
+
+    Notes
+    -----
+    The toric-code ground-state degeneracy targeted here requires periodic
+    boundary conditions.  Open boundaries have different edge counting and are
+    intentionally not implemented in this small research code.
+    """
+    shape = normalize_shape(shape)
+    if len(shape) != 2:
+        raise ValueError("Toric code requires a 2D shape, e.g. shape=(Lx,Ly).")
+    if not pbc:
+        raise NotImplementedError("This toric-code implementation currently supports only pbc=True.")
+
+    Lx, Ly = shape
+    stars = []
+    plaquettes = []
+
+    for x in range(Lx):
+        for y in range(Ly):
+            # Star at vertex (x,y): the four incident edges.
+            stars.append([
+                toric_code_edge_index(x, y, 0, shape),      # horizontal to the right
+                toric_code_edge_index(x - 1, y, 0, shape),  # horizontal from the left
+                toric_code_edge_index(x, y, 1, shape),      # vertical upward
+                toric_code_edge_index(x, y - 1, 1, shape),  # vertical from below
+            ])
+
+            # Plaquette with lower-left corner (x,y): four boundary edges.
+            plaquettes.append([
+                toric_code_edge_index(x, y, 0, shape),      # bottom edge
+                toric_code_edge_index(x + 1, y, 1, shape),  # right edge
+                toric_code_edge_index(x, y + 1, 0, shape),  # top edge
+                toric_code_edge_index(x, y, 1, shape),      # left edge
+            ])
+
+    return np.asarray(stars, dtype=np.int32), np.asarray(plaquettes, dtype=np.int32)
+
+
 def make_basis(shape: int | Iterable[int], magnetization: int | None = None) -> np.ndarray:
     """Enumerate spin configurations with values ±1.
 
     magnetization is sum(spins). Use magnetization=0 for the Heisenberg Sz=0 sector.
+    For models with a non-site number of spins, pass shape=(N,).
     """
     N = num_sites(shape)
     basis = np.array(list(product([-1, 1], repeat=N)), dtype=np.int8)

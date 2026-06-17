@@ -1,0 +1,695 @@
+{
+  "config": {
+    "shape": [
+      5,
+      5
+    ],
+    "hamiltonian": "tfim",
+    "k": 6,
+    "J": 1.0,
+    "g": 1.0,
+    "pbc": true,
+    "magnetization": null,
+    "model": "rbm",
+    "hidden": [
+      64,
+      64
+    ],
+    "rbm_hidden": 64,
+    "channels": [
+      16,
+      16
+    ],
+    "kernel_size": 3,
+    "init_scale": 0.05,
+    "steps": 2500,
+    "lr": 0.001,
+    "n_chains": 64,
+    "n_samples": 8,
+    "sweep_steps": 25,
+    "burn_in": 250,
+    "det_jitter": 1e-08,
+    "grad_clip": 10.0,
+    "print_every": 100,
+    "eval_exact_if_sites_leq": 16,
+    "eval_samples": 32,
+    "eval_chains": 128,
+    "reference": "auto",
+    "own_ed_max_sites": 14,
+    "netket_max_states": 2000000,
+    "jitter": 1e-08,
+    "seed": 2
+  },
+  "history": [
+    {
+      "step": 0,
+      "loss_sum": -140.34614009623522,
+      "train_energy_estimator": NaN,
+      "energies": [
+        -25.02279971589472,
+        -24.517695706109375,
+        -23.76378312995908,
+        -22.6548415188204,
+        -22.49040987675492,
+        -21.896610148696713
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 182.0091502925252,
+      "sampler_accept_rate": NaN,
+      "grad_norm": NaN,
+      "eval": {
+        "accept_rate": 0.9664454460144043,
+        "burn_accept_rate": 0.9673750400543213,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 100,
+      "loss_sum": -265.0702939605668,
+      "train_energy_estimator": -264.545947437226,
+      "energies": [
+        -53.06614491742341,
+        -52.958876466101685,
+        -45.28992910101476,
+        -41.52120962124157,
+        -36.99088058610785,
+        -35.243253268677584
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 60.06432555877531,
+      "sampler_accept_rate": 0.0774218738079071,
+      "grad_norm": 24.961355209350586,
+      "eval": {
+        "accept_rate": 0.05185547471046448,
+        "burn_accept_rate": 0.12068750709295273,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 200,
+      "loss_sum": -275.0965190911858,
+      "train_energy_estimator": -277.63433200787546,
+      "energies": [
+        -53.12931301992206,
+        -53.030802277262126,
+        -45.23229964334044,
+        -45.05030772446809,
+        -43.061829551563974,
+        -35.5919668746291
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 6848.085298685412,
+      "sampler_accept_rate": 0.06031249836087227,
+      "grad_norm": 12.36944580078125,
+      "eval": {
+        "accept_rate": 0.031376950442790985,
+        "burn_accept_rate": 0.09553125500679016,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 300,
+      "loss_sum": -277.3845974671051,
+      "train_energy_estimator": -278.153725363167,
+      "energies": [
+        -53.0557617988447,
+        -52.94698452664499,
+        -45.612970243865384,
+        -45.28347419372031,
+        -44.67949206439157,
+        -35.80591463963817
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 308.0077036796431,
+      "sampler_accept_rate": 0.06109374761581421,
+      "grad_norm": 14.065848350524902,
+      "eval": {
+        "accept_rate": 0.03382812440395355,
+        "burn_accept_rate": 0.10034375637769699,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 400,
+      "loss_sum": -288.42730608035845,
+      "train_energy_estimator": -287.76077882054113,
+      "energies": [
+        -53.088210601564946,
+        -53.01053662850632,
+        -45.84119740011299,
+        -45.70529947884321,
+        -45.56113517903746,
+        -45.220926792293525
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 3861.349910676622,
+      "sampler_accept_rate": 0.05601562187075615,
+      "grad_norm": 20.912860870361328,
+      "eval": {
+        "accept_rate": 0.026191409677267075,
+        "burn_accept_rate": 0.09068750590085983,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 500,
+      "loss_sum": -287.1582199324609,
+      "train_energy_estimator": -287.73922712328215,
+      "energies": [
+        -53.12339452122585,
+        -53.09678826341691,
+        -45.651133786129705,
+        -45.27483699394569,
+        -45.083532958897116,
+        -44.928533408845645
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 10307.063048640639,
+      "sampler_accept_rate": 0.06031249836087227,
+      "grad_norm": 18.181116104125977,
+      "eval": {
+        "accept_rate": 0.02504882588982582,
+        "burn_accept_rate": 0.08868750184774399,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 600,
+      "loss_sum": -288.1690754345596,
+      "train_energy_estimator": -288.3355673291064,
+      "energies": [
+        -53.096374877979216,
+        -53.05009867962616,
+        -45.81839578818523,
+        -45.60008682879248,
+        -45.429739565335204,
+        -45.1743796946413
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 864.0671398260873,
+      "sampler_accept_rate": 0.05624999850988388,
+      "grad_norm": 18.477611541748047,
+      "eval": {
+        "accept_rate": 0.024033203721046448,
+        "burn_accept_rate": 0.09096875786781311,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 700,
+      "loss_sum": -288.08915283980326,
+      "train_energy_estimator": -288.20060082553596,
+      "energies": [
+        -53.09732387613956,
+        -53.09189749570491,
+        -45.647319586416984,
+        -45.4967875899209,
+        -45.404741301778955,
+        -45.35108298984195
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 430.1750349010416,
+      "sampler_accept_rate": 0.058750003576278687,
+      "grad_norm": 21.652490615844727,
+      "eval": {
+        "accept_rate": 0.024833984673023224,
+        "burn_accept_rate": 0.09078125655651093,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 800,
+      "loss_sum": -288.18833394947285,
+      "train_energy_estimator": -288.2918466219747,
+      "energies": [
+        -53.16644506098795,
+        -53.10522510145738,
+        -45.73197217977795,
+        -45.55223621677091,
+        -45.438006329810136,
+        -45.19444906066849
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 608.239707849272,
+      "sampler_accept_rate": 0.06875000149011612,
+      "grad_norm": 10.982512474060059,
+      "eval": {
+        "accept_rate": 0.026474611833691597,
+        "burn_accept_rate": 0.09309375286102295,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 900,
+      "loss_sum": -288.9552782709329,
+      "train_energy_estimator": -288.1222851698034,
+      "energies": [
+        -53.172557957977446,
+        -53.108547239000906,
+        -45.801293209786905,
+        -45.74373140499916,
+        -45.629647182598504,
+        -45.499501276570015
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 1062.5582359654682,
+      "sampler_accept_rate": 0.06632812321186066,
+      "grad_norm": 10.75001335144043,
+      "eval": {
+        "accept_rate": 0.025869136676192284,
+        "burn_accept_rate": 0.09078125655651093,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1000,
+      "loss_sum": -287.53447601025186,
+      "train_energy_estimator": -288.6757199252873,
+      "energies": [
+        -53.11293242019817,
+        -53.05793346876914,
+        -45.77417285958354,
+        -45.408288968934876,
+        -45.249837002997126,
+        -44.93131128976901
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 1684.2927023003217,
+      "sampler_accept_rate": 0.06335937231779099,
+      "grad_norm": 12.194927215576172,
+      "eval": {
+        "accept_rate": 0.02367188036441803,
+        "burn_accept_rate": 0.08865625411272049,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1100,
+      "loss_sum": -288.96398663949174,
+      "train_energy_estimator": -288.38070975488085,
+      "energies": [
+        -53.162393881757616,
+        -53.13505559908339,
+        -45.87307663049962,
+        -45.66285551462807,
+        -45.5805874506437,
+        -45.55001756287939
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 1604.451716466014,
+      "sampler_accept_rate": 0.06726562231779099,
+      "grad_norm": 10.882037162780762,
+      "eval": {
+        "accept_rate": 0.022978516295552254,
+        "burn_accept_rate": 0.08521875739097595,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1200,
+      "loss_sum": -287.9502175206336,
+      "train_energy_estimator": -288.3680047861743,
+      "energies": [
+        -53.1035293050919,
+        -53.039373473747695,
+        -45.70998450147919,
+        -45.58693327878961,
+        -45.54525054924756,
+        -44.965146412277655
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 3791.011098644451,
+      "sampler_accept_rate": 0.07015625387430191,
+      "grad_norm": 9.614691734313965,
+      "eval": {
+        "accept_rate": 0.024746093899011612,
+        "burn_accept_rate": 0.0923750028014183,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1300,
+      "loss_sum": -288.8199107129598,
+      "train_energy_estimator": -288.6266823094937,
+      "energies": [
+        -53.1206297705178,
+        -53.07554976607459,
+        -45.81859480455441,
+        -45.75276754489089,
+        -45.61775289386557,
+        -45.43461593305657
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 450.2462924121745,
+      "sampler_accept_rate": 0.06703124940395355,
+      "grad_norm": 8.973282814025879,
+      "eval": {
+        "accept_rate": 0.02602538652718067,
+        "burn_accept_rate": 0.08768750727176666,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1400,
+      "loss_sum": -288.4464822954876,
+      "train_energy_estimator": -288.59443737613174,
+      "energies": [
+        -53.12206475846293,
+        -53.11315328726922,
+        -45.87918464490116,
+        -45.53370047011766,
+        -45.42592633024519,
+        -45.37245280449146
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 324.77992025126736,
+      "sampler_accept_rate": 0.07445312291383743,
+      "grad_norm": 24.019737243652344,
+      "eval": {
+        "accept_rate": 0.02276366576552391,
+        "burn_accept_rate": 0.08803125470876694,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1500,
+      "loss_sum": -288.8045978458653,
+      "train_energy_estimator": -288.6393055555305,
+      "energies": [
+        -53.10033906973594,
+        -53.08464004208869,
+        -45.89480425490082,
+        -45.693867014022146,
+        -45.61424262720919,
+        -45.41670483790855
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 465.57150020739124,
+      "sampler_accept_rate": 0.07796875387430191,
+      "grad_norm": 10.334344863891602,
+      "eval": {
+        "accept_rate": 0.02866210602223873,
+        "burn_accept_rate": 0.09165625274181366,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1600,
+      "loss_sum": -288.44550418555946,
+      "train_energy_estimator": -288.58574404157844,
+      "energies": [
+        -53.10846635171542,
+        -53.087964568189264,
+        -45.65984094736964,
+        -45.59742813952963,
+        -45.53792558229928,
+        -45.45387859645622
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 618.586514136757,
+      "sampler_accept_rate": 0.07187500596046448,
+      "grad_norm": 13.75048828125,
+      "eval": {
+        "accept_rate": 0.0358886681497097,
+        "burn_accept_rate": 0.0989375039935112,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1700,
+      "loss_sum": -288.43728374081115,
+      "train_energy_estimator": -288.64691029584225,
+      "energies": [
+        -53.159649955033835,
+        -53.10224306460189,
+        -45.65512494651209,
+        -45.64139587905839,
+        -45.52443111772085,
+        -45.354438777884155
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 948.9707399301625,
+      "sampler_accept_rate": 0.07249999791383743,
+      "grad_norm": 13.191422462463379,
+      "eval": {
+        "accept_rate": 0.027099609375,
+        "burn_accept_rate": 0.09018750488758087,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1800,
+      "loss_sum": -289.2639652285904,
+      "train_energy_estimator": -288.7295939148486,
+      "energies": [
+        -53.11948838550883,
+        -53.10974868987776,
+        -46.22234582723167,
+        -45.936037185264254,
+        -45.70025536608577,
+        -45.1760897746221
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 1815.1152667533102,
+      "sampler_accept_rate": 0.06867187470197678,
+      "grad_norm": 12.481687545776367,
+      "eval": {
+        "accept_rate": 0.03962890803813934,
+        "burn_accept_rate": 0.09906250238418579,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1900,
+      "loss_sum": -288.7011588022959,
+      "train_energy_estimator": -288.59586507005247,
+      "energies": [
+        -53.10636507549263,
+        -53.10187291000242,
+        -45.74593099749245,
+        -45.67271136929145,
+        -45.56002130103178,
+        -45.51425714898513
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 3199.5255935299556,
+      "sampler_accept_rate": 0.07273437082767487,
+      "grad_norm": 7.343079566955566,
+      "eval": {
+        "accept_rate": 0.03485351800918579,
+        "burn_accept_rate": 0.09721875190734863,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2000,
+      "loss_sum": -289.00890929648193,
+      "train_energy_estimator": -288.82081546815584,
+      "energies": [
+        -53.13237261638877,
+        -53.0899985251969,
+        -45.87141776254721,
+        -45.72094873728642,
+        -45.61139247339308,
+        -45.582779181669515
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 2866.7039996341823,
+      "sampler_accept_rate": 0.06875000149011612,
+      "grad_norm": 14.555028915405273,
+      "eval": {
+        "accept_rate": 0.030878907069563866,
+        "burn_accept_rate": 0.0923750028014183,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2100,
+      "loss_sum": -288.3871791589854,
+      "train_energy_estimator": -288.7971072446439,
+      "energies": [
+        -53.12800567135471,
+        -53.09234933243932,
+        -45.72543173458102,
+        -45.63884456393633,
+        -45.60482858565047,
+        -45.1977192710236
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 3223.6794182666845,
+      "sampler_accept_rate": 0.07289062440395355,
+      "grad_norm": 28.070404052734375,
+      "eval": {
+        "accept_rate": 0.0331738255918026,
+        "burn_accept_rate": 0.09675000607967377,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2200,
+      "loss_sum": -288.39866121565353,
+      "train_energy_estimator": -288.42369610937345,
+      "energies": [
+        -53.14730186204211,
+        -53.09833806040747,
+        -45.93874638368466,
+        -45.739180201751324,
+        -45.69534733087637,
+        -44.77974737689166
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 5402.868347446576,
+      "sampler_accept_rate": 0.06992187350988388,
+      "grad_norm": 15.400197982788086,
+      "eval": {
+        "accept_rate": 0.039130859076976776,
+        "burn_accept_rate": 0.08918750286102295,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2300,
+      "loss_sum": -287.6852458131114,
+      "train_energy_estimator": -288.7332958965329,
+      "energies": [
+        -53.10412938786064,
+        -53.10047862406994,
+        -45.69124830367935,
+        -45.66738376258878,
+        -45.32299811353474,
+        -44.79900762137796
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 1277.2439796914232,
+      "sampler_accept_rate": 0.07007812708616257,
+      "grad_norm": 14.68049430847168,
+      "eval": {
+        "accept_rate": 0.04026367515325546,
+        "burn_accept_rate": 0.09712500125169754,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2400,
+      "loss_sum": -288.4922983807379,
+      "train_energy_estimator": -288.7068455422116,
+      "energies": [
+        -53.130168237566046,
+        -53.08284458823314,
+        -45.69528867485481,
+        -45.65644616241288,
+        -45.51646486704859,
+        -45.41108585062248
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 12546.409906793306,
+      "sampler_accept_rate": 0.06921874731779099,
+      "grad_norm": 12.947587013244629,
+      "eval": {
+        "accept_rate": 0.025751955807209015,
+        "burn_accept_rate": 0.08900000154972076,
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2500,
+      "loss_sum": -288.788099277074,
+      "train_energy_estimator": -288.77863208491,
+      "energies": [
+        -53.15023726032587,
+        -53.10060528567165,
+        -45.725276295171746,
+        -45.63573932334755,
+        -45.627950232142844,
+        -45.548290880414335
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=25 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 876.1284489168493,
+      "sampler_accept_rate": 0.07273437082767487,
+      "grad_norm": 12.636504173278809,
+      "eval": {
+        "accept_rate": 0.03852538764476776,
+        "burn_accept_rate": 0.0936562567949295,
+        "method": "sampled_span_q"
+      }
+    }
+  ]
+}

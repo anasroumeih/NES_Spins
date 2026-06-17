@@ -23,10 +23,12 @@ from .sampler import init_bundles, make_bundle_sampler
 class TrainConfig:
     # Lattice/system. 2D is the default; 1D is the exception, e.g. shape=(10,).
     shape: tuple[int, ...] = (4, 4)
-    hamiltonian: Literal["tfim", "heisenberg"] = "tfim"
+    hamiltonian: Literal["tfim", "heisenberg", "toric_code", "toric"] = "tfim"
     k: int = 2
     J: float = 1.0
     g: float = 1.0
+    Je: float | None = None      # toric-code star coupling; defaults to J
+    Jm: float | None = None      # toric-code plaquette coupling; defaults to J
     pbc: bool = True
     magnetization: int | None = None
 
@@ -37,6 +39,7 @@ class TrainConfig:
     channels: tuple[int, ...] = (16, 16)
     kernel_size: int = 3
     init_scale: float = 0.05
+    dtype: str = "float32"
 
     # Stochastic NES-VMC.
     steps: int = 1000
@@ -53,7 +56,7 @@ class TrainConfig:
     eval_exact_if_sites_leq: int = 16
     eval_samples: int = 32
     eval_chains: int = 128
-    reference: Literal["auto", "netket", "ed", "own_ed", "none"] = "auto"
+    reference: Literal["auto", "netket", "ed", "own_ed", "toric", "analytic", "none"] = "auto"
     own_ed_max_sites: int = 14
     netket_max_states: int = 2_000_000
     jitter: float = 1e-8
@@ -64,10 +67,11 @@ class TrainConfig:
         self.shape = normalize_shape(self.shape)
         self.hidden = tuple(self.hidden)
         self.channels = tuple(self.channels)
+        n_move_sites = 2 * num_sites(self.shape) if str(self.hamiltonian).lower() in ("toric", "tc", "toric_code") else num_sites(self.shape)
         if self.sweep_steps is None:
-            self.sweep_steps = max(1, num_sites(self.shape))
+            self.sweep_steps = max(1, n_move_sites)
         if self.burn_in is None:
-            self.burn_in = 10 * max(1, num_sites(self.shape))
+            self.burn_in = 10 * max(1, n_move_sites)
 
 
 def make_apply_fun(mspec: ModelSpec):
@@ -83,6 +87,8 @@ def train(cfg: TrainConfig):
         g=cfg.g,
         pbc=cfg.pbc,
         magnetization=cfg.magnetization,
+        Je=cfg.Je,
+        Jm=cfg.Jm,
     )
     bonds = jnp.asarray(hspec.bonds_np)
     mspec = ModelSpec(
@@ -94,6 +100,9 @@ def train(cfg: TrainConfig):
         channels=cfg.channels,
         kernel_size=cfg.kernel_size,
         scale=cfg.init_scale,
+        n_sites=hspec.N,
+        input_channels=hspec.model_input_channels,
+        dtype=cfg.dtype,
     )
     apply_fun = make_apply_fun(mspec)
 
@@ -101,7 +110,7 @@ def train(cfg: TrainConfig):
     key, key_params, key_init = jax.random.split(key, 3)
     params = init_model(key_params, mspec)
     opt = init_adam(params)
-    bundles = init_bundles(key_init, cfg.n_chains, cfg.k, cfg.shape, hspec.move_type)
+    bundles = init_bundles(key_init, cfg.n_chains, cfg.k, cfg.shape, hspec.move_type, n_sites=hspec.N)
 
     sample_fn = make_bundle_sampler(
         apply_fun=apply_fun,
@@ -113,6 +122,7 @@ def train(cfg: TrainConfig):
         sweep_steps=cfg.sweep_steps,
         burn_in=cfg.burn_in,
         det_jitter=cfg.det_jitter,
+        n_sites=hspec.N,
     )
 
     @jax.jit

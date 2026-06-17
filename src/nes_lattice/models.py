@@ -19,10 +19,14 @@ class ModelSpec:
     channels: tuple[int, ...] = (16, 16)    # CNN channels
     kernel_size: int = 3
     scale: float = 0.05
+    n_sites: int | None = None              # actual number of spin variables
+    input_channels: int = 1                 # 2 for toric-code edge variables on a 2D cell lattice
     dtype: str = "float32"                  # keep model params/input dtype consistent
 
     @property
     def N(self) -> int:
+        if self.n_sites is not None:
+            return int(self.n_sites)
         n = 1
         for x in self.shape:
             n *= x
@@ -48,7 +52,16 @@ def init_model(key: jax.Array, spec: ModelSpec):
     if spec.model == "rbm":
         return init_rbm(key, spec.N, spec.k, spec.rbm_hidden, spec.scale, _dtype(spec))
     if spec.model == "cnn":
-        return init_cnn(key, spec.shape, spec.k, spec.channels, spec.kernel_size, spec.scale, _dtype(spec))
+        return init_cnn(
+            key,
+            spec.shape,
+            spec.k,
+            spec.channels,
+            spec.kernel_size,
+            spec.scale,
+            _dtype(spec),
+            input_channels=spec.input_channels,
+        )
     raise ValueError(spec.model)
 
 
@@ -156,8 +169,11 @@ def init_cnn(
     kernel_size: int = 3,
     scale: float = 0.05,
     dtype=jnp.float32,
+    input_channels: int = 1,
 ):
     if len(shape) == 1:
+        if input_channels != 1:
+            raise ValueError("1D CNN currently expects input_channels=1")
         spatial_shape = (1, shape[0])
     elif len(shape) == 2:
         spatial_shape = shape
@@ -167,7 +183,7 @@ def init_cnn(
     keys = jax.random.split(key, len(channels) + 1)
 
     convs = []
-    in_ch = 1
+    in_ch = int(input_channels)
 
     for out_ch, kk in zip(channels, keys[:-1]):
         fan_in = kernel_size * kernel_size * in_ch
@@ -220,11 +236,20 @@ def apply_cnn(params, spins, shape: tuple[int, ...]):
 
     orig_batch = s.shape[:-1]
     flat = s.reshape((-1, s.shape[-1]))
+    input_channels = params["convs"][0]["W"].shape[2]
 
     if len(shape) == 1:
+        if input_channels != 1:
+            raise ValueError("1D CNN expects one input channel")
         x = flat.reshape((flat.shape[0], 1, shape[0], 1))
     else:
-        x = flat.reshape((flat.shape[0], shape[0], shape[1], 1))
+        expected = shape[0] * shape[1] * input_channels
+        if flat.shape[-1] != expected:
+            raise ValueError(
+                f"CNN expected {expected} spins for shape={shape} and input_channels={input_channels}, "
+                f"got {flat.shape[-1]}."
+            )
+        x = flat.reshape((flat.shape[0], shape[0], shape[1], input_channels))
 
     for layer in params["convs"]:
         x = jnp.tanh(_periodic_conv2d(x, layer["W"], layer["b"]))

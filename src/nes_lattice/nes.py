@@ -31,7 +31,7 @@ def batch_logabsdet(apply_fun, params, bundles: jnp.ndarray, det_jitter: float =
 def local_energy_bundle(apply_fun, params, bundle: jnp.ndarray, hspec: HamiltonianSpec, bonds: jnp.ndarray, det_jitter: float = 1e-8):
     """NES local energy of the determinant wavefunction for one bundle.
 
-    bundle shape is (k replicas, N sites). H_total = sum_replica H_replica.
+    bundle shape is (k replicas, N spins). H_total = sum_replica H_replica.
     Off-diagonal ratios use the column-replacement determinant identity.
     """
     A = amplitude_matrix(apply_fun, params, bundle, det_jitter)
@@ -58,6 +58,16 @@ def local_energy_bundle(apply_fun, params, bundle: jnp.ndarray, hspec: Hamiltoni
                 v = apply_fun(params, new_config[None, :])[0]
                 ratio = (Ainv @ v)[rep]
                 e = e + jnp.where(active, 0.5 * hspec.J * ratio, 0.0)
+    elif hspec.name == "toric_code":
+        stars = bonds[0]
+        for rep in range(k):
+            s = bundle[rep]
+            for a in range(stars.shape[0]):
+                idx = stars[a]
+                new_config = s.at[idx].multiply(-1)
+                v = apply_fun(params, new_config[None, :])[0]
+                ratio = (Ainv @ v)[rep]
+                e = e + (-hspec.Je) * ratio
     else:
         raise ValueError(hspec.name)
     return e

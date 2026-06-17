@@ -5,13 +5,13 @@ import scipy.linalg
 import jax
 import jax.numpy as jnp
 
-from .hamiltonians import HamiltonianSpec, apply_hamiltonian_to_state_values, dense_hamiltonian_np
+from .hamiltonians import HamiltonianSpec, apply_hamiltonian_to_state_values, dense_hamiltonian_np, basis_shape_for_hamiltonian
 from .lattice import make_basis
 from .sampler import make_config_sampler, init_configs
 
 
 def exact_span_matrices(apply_fun, params, hspec: HamiltonianSpec, bonds: jnp.ndarray):
-    basis_np = make_basis(hspec.shape, hspec.magnetization)
+    basis_np = make_basis(basis_shape_for_hamiltonian(hspec), hspec.magnetization)
     basis = jnp.asarray(basis_np)
     psi = apply_fun(params, basis)  # (dim,k)
     Hpsi = apply_hamiltonian_to_state_values(apply_fun, params, basis, hspec, bonds)
@@ -36,9 +36,9 @@ def sampled_span_matrices(
         sweep_steps = max(1, N)
     if burn_in is None:
         burn_in = 10 * max(1, N)
-    sampler = make_config_sampler(apply_fun, hspec.shape, hspec.move_type, n_chains, n_samples, sweep_steps, burn_in)
+    sampler = make_config_sampler(apply_fun, hspec.shape, hspec.move_type, n_chains, n_samples, sweep_steps, burn_in, n_sites=hspec.N)
     k1, k2 = jax.random.split(key)
-    configs0 = init_configs(k1, n_chains, hspec.shape, hspec.move_type)
+    configs0 = init_configs(k1, n_chains, hspec.shape, hspec.move_type, n_sites=hspec.N)
     samples, _, stats = sampler(params, k2, configs0)
     psi = apply_fun(params, samples)
     Hpsi = apply_hamiltonian_to_state_values(apply_fun, params, samples, hspec, bonds)
@@ -86,7 +86,7 @@ def evaluate_span(
 def own_ed_reference(hspec: HamiltonianSpec, k: int, max_sites: int = 14):
     if hspec.N > max_sites:
         return None, f"own ED skipped because N={hspec.N} > max_sites={max_sites}"
-    basis = make_basis(hspec.shape, hspec.magnetization)
+    basis = make_basis(basis_shape_for_hamiltonian(hspec), hspec.magnetization)
     H = dense_hamiltonian_np(hspec, basis)
     vals = np.linalg.eigvalsh(H)
     vals.sort()

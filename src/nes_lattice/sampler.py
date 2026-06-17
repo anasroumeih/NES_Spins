@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from functools import partial
-
 import jax
 import jax.numpy as jnp
 
@@ -9,9 +7,20 @@ from .lattice import num_sites
 from .nes import batch_logabsdet
 
 
-def init_bundles(key, n_chains: int, k: int, shape: tuple[int, ...], move_type: str = "single_flip"):
+def _resolve_n_sites(shape: tuple[int, ...], n_sites: int | None = None) -> int:
+    return int(num_sites(shape) if n_sites is None else n_sites)
+
+
+def init_bundles(
+    key,
+    n_chains: int,
+    k: int,
+    shape: tuple[int, ...],
+    move_type: str = "single_flip",
+    n_sites: int | None = None,
+):
     """Initial NES bundles with shape (n_chains, k, N)."""
-    N = num_sites(shape)
+    N = _resolve_n_sites(shape, n_sites)
     if move_type == "single_flip":
         return 2 * jax.random.bernoulli(key, 0.5, (n_chains, k, N)).astype(jnp.int8) - 1
     if move_type == "pair_flip":
@@ -24,9 +33,15 @@ def init_bundles(key, n_chains: int, k: int, shape: tuple[int, ...], move_type: 
     raise ValueError(move_type)
 
 
-def init_configs(key, n_chains: int, shape: tuple[int, ...], move_type: str = "single_flip"):
+def init_configs(
+    key,
+    n_chains: int,
+    shape: tuple[int, ...],
+    move_type: str = "single_flip",
+    n_sites: int | None = None,
+):
     """Initial single-config chains, used for span-matrix evaluation."""
-    N = num_sites(shape)
+    N = _resolve_n_sites(shape, n_sites)
     if move_type == "single_flip":
         return 2 * jax.random.bernoulli(key, 0.5, (n_chains, N)).astype(jnp.int8) - 1
     if move_type == "pair_flip":
@@ -38,8 +53,19 @@ def init_configs(key, n_chains: int, shape: tuple[int, ...], move_type: str = "s
     raise ValueError(move_type)
 
 
-def make_bundle_sampler(apply_fun, shape: tuple[int, ...], k: int, move_type: str, n_chains: int, n_samples: int, sweep_steps: int, burn_in: int, det_jitter: float = 1e-8):
-    N = num_sites(shape)
+def make_bundle_sampler(
+    apply_fun,
+    shape: tuple[int, ...],
+    k: int,
+    move_type: str,
+    n_chains: int,
+    n_samples: int,
+    sweep_steps: int,
+    burn_in: int,
+    det_jitter: float = 1e-8,
+    n_sites: int | None = None,
+):
+    N = _resolve_n_sites(shape, n_sites)
 
     def sample(params, key, bundles):
         def step_with_params(carry, key):
@@ -89,9 +115,19 @@ def make_bundle_sampler(apply_fun, shape: tuple[int, ...], k: int, move_type: st
     return jax.jit(sample)
 
 
-def make_config_sampler(apply_fun, shape: tuple[int, ...], move_type: str, n_chains: int, n_samples: int, sweep_steps: int, burn_in: int, eps: float = 1e-12):
+def make_config_sampler(
+    apply_fun,
+    shape: tuple[int, ...],
+    move_type: str,
+    n_chains: int,
+    n_samples: int,
+    sweep_steps: int,
+    burn_in: int,
+    eps: float = 1e-12,
+    n_sites: int | None = None,
+):
     """Sampler for q(sigma) ∝ sum_i psi_i(sigma)^2, used for span evaluation."""
-    N = num_sites(shape)
+    N = _resolve_n_sites(shape, n_sites)
 
     def q_log(params, configs):
         vals = apply_fun(params, configs)

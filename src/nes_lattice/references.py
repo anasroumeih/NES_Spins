@@ -2,8 +2,26 @@ from __future__ import annotations
 
 import numpy as np
 
-from .hamiltonians import HamiltonianSpec
+from .hamiltonians import HamiltonianSpec, toric_code_exact_ground_energy
 from .evaluation import own_ed_reference
+
+
+def toric_code_ground_reference(hspec: HamiltonianSpec, k: int):
+    """Analytic toric-code ground-state reference on a periodic square lattice.
+
+    On the torus, the lowest four states are exactly degenerate with
+        E0 = -Je * N_stars - Jm * N_plaquettes.
+    This only returns a reference when k <= 4, because the excited spectrum is
+    not represented by this simple degeneracy statement.
+    """
+    if hspec.name != "toric_code":
+        return None, "not a toric-code Hamiltonian"
+    if not hspec.pbc:
+        return None, "toric-code analytic degeneracy reference requires pbc=True"
+    if k > 4:
+        return None, "toric-code analytic ground reference only covers the four degenerate ground states"
+    e0 = toric_code_exact_ground_energy(hspec)
+    return np.full(k, e0, dtype=np.float64), "toric_code_exact_4fold_ground_degeneracy"
 
 
 def netket_reference_energies(hspec: HamiltonianSpec, k: int, max_states: int = 2_000_000):
@@ -13,6 +31,9 @@ def netket_reference_energies(hspec: HamiltonianSpec, k: int, max_states: int = 
     larger systems, NetKet's sparse operators/Lanczos are much more appropriate
     than the tiny dense ED fallback in this project.
     """
+    if hspec.name == "toric_code":
+        return None, "NetKet reference for toric_code is not implemented in this project; using analytic/own ED instead"
+
     try:
         import netket as nk
     except Exception as exc:  # pragma: no cover
@@ -51,20 +72,37 @@ def netket_reference_energies(hspec: HamiltonianSpec, k: int, max_states: int = 
         return None, f"NetKet reference failed: {type(exc).__name__}: {exc}"
 
 
-def get_reference_energies(hspec: HamiltonianSpec, k: int, prefer: str = "auto", own_ed_max_sites: int = 14, netket_max_states: int = 2_000_000):
+def get_reference_energies(
+    hspec: HamiltonianSpec,
+    k: int,
+    prefer: str = "auto",
+    own_ed_max_sites: int = 14,
+    netket_max_states: int = 2_000_000,
+):
     """Return (energies_or_None, source_message)."""
     prefer = prefer.lower()
+
+    if hspec.name == "toric_code" and prefer in ("auto", "toric", "analytic"):
+        vals, msg = toric_code_ground_reference(hspec, k)
+        if vals is not None:
+            return vals, msg
+        if prefer in ("toric", "analytic"):
+            return None, msg
+
     if prefer in ("netket", "auto"):
         vals, msg = netket_reference_energies(hspec, k, max_states=netket_max_states)
         if vals is not None:
             return vals, msg
         if prefer == "netket":
             return None, msg
+
     if prefer in ("ed", "own_ed", "auto"):
         vals, msg = own_ed_reference(hspec, k, max_sites=own_ed_max_sites)
         if vals is not None:
             return vals, msg
         return None, msg
+
     if prefer == "none":
         return None, "reference disabled"
+
     return None, f"unknown reference mode: {prefer}"
