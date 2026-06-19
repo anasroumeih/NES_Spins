@@ -48,7 +48,7 @@ class TrainConfig:
     n_samples: int = 8          # collected per chain per optimization step => n_chains*n_samples bundles
     sweep_steps: int | None = None
     burn_in: int | None = None
-    det_jitter: float = 1e-8
+    det_jitter: float = 1e-6
     grad_clip: float | None = 10.0
 
     # Evaluation/logging.
@@ -59,7 +59,7 @@ class TrainConfig:
     reference: Literal["auto", "netket", "ed", "own_ed", "toric", "analytic", "none"] = "auto"
     own_ed_max_sites: int = 14
     netket_max_states: int = 2_000_000
-    jitter: float = 1e-8
+    jitter: float = 1e-6
 
     seed: int = 0
 
