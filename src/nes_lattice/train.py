@@ -16,7 +16,7 @@ from .lattice import normalize_shape, num_sites
 from .models import ModelSpec, init_model, apply_model
 from .nes import vmc_surrogate_loss
 from .references import get_reference_energies
-from .sampler import init_bundles, make_bundle_sampler
+from .sampler import initialize_valid_bundles, make_bundle_sampler
 
 
 @dataclass
@@ -48,7 +48,6 @@ class TrainConfig:
     n_samples: int = 8          # collected per chain per optimization step => n_chains*n_samples bundles
     sweep_steps: int | None = None
     burn_in: int | None = None
-    det_jitter: float = 1e-6
     grad_clip: float | None = 10.0
 
     # Evaluation/logging.
@@ -110,8 +109,16 @@ def train(cfg: TrainConfig):
     key, key_params, key_init = jax.random.split(key, 3)
     params = init_model(key_params, mspec)
     opt = init_adam(params)
-    bundles = init_bundles(key_init, cfg.n_chains, cfg.k, cfg.shape, hspec.move_type, n_sites=hspec.N)
-
+    bundles, key = initialize_valid_bundles(
+        apply_fun=apply_fun,
+        params=params,
+        key=key_init,
+        n_chains=cfg.n_chains,
+        k=cfg.k,
+        shape=cfg.shape,
+        move_type=hspec.move_type,
+        n_sites=hspec.N,
+    )
     sample_fn = make_bundle_sampler(
         apply_fun=apply_fun,
         shape=cfg.shape,
@@ -121,14 +128,13 @@ def train(cfg: TrainConfig):
         n_samples=cfg.n_samples,
         sweep_steps=cfg.sweep_steps,
         burn_in=cfg.burn_in,
-        det_jitter=cfg.det_jitter,
         n_sites=hspec.N,
     )
 
     @jax.jit
     def train_step(params, opt, samples):
         def loss_fn(p):
-            loss, energy = vmc_surrogate_loss(apply_fun, p, samples, hspec, bonds, cfg.det_jitter)
+            loss, energy = vmc_surrogate_loss(apply_fun,p, samples, hspec, bonds, )
             return loss, energy
         (loss, energy), grads = jax.value_and_grad(loss_fn, has_aux=True)(params)
         grads, grad_norm = clip_grads(grads, cfg.grad_clip)
@@ -149,6 +155,7 @@ def train(cfg: TrainConfig):
     last_train_energy = np.nan
     last_accept = np.nan
     last_grad_norm = np.nan
+    last_invalid_fraction = np.nan
 
     for step in range(cfg.steps + 1):
         if step % cfg.print_every == 0 or step == cfg.steps:
@@ -184,6 +191,7 @@ def train(cfg: TrainConfig):
                 "trace_error": trace_error,
                 "condition_number_S": float(cond_S),
                 "sampler_accept_rate": float(last_accept),
+                "invalid_bundle_fraction": float(last_invalid_fraction),
                 "grad_norm": float(last_grad_norm),
                 "eval": eval_stats,
             }
@@ -197,6 +205,7 @@ def train(cfg: TrainConfig):
             last_train_energy = float(energy)
             last_accept = float(stats["accept_rate"])
             last_grad_norm = float(grad_norm)
+            last_invalid_fraction = float(stats["invalid_final_fraction"])
 
     return params, history
 

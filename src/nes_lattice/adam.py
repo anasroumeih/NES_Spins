@@ -5,7 +5,7 @@ import jax.numpy as jnp
 
 
 def tree_zeros_like(tree):
-    return jax.tree_util.tree_map(jnp.zeros_like, tree)
+    return jax.tree_util.tree_map(jnp.zeros_like, tree) #zeros to initialize gradient descent
 
 
 def init_adam(params):

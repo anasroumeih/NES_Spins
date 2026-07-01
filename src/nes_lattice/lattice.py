@@ -156,3 +156,4 @@ def random_configs(key, n: int, shape: int | Iterable[int], magnetization: int |
     base = jnp.concatenate([jnp.ones(N // 2, dtype=jnp.int8), -jnp.ones(N // 2, dtype=jnp.int8)])
     keys = jax.random.split(key, n)
     return jax.vmap(lambda kk: jax.random.permutation(kk, base))(keys)
+#generates random starting spins for mcmc

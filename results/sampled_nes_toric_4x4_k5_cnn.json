@@ -1,0 +1,1934 @@
+{
+  "config": {
+    "shape": [
+      4,
+      4
+    ],
+    "hamiltonian": "toric_code",
+    "k": 2,
+    "J": 1.0,
+    "g": 1.0,
+    "Je": 1.0,
+    "Jm": 1.0,
+    "pbc": true,
+    "magnetization": null,
+    "model": "cnn",
+    "hidden": [
+      64,
+      64
+    ],
+    "rbm_hidden": 32,
+    "channels": [
+      32,
+      32
+    ],
+    "kernel_size": 3,
+    "init_scale": 0.05,
+    "dtype": "float32",
+    "steps": 5000,
+    "lr": 0.005,
+    "n_chains": 128,
+    "n_samples": 8,
+    "sweep_steps": 32,
+    "burn_in": 320,
+    "grad_clip": 10.0,
+    "print_every": 100,
+    "eval_exact_if_sites_leq": 12,
+    "eval_samples": 32,
+    "eval_chains": 128,
+    "reference": "auto",
+    "own_ed_max_sites": 14,
+    "netket_max_states": 2000000,
+    "jitter": 1e-06,
+    "seed": 1
+  },
+  "history": [
+    {
+      "step": 0,
+      "loss_sum": -28.033747714096943,
+      "train_energy_estimator": NaN,
+      "energies": [
+        -16.081692924026118,
+        -11.952054790070825
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        15.918307075973882,
+        20.047945209929175
+      ],
+      "trace_error": 35.96625228590305,
+      "condition_number_S": 87155.4589546175,
+      "sampler_accept_rate": NaN,
+      "invalid_bundle_fraction": NaN,
+      "grad_norm": NaN,
+      "eval": {
+        "accept_rate": 0.9994354248046875,
+        "burn_accept_rate": 0.999462902545929,
+        "S_min_eig": 1.1473617932988888e-05,
+        "S_max_eig": 0.9999884368195763,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          1.1473617932988888e-05,
+          0.9999884368195763
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 100,
+      "loss_sum": -27.872386986212533,
+      "train_energy_estimator": -28.108810424804688,
+      "energies": [
+        -15.923431247413184,
+        -11.948955738799347
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        16.076568752586816,
+        20.05104426120065
+      ],
+      "trace_error": 36.12761301378747,
+      "condition_number_S": 24.53183016435997,
+      "sampler_accept_rate": 0.814788818359375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 2.0113189220428467,
+      "eval": {
+        "accept_rate": 0.8019180297851562,
+        "burn_accept_rate": 0.8022217154502869,
+        "S_min_eig": 0.03916679197508591,
+        "S_max_eig": 0.9608330888156245,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.03916679197508591,
+          0.9608330888156245
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 200,
+      "loss_sum": -28.06308878181119,
+      "train_energy_estimator": -28.248035430908203,
+      "energies": [
+        -16.105123824619056,
+        -11.957964957192134
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        15.894876175380944,
+        20.042035042807868
+      ],
+      "trace_error": 35.93691121818881,
+      "condition_number_S": 3.1030339303224466,
+      "sampler_accept_rate": 0.81494140625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.6984163522720337,
+      "eval": {
+        "accept_rate": 0.806732177734375,
+        "burn_accept_rate": 0.810351550579071,
+        "S_min_eig": 0.24372209608408846,
+        "S_max_eig": 0.7562779337182339,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.24372209608408846,
+          0.7562779337182339
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 300,
+      "loss_sum": -27.963125542917645,
+      "train_energy_estimator": -28.188940048217773,
+      "energies": [
+        -15.924989355398635,
+        -12.03813618751901
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        16.075010644601363,
+        19.961863812480992
+      ],
+      "trace_error": 36.036874457082355,
+      "condition_number_S": 2.364868273960339,
+      "sampler_accept_rate": 0.81011962890625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.9051409363746643,
+      "eval": {
+        "accept_rate": 0.9091873168945312,
+        "burn_accept_rate": 0.909838855266571,
+        "S_min_eig": 0.2971884450682257,
+        "S_max_eig": 0.7028115251294519,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.2971884450682257,
+          0.7028115251294519
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 400,
+      "loss_sum": -27.889324392213616,
+      "train_energy_estimator": -28.1141357421875,
+      "energies": [
+        -15.889800088794374,
+        -11.999524303419241
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        16.110199911205626,
+        20.000475696580757
+      ],
+      "trace_error": 36.11067560778638,
+      "condition_number_S": 5.686709235457932,
+      "sampler_accept_rate": 0.822021484375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.5438328981399536,
+      "eval": {
+        "accept_rate": 0.8048019409179688,
+        "burn_accept_rate": 0.8050537109375,
+        "S_min_eig": 0.14955038052055347,
+        "S_max_eig": 0.8504495300724794,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.14955038052055347,
+          0.8504495300724794
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 500,
+      "loss_sum": -28.259605803018758,
+      "train_energy_estimator": -28.14584732055664,
+      "energies": [
+        -16.090388355743393,
+        -12.169217447275363
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        15.909611644256607,
+        19.830782552724635
+      ],
+      "trace_error": 35.74039419698124,
+      "condition_number_S": 1.3269690265842902,
+      "sampler_accept_rate": 0.858062744140625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.4180107116699219,
+      "eval": {
+        "accept_rate": 0.9058990478515625,
+        "burn_accept_rate": 0.907153308391571,
+        "S_min_eig": 0.42974356717826917,
+        "S_max_eig": 0.5702564030194084,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.42974356717826917,
+          0.5702564030194084
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 600,
+      "loss_sum": -27.98887330604584,
+      "train_energy_estimator": -28.259445190429688,
+      "energies": [
+        -15.952497356515504,
+        -12.036375949530333
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        16.047502643484496,
+        19.96362405046967
+      ],
+      "trace_error": 36.01112669395416,
+      "condition_number_S": 2.2703013167895767,
+      "sampler_accept_rate": 0.858123779296875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.6827762722969055,
+      "eval": {
+        "accept_rate": 0.87213134765625,
+        "burn_accept_rate": 0.874755859375,
+        "S_min_eig": 0.30578224834299295,
+        "S_max_eig": 0.6942178410639742,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.30578224834299295,
+          0.6942178410639742
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 700,
+      "loss_sum": -29.94078176486662,
+      "train_energy_estimator": -29.831087112426758,
+      "energies": [
+        -16.117393367881405,
+        -13.823388396985218
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        15.882606632118595,
+        18.176611603014784
+      ],
+      "trace_error": 34.05921823513338,
+      "condition_number_S": 216.73499383113028,
+      "sampler_accept_rate": 0.747894287109375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 14.958032608032227,
+      "eval": {
+        "accept_rate": 0.9827728271484375,
+        "burn_accept_rate": 0.9820312857627869,
+        "S_min_eig": 0.004592739232373223,
+        "S_max_eig": 0.9954073091964006,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.004592739232373223,
+          0.9954073091964006
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 800,
+      "loss_sum": -34.625936802712395,
+      "train_energy_estimator": -34.42107391357422,
+      "energies": [
+        -19.726413607147926,
+        -14.89952319556447
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        12.273586392852074,
+        17.10047680443553
+      ],
+      "trace_error": 29.374063197287605,
+      "condition_number_S": 2.8646625212210335,
+      "sampler_accept_rate": 0.665069580078125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 21.0545597076416,
+      "eval": {
+        "accept_rate": 0.686187744140625,
+        "burn_accept_rate": 0.6878418326377869,
+        "S_min_eig": 0.258754805758318,
+        "S_max_eig": 0.741245194241682,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.258754805758318,
+          0.741245194241682
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 900,
+      "loss_sum": -35.359502964031826,
+      "train_energy_estimator": -34.895938873291016,
+      "energies": [
+        -20.156341664813787,
+        -15.20316129921804
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        11.843658335186213,
+        16.79683870078196
+      ],
+      "trace_error": 28.640497035968174,
+      "condition_number_S": 1.56219833732941,
+      "sampler_accept_rate": 0.646209716796875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 15.338558197021484,
+      "eval": {
+        "accept_rate": 0.6769638061523438,
+        "burn_accept_rate": 0.679516613483429,
+        "S_min_eig": 0.3902898597790156,
+        "S_max_eig": 0.6097101700233067,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.3902898597790156,
+          0.6097101700233067
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1000,
+      "loss_sum": -35.894203941656,
+      "train_energy_estimator": -35.77442932128906,
+      "energies": [
+        -20.309542886744925,
+        -15.584661054911077
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        11.690457113255075,
+        16.415338945088923
+      ],
+      "trace_error": 28.105796058343998,
+      "condition_number_S": 3.288835957194464,
+      "sampler_accept_rate": 0.6275634765625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 23.438114166259766,
+      "eval": {
+        "accept_rate": 0.6964111328125,
+        "burn_accept_rate": 0.6927734613418579,
+        "S_min_eig": 0.23316353411328902,
+        "S_max_eig": 0.7668366148983229,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.23316353411328902,
+          0.7668366148983229
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1100,
+      "loss_sum": -36.37941265193018,
+      "train_energy_estimator": -36.02327346801758,
+      "energies": [
+        -19.898963493371753,
+        -16.48044915855843
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        12.101036506628247,
+        15.519550841441571
+      ],
+      "trace_error": 27.62058734806982,
+      "condition_number_S": 2.281660253510067,
+      "sampler_accept_rate": 0.6221923828125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 16.214872360229492,
+      "eval": {
+        "accept_rate": 0.6722946166992188,
+        "burn_accept_rate": 0.672802746295929,
+        "S_min_eig": 0.3047238234168341,
+        "S_max_eig": 0.6952762361878106,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.3047238234168341,
+          0.6952762361878106
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1200,
+      "loss_sum": -37.21357184888312,
+      "train_energy_estimator": -37.15630340576172,
+      "energies": [
+        -20.7371628335311,
+        -16.47640901535202
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        11.262837166468898,
+        15.523590984647981
+      ],
+      "trace_error": 26.78642815111688,
+      "condition_number_S": 1.9976719044921039,
+      "sampler_accept_rate": 0.59130859375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 9.429798126220703,
+      "eval": {
+        "accept_rate": 0.5985870361328125,
+        "burn_accept_rate": 0.599780261516571,
+        "S_min_eig": 0.3335922115096949,
+        "S_max_eig": 0.666407788490305,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.3335922115096949,
+          0.666407788490305
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1300,
+      "loss_sum": -37.62392103414379,
+      "train_energy_estimator": -37.740623474121094,
+      "energies": [
+        -20.683186015878007,
+        -16.940735018265787
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        11.316813984121993,
+        15.059264981734213
+      ],
+      "trace_error": 26.37607896585621,
+      "condition_number_S": 3.061352179796318,
+      "sampler_accept_rate": 0.54730224609375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 42.52826690673828,
+      "eval": {
+        "accept_rate": 0.606475830078125,
+        "burn_accept_rate": 0.6108154654502869,
+        "S_min_eig": 0.2462234655716087,
+        "S_max_eig": 0.753776743044648,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.2462234655716087,
+          0.753776743044648
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1400,
+      "loss_sum": -38.21854933200712,
+      "train_energy_estimator": -38.897708892822266,
+      "energies": [
+        -20.93456833191007,
+        -17.28398100009705
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        11.065431668089929,
+        14.71601899990295
+      ],
+      "trace_error": 25.78145066799288,
+      "condition_number_S": 2.756487699491113,
+      "sampler_accept_rate": 0.51678466796875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 13.482873916625977,
+      "eval": {
+        "accept_rate": 0.5858840942382812,
+        "burn_accept_rate": 0.588916003704071,
+        "S_min_eig": 0.26620611592458265,
+        "S_max_eig": 0.7337938840754173,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.26620611592458265,
+          0.7337938840754173
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1500,
+      "loss_sum": -39.278809961278895,
+      "train_energy_estimator": -38.772865295410156,
+      "energies": [
+        -21.18951991109572,
+        -18.08929005018318
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        10.810480088904281,
+        13.91070994981682
+      ],
+      "trace_error": 24.721190038721105,
+      "condition_number_S": 1.729198301257585,
+      "sampler_accept_rate": 0.49249267578125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 21.766061782836914,
+      "eval": {
+        "accept_rate": 0.5343093872070312,
+        "burn_accept_rate": 0.5447754263877869,
+        "S_min_eig": 0.3664079447559989,
+        "S_max_eig": 0.6335919956393563,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.3664079447559989,
+          0.6335919956393563
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1600,
+      "loss_sum": -39.33275814978511,
+      "train_energy_estimator": -38.90861511230469,
+      "energies": [
+        -20.838543782962166,
+        -18.494214366822945
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        11.161456217037834,
+        13.505785633177055
+      ],
+      "trace_error": 24.667241850214893,
+      "condition_number_S": 2.312886934519403,
+      "sampler_accept_rate": 0.46435546875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 101.40465545654297,
+      "eval": {
+        "accept_rate": 0.5217361450195312,
+        "burn_accept_rate": 0.5341553092002869,
+        "S_min_eig": 0.3018515150564365,
+        "S_max_eig": 0.6981484253389187,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.3018515150564365,
+          0.6981484253389187
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1700,
+      "loss_sum": -39.518360065885076,
+      "train_energy_estimator": -39.59008026123047,
+      "energies": [
+        -21.028971368940073,
+        -18.489388696945003
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        10.971028631059927,
+        13.510611303054997
+      ],
+      "trace_error": 24.481639934114924,
+      "condition_number_S": 4.1312911267911145,
+      "sampler_accept_rate": 0.50177001953125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 43.1131706237793,
+      "eval": {
+        "accept_rate": 0.5833206176757812,
+        "burn_accept_rate": 0.584155261516571,
+        "S_min_eig": 0.19488272838000473,
+        "S_max_eig": 0.8051172865211564,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.19488272838000473,
+          0.8051172865211564
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1800,
+      "loss_sum": -40.67922152860943,
+      "train_energy_estimator": -40.992515563964844,
+      "energies": [
+        -21.35698063773728,
+        -19.322240890872155
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        10.64301936226272,
+        12.677759109127845
+      ],
+      "trace_error": 23.320778471390568,
+      "condition_number_S": 3.276687419879642,
+      "sampler_accept_rate": 0.443023681640625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 75.0971908569336,
+      "eval": {
+        "accept_rate": 0.49539947509765625,
+        "burn_accept_rate": 0.5027099847793579,
+        "S_min_eig": 0.23382584730328212,
+        "S_max_eig": 0.7661742123013626,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.23382584730328212,
+          0.7661742123013626
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1900,
+      "loss_sum": -40.31566414333681,
+      "train_energy_estimator": -40.08599853515625,
+      "energies": [
+        -21.097696374953944,
+        -19.217967768382866
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        10.902303625046056,
+        12.782032231617134
+      ],
+      "trace_error": 23.68433585666319,
+      "condition_number_S": 4.178958910540317,
+      "sampler_accept_rate": 0.490966796875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 47.290977478027344,
+      "eval": {
+        "accept_rate": 0.5636978149414062,
+        "burn_accept_rate": 0.5682617425918579,
+        "S_min_eig": 0.19308896603733366,
+        "S_max_eig": 0.8069108551487321,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.19308896603733366,
+          0.8069108551487321
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2000,
+      "loss_sum": -41.17152755631272,
+      "train_energy_estimator": -41.37157440185547,
+      "energies": [
+        -21.670120458202966,
+        -19.501407098109752
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        10.329879541797034,
+        12.498592901890248
+      ],
+      "trace_error": 22.828472443687282,
+      "condition_number_S": 4.212481641092062,
+      "sampler_accept_rate": 0.453216552734375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 96.9048080444336,
+      "eval": {
+        "accept_rate": 0.5357131958007812,
+        "burn_accept_rate": 0.5341553092002869,
+        "S_min_eig": 0.19184724994281083,
+        "S_max_eig": 0.8081530182780907,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.19184724994281083,
+          0.8081530182780907
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2100,
+      "loss_sum": -41.3238174388251,
+      "train_energy_estimator": -39.78046798706055,
+      "energies": [
+        -21.482900792366916,
+        -19.840916646458183
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        10.517099207633084,
+        12.159083353541817
+      ],
+      "trace_error": 22.676182561174898,
+      "condition_number_S": 2.47848147520185,
+      "sampler_accept_rate": 0.408111572265625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 149.62161254882812,
+      "eval": {
+        "accept_rate": 0.4592132568359375,
+        "burn_accept_rate": 0.4813232421875,
+        "S_min_eig": 0.2874817067484067,
+        "S_max_eig": 0.7125180846353366,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.2874817067484067,
+          0.7125180846353366
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2200,
+      "loss_sum": -43.26828163019405,
+      "train_energy_estimator": -42.57454299926758,
+      "energies": [
+        -22.866082177198898,
+        -20.402199452995152
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        9.133917822801102,
+        11.597800547004848
+      ],
+      "trace_error": 20.731718369805947,
+      "condition_number_S": 7.734691774735482,
+      "sampler_accept_rate": 0.40594482421875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 159.79373168945312,
+      "eval": {
+        "accept_rate": 0.5048675537109375,
+        "burn_accept_rate": 0.508715808391571,
+        "S_min_eig": 0.11448601569400293,
+        "S_max_eig": 0.8855140439106418,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.11448601569400293,
+          0.8855140439106418
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2300,
+      "loss_sum": -42.24222637107435,
+      "train_energy_estimator": -43.021846771240234,
+      "energies": [
+        -22.2369531530561,
+        -20.00527321801825
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        9.763046846943901,
+        11.99472678198175
+      ],
+      "trace_error": 21.757773628925648,
+      "condition_number_S": 11.915898694431148,
+      "sampler_accept_rate": 0.41839599609375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 160.557373046875,
+      "eval": {
+        "accept_rate": 0.52593994140625,
+        "burn_accept_rate": 0.5303955078125,
+        "S_min_eig": 0.07742393969167499,
+        "S_max_eig": 0.922575821889746,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.07742393969167499,
+          0.922575821889746
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2400,
+      "loss_sum": -44.13107434852716,
+      "train_energy_estimator": -43.97156524658203,
+      "energies": [
+        -23.797186135008463,
+        -20.333888213518694
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        8.202813864991537,
+        11.666111786481306
+      ],
+      "trace_error": 19.868925651472843,
+      "condition_number_S": 12.318875644013776,
+      "sampler_accept_rate": 0.41693115234375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 200.97837829589844,
+      "eval": {
+        "accept_rate": 0.5265274047851562,
+        "burn_accept_rate": 0.5302734375,
+        "S_min_eig": 0.0750814088646732,
+        "S_max_eig": 0.9249185389812626,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.0750814088646732,
+          0.9249185389812626
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2500,
+      "loss_sum": -43.985931867193294,
+      "train_energy_estimator": -43.64451599121094,
+      "energies": [
+        -23.97120947655883,
+        -20.014722390634464
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        8.02879052344117,
+        11.985277609365536
+      ],
+      "trace_error": 20.014068132806706,
+      "condition_number_S": 18.95828134568464,
+      "sampler_accept_rate": 0.422210693359375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 322.1648254394531,
+      "eval": {
+        "accept_rate": 0.6061782836914062,
+        "burn_accept_rate": 0.6059814691543579,
+        "S_min_eig": 0.05010452621884789,
+        "S_max_eig": 0.9498957047491507,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.05010452621884789,
+          0.9498957047491507
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2600,
+      "loss_sum": -44.64633233813079,
+      "train_energy_estimator": -45.11882019042969,
+      "energies": [
+        -24.41461048618767,
+        -20.231721851943124
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        7.585389513812331,
+        11.768278148056876
+      ],
+      "trace_error": 19.35366766186921,
+      "condition_number_S": 7.22182681077384,
+      "sampler_accept_rate": 0.395294189453125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 163.56448364257812,
+      "eval": {
+        "accept_rate": 0.509063720703125,
+        "burn_accept_rate": 0.509204089641571,
+        "S_min_eig": 0.12162746713264291,
+        "S_max_eig": 0.8783725030650347,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.12162746713264291,
+          0.8783725030650347
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2700,
+      "loss_sum": -44.21575386091638,
+      "train_energy_estimator": -43.676612854003906,
+      "energies": [
+        -24.24017441909868,
+        -19.975579441817704
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        7.759825580901321,
+        12.024420558182296
+      ],
+      "trace_error": 19.78424613908362,
+      "condition_number_S": 12.449217494007756,
+      "sampler_accept_rate": 0.49176025390625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 499.3387451171875,
+      "eval": {
+        "accept_rate": 0.5635986328125,
+        "burn_accept_rate": 0.5584961175918579,
+        "S_min_eig": 0.07435376155070574,
+        "S_max_eig": 0.9256461490423271,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.07435376155070574,
+          0.9256461490423271
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2800,
+      "loss_sum": -43.22681320498904,
+      "train_energy_estimator": -42.673255920410156,
+      "energies": [
+        -22.832445845447044,
+        -20.394367359542
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        9.167554154552956,
+        11.605632640458001
+      ],
+      "trace_error": 20.773186795010957,
+      "condition_number_S": 31.60700899001363,
+      "sampler_accept_rate": 0.463531494140625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 994.89111328125,
+      "eval": {
+        "accept_rate": 0.5932540893554688,
+        "burn_accept_rate": 0.598071277141571,
+        "S_min_eig": 0.030668259130174763,
+        "S_max_eig": 0.9693319420355013,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.030668259130174763,
+          0.9693319420355013
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2900,
+      "loss_sum": -44.19176617817975,
+      "train_energy_estimator": -44.86274337768555,
+      "energies": [
+        -24.190216829254886,
+        -20.001549348924858
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        7.8097831707451135,
+        11.998450651075142
+      ],
+      "trace_error": 19.808233821820252,
+      "condition_number_S": 11.138409624307966,
+      "sampler_accept_rate": 0.42138671875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 388.7668762207031,
+      "eval": {
+        "accept_rate": 0.550018310546875,
+        "burn_accept_rate": 0.5545654296875,
+        "S_min_eig": 0.08238310796419879,
+        "S_max_eig": 0.917616802628834,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.08238310796419879,
+          0.917616802628834
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3000,
+      "loss_sum": -46.653405072712104,
+      "train_energy_estimator": -46.35931396484375,
+      "energies": [
+        -26.26099834027811,
+        -20.392406732433997
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        5.73900165972189,
+        11.607593267566003
+      ],
+      "trace_error": 17.346594927287896,
+      "condition_number_S": 20.806854544122096,
+      "sampler_accept_rate": 0.454071044921875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 71.81918334960938,
+      "eval": {
+        "accept_rate": 0.6054000854492188,
+        "burn_accept_rate": 0.6039062738418579,
+        "S_min_eig": 0.045857137076798504,
+        "S_max_eig": 0.9541427809668148,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.045857137076798504,
+          0.9541427809668148
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3100,
+      "loss_sum": -46.99153945653469,
+      "train_energy_estimator": -47.95527648925781,
+      "energies": [
+        -26.07715617904653,
+        -20.91438327748816
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        5.922843820953471,
+        11.08561672251184
+      ],
+      "trace_error": 17.00846054346531,
+      "condition_number_S": 18.530607366391006,
+      "sampler_accept_rate": 0.382537841796875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 361.2392578125,
+      "eval": {
+        "accept_rate": 0.5187835693359375,
+        "burn_accept_rate": 0.52978515625,
+        "S_min_eig": 0.05120168601606672,
+        "S_max_eig": 0.9487983400609654,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.05120168601606672,
+          0.9487983400609654
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3200,
+      "loss_sum": -48.12258049798895,
+      "train_energy_estimator": -47.636802673339844,
+      "energies": [
+        -26.97380112327241,
+        -21.148779374716543
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        5.026198876727591,
+        10.851220625283457
+      ],
+      "trace_error": 15.877419502011051,
+      "condition_number_S": 55.72846145053728,
+      "sampler_accept_rate": 0.381500244140625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 761.2933959960938,
+      "eval": {
+        "accept_rate": 0.5582809448242188,
+        "burn_accept_rate": 0.564208984375,
+        "S_min_eig": 0.017627837935797815,
+        "S_max_eig": 0.9823722868614272,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.017627837935797815,
+          0.9823722868614272
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3300,
+      "loss_sum": -47.77622442858422,
+      "train_energy_estimator": -47.829132080078125,
+      "energies": [
+        -26.64677159628222,
+        -21.129452832302
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        5.353228403717779,
+        10.870547167698
+      ],
+      "trace_error": 16.22377557141578,
+      "condition_number_S": 37.23760850924292,
+      "sampler_accept_rate": 0.394927978515625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 451.5819091796875,
+      "eval": {
+        "accept_rate": 0.553619384765625,
+        "burn_accept_rate": 0.5587402582168579,
+        "S_min_eig": 0.02615226227421268,
+        "S_max_eig": 0.9738477041981746,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.02615226227421268,
+          0.9738477041981746
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3400,
+      "loss_sum": -48.918455834954145,
+      "train_energy_estimator": -48.55704116821289,
+      "energies": [
+        -27.10531898294837,
+        -21.81313685200578
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.8946810170516315,
+        10.18686314799422
+      ],
+      "trace_error": 15.081544165045855,
+      "condition_number_S": 27.90380334450712,
+      "sampler_accept_rate": 0.363677978515625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 142.8498077392578,
+      "eval": {
+        "accept_rate": 0.5066299438476562,
+        "burn_accept_rate": 0.518725574016571,
+        "S_min_eig": 0.03459752515649381,
+        "S_max_eig": 0.9654025381734412,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.03459752515649381,
+          0.9654025381734412
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3500,
+      "loss_sum": -49.3247277758102,
+      "train_energy_estimator": -49.850074768066406,
+      "energies": [
+        -27.167250046523257,
+        -22.157477729286942
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.832749953476743,
+        9.842522270713058
+      ],
+      "trace_error": 14.675272224189797,
+      "condition_number_S": 78.46121210866468,
+      "sampler_accept_rate": 0.318939208984375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 1222.0496826171875,
+      "eval": {
+        "accept_rate": 0.48734283447265625,
+        "burn_accept_rate": 0.49165040254592896,
+        "S_min_eig": 0.012584757179856833,
+        "S_max_eig": 0.9874153024247878,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.012584757179856833,
+          0.9874153024247878
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3600,
+      "loss_sum": -48.91762175279039,
+      "train_energy_estimator": -50.32144546508789,
+      "energies": [
+        -26.798672112976387,
+        -22.118949639814
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        5.201327887023613,
+        9.881050360185998
+      ],
+      "trace_error": 15.082378247209611,
+      "condition_number_S": 61.30772525181781,
+      "sampler_accept_rate": 0.31317138671875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 1115.5379638671875,
+      "eval": {
+        "accept_rate": 0.4733734130859375,
+        "burn_accept_rate": 0.4806884825229645,
+        "S_min_eig": 0.01604937360243748,
+        "S_max_eig": 0.9839505872820145,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.01604937360243748,
+          0.9839505872820145
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3700,
+      "loss_sum": -49.748378811816195,
+      "train_energy_estimator": -50.86707305908203,
+      "energies": [
+        -27.17357414153628,
+        -22.574804670279917
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.826425858463718,
+        9.425195329720083
+      ],
+      "trace_error": 14.251621188183805,
+      "condition_number_S": 55.1400874747427,
+      "sampler_accept_rate": 0.30279541015625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 740.5685424804688,
+      "eval": {
+        "accept_rate": 0.4647674560546875,
+        "burn_accept_rate": 0.47395020723342896,
+        "S_min_eig": 0.017812582081046205,
+        "S_max_eig": 0.9821873340999221,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.017812582081046205,
+          0.9821873340999221
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3800,
+      "loss_sum": -48.36056285039463,
+      "train_energy_estimator": -50.1695442199707,
+      "energies": [
+        -25.504877568281664,
+        -22.85568528211296
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        6.495122431718336,
+        9.144314717887038
+      ],
+      "trace_error": 15.63943714960537,
+      "condition_number_S": 83.3163247833792,
+      "sampler_accept_rate": 0.3134765625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 2918.341064453125,
+      "eval": {
+        "accept_rate": 0.441192626953125,
+        "burn_accept_rate": 0.4457763731479645,
+        "S_min_eig": 0.011860099626926787,
+        "S_max_eig": 0.9881399124802667,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.011860099626926787,
+          0.9881399124802667
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3900,
+      "loss_sum": -49.30946006084028,
+      "train_energy_estimator": -48.411705017089844,
+      "energies": [
+        -27.190515450720046,
+        -22.11894461012023
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.809484549279954,
+        9.88105538987977
+      ],
+      "trace_error": 14.69053993915972,
+      "condition_number_S": 43.865462743473195,
+      "sampler_accept_rate": 0.3572998046875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 602.5689697265625,
+      "eval": {
+        "accept_rate": 0.48117828369140625,
+        "burn_accept_rate": 0.4864257872104645,
+        "S_min_eig": 0.022288857275574333,
+        "S_max_eig": 0.9777110384162974,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.022288857275574333,
+          0.9777110384162974
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4000,
+      "loss_sum": -49.25329157198531,
+      "train_energy_estimator": -50.53577423095703,
+      "energies": [
+        -26.973354932290054,
+        -22.279936639695254
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        5.026645067709946,
+        9.720063360304746
+      ],
+      "trace_error": 14.746708428014692,
+      "condition_number_S": 58.51419758512834,
+      "sampler_accept_rate": 0.3128662109375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 172.45436096191406,
+      "eval": {
+        "accept_rate": 0.4444580078125,
+        "burn_accept_rate": 0.4542480409145355,
+        "S_min_eig": 0.016802713906372856,
+        "S_max_eig": 0.983197321483885,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.016802713906372856,
+          0.983197321483885
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4100,
+      "loss_sum": -44.990660802364964,
+      "train_energy_estimator": -46.55708312988281,
+      "energies": [
+        -23.742851001070235,
+        -21.24780980129473
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        8.257148998929765,
+        10.752190198705271
+      ],
+      "trace_error": 19.009339197635036,
+      "condition_number_S": 19.986582649961672,
+      "sampler_accept_rate": 0.369842529296875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 383.88629150390625,
+      "eval": {
+        "accept_rate": 0.5068893432617188,
+        "burn_accept_rate": 0.5271240472793579,
+        "S_min_eig": 0.04764949669329153,
+        "S_max_eig": 0.9523506038895465,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.04764949669329153,
+          0.9523506038895465
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4200,
+      "loss_sum": -47.48458779199392,
+      "train_energy_estimator": -46.859222412109375,
+      "energies": [
+        -26.55206630864741,
+        -20.93252148334651
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        5.447933691352588,
+        11.067478516653491
+      ],
+      "trace_error": 16.515412208006083,
+      "condition_number_S": 20.27295322494786,
+      "sampler_accept_rate": 0.410400390625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 884.9940795898438,
+      "eval": {
+        "accept_rate": 0.446990966796875,
+        "burn_accept_rate": 0.4802002012729645,
+        "S_min_eig": 0.04700804630289543,
+        "S_max_eig": 0.9529919238947822,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.04700804630289543,
+          0.9529919238947822
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4300,
+      "loss_sum": -50.19041604597665,
+      "train_energy_estimator": -49.933780670166016,
+      "energies": [
+        -26.95136086348803,
+        -23.239055182488617
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        5.048639136511969,
+        8.760944817511383
+      ],
+      "trace_error": 13.809583954023353,
+      "condition_number_S": 31.82540211272673,
+      "sampler_accept_rate": 0.335235595703125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 574.8231201171875,
+      "eval": {
+        "accept_rate": 0.4336395263671875,
+        "burn_accept_rate": 0.44365236163139343,
+        "S_min_eig": 0.03046420877673704,
+        "S_max_eig": 0.9695356943657152,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.03046420877673704,
+          0.9695356943657152
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4400,
+      "loss_sum": -49.74994395629325,
+      "train_energy_estimator": -48.37843704223633,
+      "energies": [
+        -26.7258537415478,
+        -23.024090214745453
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        5.274146258452198,
+        8.975909785254547
+      ],
+      "trace_error": 14.25005604370675,
+      "condition_number_S": 30.831009184271817,
+      "sampler_accept_rate": 0.327056884765625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 131.6103057861328,
+      "eval": {
+        "accept_rate": 0.44850921630859375,
+        "burn_accept_rate": 0.4510498046875,
+        "S_min_eig": 0.03141590471675467,
+        "S_max_eig": 0.9685840468544715,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.03141590471675467,
+          0.9685840468544715
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4500,
+      "loss_sum": -49.857443878614475,
+      "train_energy_estimator": -50.23765563964844,
+      "energies": [
+        -26.507767042929203,
+        -23.349676835685276
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        5.492232957070797,
+        8.650323164314724
+      ],
+      "trace_error": 14.142556121385525,
+      "condition_number_S": 26.264838267383976,
+      "sampler_accept_rate": 0.317413330078125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 395.50921630859375,
+      "eval": {
+        "accept_rate": 0.4385223388671875,
+        "burn_accept_rate": 0.4468994140625,
+        "S_min_eig": 0.03667727633825166,
+        "S_max_eig": 0.9633227311123289,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.03667727633825166,
+          0.9633227311123289
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4600,
+      "loss_sum": -51.424702879635326,
+      "train_energy_estimator": -49.84537887573242,
+      "energies": [
+        -28.19520310370632,
+        -23.229499775929007
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.8047968962936807,
+        8.770500224070993
+      ],
+      "trace_error": 12.575297120364674,
+      "condition_number_S": 66.58185467526697,
+      "sampler_accept_rate": 0.36383056640625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 1532.949462890625,
+      "eval": {
+        "accept_rate": 0.41072845458984375,
+        "burn_accept_rate": 0.4204345643520355,
+        "S_min_eig": 0.014796870634721177,
+        "S_max_eig": 0.9852030902497306,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.014796870634721177,
+          0.9852030902497306
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4700,
+      "loss_sum": -50.790670642002034,
+      "train_energy_estimator": -51.44695281982422,
+      "energies": [
+        -27.373699852994058,
+        -23.416970789007976
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.626300147005942,
+        8.583029210992024
+      ],
+      "trace_error": 13.209329357997966,
+      "condition_number_S": 36.751053943692085,
+      "sampler_accept_rate": 0.296112060546875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 1561.59375,
+      "eval": {
+        "accept_rate": 0.39532470703125,
+        "burn_accept_rate": 0.4103027284145355,
+        "S_min_eig": 0.02648932957971512,
+        "S_max_eig": 0.9735107803163486,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.02648932957971512,
+          0.9735107803163486
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4800,
+      "loss_sum": -49.62438441199006,
+      "train_energy_estimator": -51.27481460571289,
+      "energies": [
+        -25.958725632790163,
+        -23.665658779199894
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        6.041274367209837,
+        8.334341220800106
+      ],
+      "trace_error": 14.375615588009943,
+      "condition_number_S": 40.81253687941133,
+      "sampler_accept_rate": 0.304534912109375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 1372.7845458984375,
+      "eval": {
+        "accept_rate": 0.387359619140625,
+        "burn_accept_rate": 0.4092040956020355,
+        "S_min_eig": 0.02391627063265659,
+        "S_max_eig": 0.9760836772132793,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.02391627063265659,
+          0.9760836772132793
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4900,
+      "loss_sum": -52.843586396845154,
+      "train_energy_estimator": -49.76996612548828,
+      "energies": [
+        -28.966430730443342,
+        -23.87715566640181
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.033569269556658,
+        8.122844333598191
+      ],
+      "trace_error": 11.156413603154846,
+      "condition_number_S": 40.935189348512466,
+      "sampler_accept_rate": 0.371612548828125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 1599.7874755859375,
+      "eval": {
+        "accept_rate": 0.37374114990234375,
+        "burn_accept_rate": 0.40861818194389343,
+        "S_min_eig": 0.023846321501969154,
+        "S_max_eig": 0.9761536859486115,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.023846321501969154,
+          0.9761536859486115
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 5000,
+      "loss_sum": -52.02637006180062,
+      "train_energy_estimator": -51.98746109008789,
+      "energies": [
+        -27.832098058907725,
+        -24.194272002892898
+      ],
+      "reference": [
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.167901941092275,
+        7.805727997107102
+      ],
+      "trace_error": 11.97362993819938,
+      "condition_number_S": 33.065443658571034,
+      "sampler_accept_rate": 0.275482177734375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 2650.673095703125,
+      "eval": {
+        "accept_rate": 0.33819580078125,
+        "burn_accept_rate": 0.3764892518520355,
+        "S_min_eig": 0.029355259334577014,
+        "S_max_eig": 0.9706446736101976,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.029355259334577014,
+          0.9706446736101976
+        ],
+        "method": "sampled_span_q"
+      }
+    }
+  ]
+}

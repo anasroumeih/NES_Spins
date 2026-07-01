@@ -1,0 +1,1934 @@
+{
+  "config": {
+    "shape": [
+      4,
+      4
+    ],
+    "hamiltonian": "toric_code",
+    "k": 5,
+    "J": 1.0,
+    "g": 1.0,
+    "Je": 1.0,
+    "Jm": 1.0,
+    "pbc": true,
+    "magnetization": null,
+    "model": "cnn",
+    "hidden": [
+      64,
+      64
+    ],
+    "rbm_hidden": 32,
+    "channels": [
+      16,
+      16
+    ],
+    "kernel_size": 3,
+    "init_scale": 0.05,
+    "dtype": "float32",
+    "steps": 5000,
+    "lr": 0.005,
+    "n_chains": 128,
+    "n_samples": 8,
+    "sweep_steps": 32,
+    "burn_in": 320,
+    "grad_clip": 10.0,
+    "print_every": 100,
+    "eval_exact_if_sites_leq": 12,
+    "eval_samples": 32,
+    "eval_chains": 128,
+    "reference": "auto",
+    "own_ed_max_sites": 14,
+    "netket_max_states": 2000000,
+    "jitter": 1e-06,
+    "seed": 1
+  },
+  "history": [
+    {
+      "step": 0,
+      "loss_sum": -22.91799725929664,
+      "train_energy_estimator": NaN,
+      "energies": [
+        -16.091092956388355,
+        -6.163618833087779,
+        -0.8531719514665088,
+        -0.14169683502528727,
+        0.331583316671284
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 999999.5381954263,
+      "sampler_accept_rate": NaN,
+      "invalid_bundle_fraction": NaN,
+      "grad_norm": NaN,
+      "eval": {
+        "accept_rate": 0.999908447265625,
+        "burn_accept_rate": 0.999951183795929,
+        "S_min_eig": -2.36323052706436e-08,
+        "S_max_eig": 0.9999995381954263,
+        "S_rank": 1,
+        "S_floor": 1e-06,
+        "S_num_clipped": 4,
+        "S_eigenvalues": [
+          -2.36323052706436e-08,
+          1.8772740378038674e-08,
+          7.007355228074738e-08,
+          4.348318044186638e-07,
+          0.9999995381954263
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 100,
+      "loss_sum": -66.05107071920283,
+      "train_energy_estimator": -65.53578186035156,
+      "energies": [
+        -15.978155293807639,
+        -13.344587604271776,
+        -12.86338673399108,
+        -11.95493919160471,
+        -11.910001895527616
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 2572.1880760824943,
+      "sampler_accept_rate": 0.734771728515625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 21.451244354248047,
+      "eval": {
+        "accept_rate": 0.968963623046875,
+        "burn_accept_rate": 0.9687256217002869,
+        "S_min_eig": 0.00034261876282678583,
+        "S_max_eig": 0.8812798963851947,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.00034261876282678583,
+          0.0005957540678702146,
+          0.018245618577232427,
+          0.09953609916835998,
+          0.8812798963851947
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 200,
+      "loss_sum": -66.77237692500788,
+      "train_energy_estimator": -66.46058654785156,
+      "energies": [
+        -16.152869159017918,
+        -13.430131794297862,
+        -12.930185321066626,
+        -12.149551647460884,
+        -12.10963900316459
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 394.7943389979088,
+      "sampler_accept_rate": 0.733154296875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 11.95180606842041,
+      "eval": {
+        "accept_rate": 0.8995285034179688,
+        "burn_accept_rate": 0.900219738483429,
+        "S_min_eig": 0.0020760505428027995,
+        "S_max_eig": 0.8196130017720811,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.0020760505428027995,
+          0.002536541618964438,
+          0.020824256001858492,
+          0.15495021898216332,
+          0.8196130017720811
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 300,
+      "loss_sum": -67.00021659426636,
+      "train_energy_estimator": -66.47941589355469,
+      "energies": [
+        -15.984166278341945,
+        -13.350289975467641,
+        -13.205277903009478,
+        -12.606553040623258,
+        -11.853929396824038
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 130.4123411596591,
+      "sampler_accept_rate": 0.724853515625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 30.61102294921875,
+      "eval": {
+        "accept_rate": 0.9667282104492188,
+        "burn_accept_rate": 0.966992199420929,
+        "S_min_eig": 0.006568243363206247,
+        "S_max_eig": 0.8565799943021197,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.006568243363206247,
+          0.012425671581354361,
+          0.026794810657941825,
+          0.0976313173482809,
+          0.8565799943021197
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 400,
+      "loss_sum": -68.41791701708624,
+      "train_energy_estimator": -68.17436218261719,
+      "energies": [
+        -16.044161039800773,
+        -14.038572854408857,
+        -13.255931043059093,
+        -12.963650912033847,
+        -12.115601167783659
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 107.53836833050396,
+      "sampler_accept_rate": 0.71630859375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 55.16487503051758,
+      "eval": {
+        "accept_rate": 0.9689102172851562,
+        "burn_accept_rate": 0.968920886516571,
+        "S_min_eig": 0.008169880356301317,
+        "S_max_eig": 0.87857560297208,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.008169880356301317,
+          0.025667436585118976,
+          0.030948901794853857,
+          0.05663824534687141,
+          0.87857560297208
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 500,
+      "loss_sum": -70.49702781143216,
+      "train_energy_estimator": -70.60926818847656,
+      "energies": [
+        -16.10827048154914,
+        -14.635196289759687,
+        -13.70666196786813,
+        -13.382521136888787,
+        -12.664377935366417
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 35.2234012685181,
+      "sampler_accept_rate": 0.708282470703125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 22.87906265258789,
+      "eval": {
+        "accept_rate": 0.9617233276367188,
+        "burn_accept_rate": 0.961621105670929,
+        "S_min_eig": 0.02371992501186561,
+        "S_max_eig": 0.8354964367521014,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.02371992501186561,
+          0.03162246427347062,
+          0.045879660858007064,
+          0.06328166584145767,
+          0.8354964367521014
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 600,
+      "loss_sum": -71.43377339898319,
+      "train_energy_estimator": -72.07197570800781,
+      "energies": [
+        -18.465883044100057,
+        -14.335139861775652,
+        -13.222940507772941,
+        -12.848391066070029,
+        -12.561418919264515
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 55.051523864289905,
+      "sampler_accept_rate": 0.68902587890625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 66.31597900390625,
+      "eval": {
+        "accept_rate": 0.8479080200195312,
+        "burn_accept_rate": 0.8480224609375,
+        "S_min_eig": 0.01361368814970534,
+        "S_max_eig": 0.7494542780545043,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.01361368814970534,
+          0.043793981239276365,
+          0.0835383973942525,
+          0.10959969986574504,
+          0.7494542780545043
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 700,
+      "loss_sum": -74.62313513952813,
+      "train_energy_estimator": -73.94928741455078,
+      "energies": [
+        -19.38622932569483,
+        -14.917595476698976,
+        -14.414015857372874,
+        -13.528366389073529,
+        -12.376928090687928
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 50.18883198520867,
+      "sampler_accept_rate": 0.665985107421875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 37.737403869628906,
+      "eval": {
+        "accept_rate": 0.8726959228515625,
+        "burn_accept_rate": 0.873291015625,
+        "S_min_eig": 0.01606008365407203,
+        "S_max_eig": 0.8060368401826172,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.01606008365407203,
+          0.02849139199949077,
+          0.05391948637634598,
+          0.09549207857818413,
+          0.8060368401826172
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 800,
+      "loss_sum": -75.31226017423286,
+      "train_energy_estimator": -75.61830139160156,
+      "energies": [
+        -19.478303691681525,
+        -15.21347655207881,
+        -14.63118441841953,
+        -13.13325584213175,
+        -12.856039669921243
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 12.499138989442049,
+      "sampler_accept_rate": 0.669403076171875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 37.28888702392578,
+      "eval": {
+        "accept_rate": 0.7926559448242188,
+        "burn_accept_rate": 0.7912842035293579,
+        "S_min_eig": 0.04201937552756342,
+        "S_max_eig": 0.525206014968575,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.04201937552756342,
+          0.10919772356589547,
+          0.12943316545923364,
+          0.19414367577524855,
+          0.525206014968575
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 900,
+      "loss_sum": -77.50893996261894,
+      "train_energy_estimator": -77.35641479492188,
+      "energies": [
+        -19.68917903741041,
+        -15.928832384895149,
+        -14.730044000168688,
+        -13.971567531915234,
+        -13.189317008229459
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 4.401791522215265,
+      "sampler_accept_rate": 0.63653564453125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 45.22279357910156,
+      "eval": {
+        "accept_rate": 0.745635986328125,
+        "burn_accept_rate": 0.748217761516571,
+        "S_min_eig": 0.07410067115041206,
+        "S_max_eig": 0.32617570606034507,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.07410067115041206,
+          0.14274517662743305,
+          0.17312667788871303,
+          0.28385186513064475,
+          0.32617570606034507
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1000,
+      "loss_sum": -77.9547753295829,
+      "train_energy_estimator": -78.98783874511719,
+      "energies": [
+        -19.699986718326606,
+        -16.06378002170029,
+        -14.972116401632032,
+        -14.076047176410613,
+        -13.142845011513353
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 4.377599398929847,
+      "sampler_accept_rate": 0.6256103515625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 28.82662582397461,
+      "eval": {
+        "accept_rate": 0.7458953857421875,
+        "burn_accept_rate": 0.746899425983429,
+        "S_min_eig": 0.0870690337991891,
+        "S_max_eig": 0.3811533500247327,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.0870690337991891,
+          0.12575691562053112,
+          0.16479370574124055,
+          0.2412270469683707,
+          0.3811533500247327
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1100,
+      "loss_sum": -78.8599517183033,
+      "train_energy_estimator": -78.50941467285156,
+      "energies": [
+        -19.67882837007304,
+        -16.26489326354225,
+        -14.760589897738363,
+        -14.198527298097721,
+        -13.95711288885192
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 4.62805349054101,
+      "sampler_accept_rate": 0.627777099609375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 157.41061401367188,
+      "eval": {
+        "accept_rate": 0.7445449829101562,
+        "burn_accept_rate": 0.746630847454071,
+        "S_min_eig": 0.09096611011547955,
+        "S_max_eig": 0.420996023440883,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.09096611011547955,
+          0.10996536563064095,
+          0.14294923393011744,
+          0.23512332648752382,
+          0.420996023440883
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1200,
+      "loss_sum": -80.56205816276798,
+      "train_energy_estimator": -81.0343017578125,
+      "energies": [
+        -19.808859112810637,
+        -16.307453913513342,
+        -15.3639551748807,
+        -14.886111548390247,
+        -14.195678413173052
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 5.808464222870307,
+      "sampler_accept_rate": 0.6153564453125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 42.379859924316406,
+      "eval": {
+        "accept_rate": 0.7240447998046875,
+        "burn_accept_rate": 0.7203369140625,
+        "S_min_eig": 0.08460610197303119,
+        "S_max_eig": 0.49143151634686855,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.08460610197303119,
+          0.1102313893512336,
+          0.12629808607237314,
+          0.18743297331171888,
+          0.49143151634686855
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1300,
+      "loss_sum": -81.26360554505126,
+      "train_energy_estimator": -80.8150634765625,
+      "energies": [
+        -19.834315965201327,
+        -16.447978105618226,
+        -15.493809763228418,
+        -15.096832005196717,
+        -14.390669705806568
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 4.85423725754648,
+      "sampler_accept_rate": 0.6029052734375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 47.80537414550781,
+      "eval": {
+        "accept_rate": 0.7009811401367188,
+        "burn_accept_rate": 0.7020019888877869,
+        "S_min_eig": 0.08336891059125245,
+        "S_max_eig": 0.40469247191311897,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.08336891059125245,
+          0.14538588082611206,
+          0.15447480095737806,
+          0.21207803256968655,
+          0.40469247191311897
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1400,
+      "loss_sum": -81.73651487690357,
+      "train_energy_estimator": -81.67391967773438,
+      "energies": [
+        -19.845384975654763,
+        -16.681621929859453,
+        -15.487323826749044,
+        -15.270660144044932,
+        -14.451524000595375
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 4.040596954085561,
+      "sampler_accept_rate": 0.59381103515625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 58.73062515258789,
+      "eval": {
+        "accept_rate": 0.7011337280273438,
+        "burn_accept_rate": 0.7027344107627869,
+        "S_min_eig": 0.09806151615134553,
+        "S_max_eig": 0.3962270634741388,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.09806151615134553,
+          0.1119060874668878,
+          0.19097110733381908,
+          0.20283418087032531,
+          0.3962270634741388
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1500,
+      "loss_sum": -82.37398927791405,
+      "train_energy_estimator": -82.16937255859375,
+      "energies": [
+        -19.829205907736302,
+        -16.827736282994458,
+        -15.723824345871115,
+        -15.381553172774884,
+        -14.611669568537293
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 2.528596713853717,
+      "sampler_accept_rate": 0.59503173828125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 47.95555114746094,
+      "eval": {
+        "accept_rate": 0.6871414184570312,
+        "burn_accept_rate": 0.6934570670127869,
+        "S_min_eig": 0.1284278009937601,
+        "S_max_eig": 0.32474211556028093,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.1284278009937601,
+          0.1301385156034767,
+          0.16196881607813876,
+          0.2547227517643433,
+          0.32474211556028093
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1600,
+      "loss_sum": -82.93329623868632,
+      "train_energy_estimator": -82.83383178710938,
+      "energies": [
+        -19.848938192109888,
+        -17.380806683164252,
+        -15.908996130737865,
+        -15.312297614723777,
+        -14.482257617950546
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 5.968798259645048,
+      "sampler_accept_rate": 0.579864501953125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 108.38217163085938,
+      "eval": {
+        "accept_rate": 0.69097900390625,
+        "burn_accept_rate": 0.6930176019668579,
+        "S_min_eig": 0.07364189892404263,
+        "S_max_eig": 0.4395536381347822,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.07364189892404263,
+          0.13027718741913394,
+          0.1757391041616265,
+          0.18078815645925367,
+          0.4395536381347822
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1700,
+      "loss_sum": -82.694481126412,
+      "train_energy_estimator": -82.78067016601562,
+      "energies": [
+        -19.986292515907728,
+        -17.423036288722617,
+        -15.362516352055621,
+        -15.292753043585028,
+        -14.629882926141
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 7.1317639464200555,
+      "sampler_accept_rate": 0.571014404296875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 47.453277587890625,
+      "eval": {
+        "accept_rate": 0.6938934326171875,
+        "burn_accept_rate": 0.697558581829071,
+        "S_min_eig": 0.06191145242045411,
+        "S_max_eig": 0.4415378642426953,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.06191145242045411,
+          0.12570441915784517,
+          0.1778377677297267,
+          0.19300861565856797,
+          0.4415378642426953
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1800,
+      "loss_sum": -83.2207643225433,
+      "train_energy_estimator": -84.10698699951172,
+      "energies": [
+        -19.75952081267246,
+        -17.517792372831185,
+        -15.577219858915237,
+        -15.489912405875648,
+        -14.876318872248769
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 7.798509431899724,
+      "sampler_accept_rate": 0.561920166015625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 63.38654708862305,
+      "eval": {
+        "accept_rate": 0.6701507568359375,
+        "burn_accept_rate": 0.6761718988418579,
+        "S_min_eig": 0.04722382415116137,
+        "S_max_eig": 0.36827543805320595,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.04722382415116137,
+          0.1244451429059766,
+          0.16204376663473966,
+          0.2980118580572389,
+          0.36827543805320595
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 1900,
+      "loss_sum": -84.58246520064411,
+      "train_energy_estimator": -84.7122573852539,
+      "energies": [
+        -20.183190839369377,
+        -17.694753755864408,
+        -16.024068838938575,
+        -15.407787141293928,
+        -15.272664625177823
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 10.686708504494844,
+      "sampler_accept_rate": 0.55828857421875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 38.16865158081055,
+      "eval": {
+        "accept_rate": 0.6622695922851562,
+        "burn_accept_rate": 0.6583251953125,
+        "S_min_eig": 0.035814898115835034,
+        "S_max_eig": 0.3827433762821106,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.035814898115835034,
+          0.12890417530697512,
+          0.2108755232602798,
+          0.24166212389234729,
+          0.3827433762821106
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2000,
+      "loss_sum": -84.12110619418094,
+      "train_energy_estimator": -84.64412689208984,
+      "energies": [
+        -19.959275260386132,
+        -17.6038728848659,
+        -15.766738644254053,
+        -15.54239935333206,
+        -15.248820051342795
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 16.55899517015012,
+      "sampler_accept_rate": 0.558074951171875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 60.31852722167969,
+      "eval": {
+        "accept_rate": 0.686859130859375,
+        "burn_accept_rate": 0.681201159954071,
+        "S_min_eig": 0.030291124836146315,
+        "S_max_eig": 0.5015905898601611,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.030291124836146315,
+          0.11498881003653796,
+          0.14889719874994436,
+          0.20423224671488788,
+          0.5015905898601611
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2100,
+      "loss_sum": -85.71208555832376,
+      "train_energy_estimator": -85.15676879882812,
+      "energies": [
+        -20.50882834467135,
+        -17.581238433565787,
+        -16.30685983468796,
+        -15.887740597641024,
+        -15.427418347757632
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 25.99920070844824,
+      "sampler_accept_rate": 0.54254150390625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 62.62886428833008,
+      "eval": {
+        "accept_rate": 0.6697158813476562,
+        "burn_accept_rate": 0.6679931879043579,
+        "S_min_eig": 0.016920467314184673,
+        "S_max_eig": 0.4399186257822254,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.016920467314184673,
+          0.14608571917380375,
+          0.1712933256119186,
+          0.2257818323155451,
+          0.4399186257822254
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2200,
+      "loss_sum": -85.6649588776257,
+      "train_energy_estimator": -86.37688446044922,
+      "energies": [
+        -20.787480940846994,
+        -17.760364036744907,
+        -16.24556116749253,
+        -15.616261339157234,
+        -15.255291393384029
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 25.81068918503675,
+      "sampler_accept_rate": 0.53900146484375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 192.5513153076172,
+      "eval": {
+        "accept_rate": 0.678955078125,
+        "burn_accept_rate": 0.67919921875,
+        "S_min_eig": 0.020514751168211248,
+        "S_max_eig": 0.5294998661110701,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.020514751168211248,
+          0.13861005207960972,
+          0.147842302132177,
+          0.16353293910196445,
+          0.5294998661110701
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2300,
+      "loss_sum": -87.32641551097899,
+      "train_energy_estimator": -86.88782501220703,
+      "energies": [
+        -21.050247101776584,
+        -17.82389084680079,
+        -16.548455466643862,
+        -16.324671685390726,
+        -15.579150410367037
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 25.28619451300807,
+      "sampler_accept_rate": 0.53057861328125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 68.93875122070312,
+      "eval": {
+        "accept_rate": 0.6484375,
+        "burn_accept_rate": 0.6531738638877869,
+        "S_min_eig": 0.01856843472694018,
+        "S_max_eig": 0.46952505230750324,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.01856843472694018,
+          0.14958873113271265,
+          0.15466074935605242,
+          0.207657092081436,
+          0.46952505230750324
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2400,
+      "loss_sum": -87.97666198493985,
+      "train_energy_estimator": -87.69110870361328,
+      "energies": [
+        -21.56794003385214,
+        -17.891336675602734,
+        -16.443852965233916,
+        -16.32779083924931,
+        -15.745741471001764
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 41.52649014894447,
+      "sampler_accept_rate": 0.535003662109375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 60.35973358154297,
+      "eval": {
+        "accept_rate": 0.6538619995117188,
+        "burn_accept_rate": 0.6601806879043579,
+        "S_min_eig": 0.011048155168917604,
+        "S_max_eig": 0.4587911067860668,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.011048155168917604,
+          0.13335859531429767,
+          0.16919629759002944,
+          0.22760599415230046,
+          0.4587911067860668
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2500,
+      "loss_sum": -88.05892936051899,
+      "train_energy_estimator": -89.18194580078125,
+      "energies": [
+        -21.546005143777368,
+        -18.118993470382616,
+        -16.69878502367678,
+        -16.18023417475822,
+        -15.514911547924015
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 23.09787063286505,
+      "sampler_accept_rate": 0.525421142578125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 61.66203308105469,
+      "eval": {
+        "accept_rate": 0.642791748046875,
+        "burn_accept_rate": 0.642407238483429,
+        "S_min_eig": 0.01902622706407029,
+        "S_max_eig": 0.4394653313574114,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.01902622706407029,
+          0.1498479734620239,
+          0.17526706552317226,
+          0.21639346964854744,
+          0.4394653313574114
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2600,
+      "loss_sum": -88.60786214563355,
+      "train_energy_estimator": -88.98468017578125,
+      "energies": [
+        -21.950391479757013,
+        -18.41524422042443,
+        -16.748192562411393,
+        -16.24892717974809,
+        -15.245106703292624
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 50.67541241311334,
+      "sampler_accept_rate": 0.531890869140625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 138.8567352294922,
+      "eval": {
+        "accept_rate": 0.6604461669921875,
+        "burn_accept_rate": 0.6615234613418579,
+        "S_min_eig": 0.009853279698779858,
+        "S_max_eig": 0.4993190123574265,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.009853279698779858,
+          0.11337664730597384,
+          0.16260264039643144,
+          0.21484847239545257,
+          0.4993190123574265
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2700,
+      "loss_sum": -89.55113135913005,
+      "train_energy_estimator": -88.4764404296875,
+      "energies": [
+        -22.17814013783473,
+        -18.564717846056904,
+        -17.01726235375756,
+        -16.206510968963975,
+        -15.584500052516871
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 51.62046602000892,
+      "sampler_accept_rate": 0.518341064453125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 154.9114227294922,
+      "eval": {
+        "accept_rate": 0.6594924926757812,
+        "burn_accept_rate": 0.6524902582168579,
+        "S_min_eig": 0.01031657421594202,
+        "S_max_eig": 0.5325463687569352,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.01031657421594202,
+          0.09432407587771617,
+          0.1552744875780216,
+          0.20753860533009402,
+          0.5325463687569352
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2800,
+      "loss_sum": -90.31903610080815,
+      "train_energy_estimator": -89.61247253417969,
+      "energies": [
+        -22.757538362430292,
+        -18.56437517323152,
+        -17.107420111215717,
+        -16.552398594040625,
+        -15.33730385989
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 58.308250794793786,
+      "sampler_accept_rate": 0.5108642578125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 118.12309265136719,
+      "eval": {
+        "accept_rate": 0.658599853515625,
+        "burn_accept_rate": 0.665771484375,
+        "S_min_eig": 0.009220967289558273,
+        "S_max_eig": 0.5376584732901537,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.009220967289558273,
+          0.11167887560774534,
+          0.15519458209247455,
+          0.18624713152239042,
+          0.5376584732901537
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 2900,
+      "loss_sum": -90.91806442094084,
+      "train_energy_estimator": -91.42576599121094,
+      "energies": [
+        -23.01354743205307,
+        -18.81461703857687,
+        -17.300217477293938,
+        -16.456393651404316,
+        -15.333288821612644
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 50.25552293649541,
+      "sampler_accept_rate": 0.50628662109375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 81.56980895996094,
+      "eval": {
+        "accept_rate": 0.6406707763671875,
+        "burn_accept_rate": 0.6434082388877869,
+        "S_min_eig": 0.010248191324976395,
+        "S_max_eig": 0.5150282141899445,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.010248191324976395,
+          0.08796097212688651,
+          0.1620840369676631,
+          0.22467848108240143,
+          0.5150282141899445
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3000,
+      "loss_sum": -91.96628337194176,
+      "train_energy_estimator": -91.79586791992188,
+      "energies": [
+        -23.254214583578975,
+        -19.128515200934732,
+        -17.494666316318906,
+        -16.504942771849993,
+        -15.583944499259148
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 79.35672105627172,
+      "sampler_accept_rate": 0.4937744140625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 87.61076354980469,
+      "eval": {
+        "accept_rate": 0.6479110717773438,
+        "burn_accept_rate": 0.6488281488418579,
+        "S_min_eig": 0.007350391944736987,
+        "S_max_eig": 0.5833030032127597,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.007350391944736987,
+          0.08420623008075556,
+          0.145822153283694,
+          0.1793181618734088,
+          0.5833030032127597
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3100,
+      "loss_sum": -92.36043303447939,
+      "train_energy_estimator": -91.50352478027344,
+      "energies": [
+        -23.6692121588904,
+        -19.24981543046227,
+        -17.444438555322947,
+        -16.615151015057677,
+        -15.3818158747461
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 77.34888743007517,
+      "sampler_accept_rate": 0.493896484375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 115.72394561767578,
+      "eval": {
+        "accept_rate": 0.6517868041992188,
+        "burn_accept_rate": 0.654614269733429,
+        "S_min_eig": 0.007260064599778607,
+        "S_max_eig": 0.5615579194633492,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.007260064599778607,
+          0.07170145314539705,
+          0.14390915542139454,
+          0.215571422271242,
+          0.5615579194633492
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3200,
+      "loss_sum": -93.46064409508752,
+      "train_energy_estimator": -93.44691467285156,
+      "energies": [
+        -23.782854733729007,
+        -19.384374450958862,
+        -17.773066850331585,
+        -16.752381673783464,
+        -15.767966386284602
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 107.96985530880175,
+      "sampler_accept_rate": 0.4981689453125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 79.8956527709961,
+      "eval": {
+        "accept_rate": 0.6392135620117188,
+        "burn_accept_rate": 0.644775390625,
+        "S_min_eig": 0.005170432246967923,
+        "S_max_eig": 0.5582508215890893,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.005170432246967923,
+          0.0866790851685975,
+          0.17055010537071394,
+          0.17934957052579237,
+          0.5582508215890893
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3300,
+      "loss_sum": -93.42016011544506,
+      "train_energy_estimator": -93.94778442382812,
+      "energies": [
+        -24.022364810997264,
+        -19.472285241874896,
+        -17.900357424815002,
+        -16.73749745979325,
+        -15.287655177964655
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 119.36972251638727,
+      "sampler_accept_rate": 0.483917236328125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 180.16831970214844,
+      "eval": {
+        "accept_rate": 0.648956298828125,
+        "burn_accept_rate": 0.6541504263877869,
+        "S_min_eig": 0.004968941434535443,
+        "S_max_eig": 0.5931411602406752,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.004968941434535443,
+          0.04486795991162869,
+          0.15174412009801352,
+          0.20527776616108326,
+          0.5931411602406752
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3400,
+      "loss_sum": -93.90171234390694,
+      "train_energy_estimator": -93.5971908569336,
+      "energies": [
+        -24.25445169524005,
+        -19.56233414765711,
+        -17.73013679030375,
+        -16.779361503376684,
+        -15.575428207329347
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 95.31494112630722,
+      "sampler_accept_rate": 0.48626708984375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 95.2470703125,
+      "eval": {
+        "accept_rate": 0.6340789794921875,
+        "burn_accept_rate": 0.644824206829071,
+        "S_min_eig": 0.006369111267080053,
+        "S_max_eig": 0.6070714654486352,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.006369111267080053,
+          0.0857156333502543,
+          0.12746010915433023,
+          0.1733836956808617,
+          0.6070714654486352
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3500,
+      "loss_sum": -93.42029039265365,
+      "train_energy_estimator": -94.05404663085938,
+      "energies": [
+        -23.938800416864535,
+        -19.190374568554784,
+        -17.94020336560158,
+        -16.715067767003383,
+        -15.635844274629381
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 58.840083081023906,
+      "sampler_accept_rate": 0.481292724609375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 119.35602569580078,
+      "eval": {
+        "accept_rate": 0.6259613037109375,
+        "burn_accept_rate": 0.6285644769668579,
+        "S_min_eig": 0.010049691221313656,
+        "S_max_eig": 0.5913246664007321,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.010049691221313656,
+          0.04517469555407925,
+          0.14838729362284306,
+          0.20506369790451537,
+          0.5913246664007321
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3600,
+      "loss_sum": -95.05190915156668,
+      "train_energy_estimator": -95.0816650390625,
+      "energies": [
+        -24.353336857307383,
+        -19.84203285045214,
+        -18.555560657038548,
+        -16.651492316568323,
+        -15.649486470200271
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 57.98297322725632,
+      "sampler_accept_rate": 0.474945068359375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 107.12644958496094,
+      "eval": {
+        "accept_rate": 0.6196365356445312,
+        "burn_accept_rate": 0.6233887076377869,
+        "S_min_eig": 0.009288607827735962,
+        "S_max_eig": 0.5385810989940978,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.009288607827735962,
+          0.03802739160014214,
+          0.16795535945803683,
+          0.24614748251534244,
+          0.5385810989940978
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3700,
+      "loss_sum": -96.11401583856113,
+      "train_energy_estimator": -96.4559097290039,
+      "energies": [
+        -24.781230467942105,
+        -20.394566431737854,
+        -18.2372850708171,
+        -16.97003619985822,
+        -15.73089766820584
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 144.5971042283868,
+      "sampler_accept_rate": 0.471527099609375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 144.2129364013672,
+      "eval": {
+        "accept_rate": 0.6325302124023438,
+        "burn_accept_rate": 0.633471667766571,
+        "S_min_eig": 0.004224906418082946,
+        "S_max_eig": 0.6109092336907201,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.004224906418082946,
+          0.03389637679227075,
+          0.13859801044123402,
+          0.21237151736117577,
+          0.6109092336907201
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3800,
+      "loss_sum": -97.02414437189411,
+      "train_energy_estimator": -96.61087799072266,
+      "energies": [
+        -25.05789718218178,
+        -20.192263548751395,
+        -18.899088169950772,
+        -16.88898044029479,
+        -15.985915030715377
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 106.78534215090271,
+      "sampler_accept_rate": 0.45599365234375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 262.09686279296875,
+      "eval": {
+        "accept_rate": 0.60797119140625,
+        "burn_accept_rate": 0.6115967035293579,
+        "S_min_eig": 0.005596313134715165,
+        "S_max_eig": 0.5976042128741498,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.005596313134715165,
+          0.036521972222388226,
+          0.1384169159963221,
+          0.2218605410689415,
+          0.5976042128741498
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 3900,
+      "loss_sum": -96.13490897638776,
+      "train_energy_estimator": -95.69111633300781,
+      "energies": [
+        -24.607755897461317,
+        -19.78599005968696,
+        -18.62455055871981,
+        -17.192012611327662,
+        -15.924599849192003
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 60.54734385658181,
+      "sampler_accept_rate": 0.4659423828125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 241.27337646484375,
+      "eval": {
+        "accept_rate": 0.6180953979492188,
+        "burn_accept_rate": 0.6218017935752869,
+        "S_min_eig": 0.010232599392981922,
+        "S_max_eig": 0.6195567139935267,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.010232599392981922,
+          0.020773182367701478,
+          0.1213026623416499,
+          0.22813478229949552,
+          0.6195567139935267
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4000,
+      "loss_sum": -97.9285207684943,
+      "train_energy_estimator": -97.26374816894531,
+      "energies": [
+        -25.28438076706771,
+        -20.504315261497084,
+        -19.302590967681244,
+        -17.02997229836081,
+        -15.807261473887442
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 148.34955379985485,
+      "sampler_accept_rate": 0.450286865234375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 162.79685974121094,
+      "eval": {
+        "accept_rate": 0.6192474365234375,
+        "burn_accept_rate": 0.620434582233429,
+        "S_min_eig": 0.004177271085780211,
+        "S_max_eig": 0.6196963016765294,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.004177271085780211,
+          0.019180706358517017,
+          0.14421066622527323,
+          0.21273503230215812,
+          0.6196963016765294
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4100,
+      "loss_sum": -97.41828454554826,
+      "train_energy_estimator": -97.2188720703125,
+      "energies": [
+        -24.639176266002057,
+        -20.438667195527543,
+        -19.165602517042153,
+        -17.23626187049557,
+        -15.938576696480947
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 141.9753317106858,
+      "sampler_accept_rate": 0.45428466796875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 233.75157165527344,
+      "eval": {
+        "accept_rate": 0.602325439453125,
+        "burn_accept_rate": 0.601513683795929,
+        "S_min_eig": 0.004227960306060334,
+        "S_max_eig": 0.6002660669125286,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.004227960306060334,
+          0.02317921328646192,
+          0.1467694097593969,
+          0.22555728268032668,
+          0.6002660669125286
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4200,
+      "loss_sum": -98.24944328573045,
+      "train_energy_estimator": -96.73497009277344,
+      "energies": [
+        -24.973345637006638,
+        -20.35191481978365,
+        -19.56887859996112,
+        -17.286715831646656,
+        -16.06858839733237
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 88.53990404468247,
+      "sampler_accept_rate": 0.447540283203125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 197.57872009277344,
+      "eval": {
+        "accept_rate": 0.598388671875,
+        "burn_accept_rate": 0.6009277701377869,
+        "S_min_eig": 0.007089929475974109,
+        "S_max_eig": 0.6277416754863135,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.007089929475974109,
+          0.02892304177959176,
+          0.12059329411140475,
+          0.21565199954207157,
+          0.6277416754863135
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4300,
+      "loss_sum": -98.06526596562315,
+      "train_energy_estimator": -97.48416137695312,
+      "energies": [
+        -25.235923250105227,
+        -20.402148971798173,
+        -19.267923066911237,
+        -17.21274334429837,
+        -15.946527332510149
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 126.32980947443271,
+      "sampler_accept_rate": 0.4461669921875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 216.9144744873047,
+      "eval": {
+        "accept_rate": 0.5940475463867188,
+        "burn_accept_rate": 0.6070556640625,
+        "S_min_eig": 0.004536872037427617,
+        "S_max_eig": 0.5731421800981122,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.004536872037427617,
+          0.017872648728340084,
+          0.15923666887057725,
+          0.24521157066089816,
+          0.5731421800981122
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4400,
+      "loss_sum": -98.12877771587114,
+      "train_energy_estimator": -98.43551635742188,
+      "energies": [
+        -25.002764074317298,
+        -20.204346293283663,
+        -19.6272670660662,
+        -17.30548462811469,
+        -15.98891565408928
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 183.0775080961676,
+      "sampler_accept_rate": 0.435211181640625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 256.52728271484375,
+      "eval": {
+        "accept_rate": 0.6018295288085938,
+        "burn_accept_rate": 0.601025402545929,
+        "S_min_eig": 0.0036254385079874923,
+        "S_max_eig": 0.6637362477982379,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.0036254385079874923,
+          0.020560206711933596,
+          0.11763320240506336,
+          0.19444491947793874,
+          0.6637362477982379
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4500,
+      "loss_sum": -96.22542557198015,
+      "train_energy_estimator": -97.99252319335938,
+      "energies": [
+        -24.943903658320274,
+        -20.086014950722564,
+        -19.07405130699871,
+        -17.07260931693972,
+        -15.048846338998887
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 265.8568500886462,
+      "sampler_accept_rate": 0.449737548828125,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 303.2372131347656,
+      "eval": {
+        "accept_rate": 0.67877197265625,
+        "burn_accept_rate": 0.6854248046875,
+        "S_min_eig": 0.0027763080901675253,
+        "S_max_eig": 0.7381005237275633,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.0027763080901675253,
+          0.010608654469250516,
+          0.08429315615566056,
+          0.16422128305155223,
+          0.7381005237275633
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4600,
+      "loss_sum": -99.190800886418,
+      "train_energy_estimator": -99.27554321289062,
+      "energies": [
+        -25.110876103353988,
+        -20.505333889200312,
+        -19.765636853698926,
+        -17.62225166381862,
+        -16.18670237634617
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 102.04037557910675,
+      "sampler_accept_rate": 0.430267333984375,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 252.52378845214844,
+      "eval": {
+        "accept_rate": 0.6019973754882812,
+        "burn_accept_rate": 0.6069580316543579,
+        "S_min_eig": 0.006621132235461751,
+        "S_max_eig": 0.6756228200654477,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.006621132235461751,
+          0.020762372710862367,
+          0.09827931995539169,
+          0.19871439973631994,
+          0.6756228200654477
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4700,
+      "loss_sum": -100.2614483901041,
+      "train_energy_estimator": -100.79592895507812,
+      "energies": [
+        -25.140603738440305,
+        -21.113948285846607,
+        -19.98093588836931,
+        -17.52001158947225,
+        -16.50594888797563
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 130.49610909266852,
+      "sampler_accept_rate": 0.42047119140625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 148.6443328857422,
+      "eval": {
+        "accept_rate": 0.5896224975585938,
+        "burn_accept_rate": 0.590502917766571,
+        "S_min_eig": 0.0054455003508977855,
+        "S_max_eig": 0.7106166078549221,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.0054455003508977855,
+          0.01455531758013853,
+          0.08000039724710672,
+          0.18938209501054803,
+          0.7106166078549221
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4800,
+      "loss_sum": -101.48424738502459,
+      "train_energy_estimator": -100.45134735107422,
+      "energies": [
+        -25.64067036661635,
+        -21.448756164817794,
+        -20.24585604419503,
+        -17.81539764435001,
+        -16.333567165045388
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 275.9350181756874,
+      "sampler_accept_rate": 0.423797607421875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 437.484619140625,
+      "eval": {
+        "accept_rate": 0.584320068359375,
+        "burn_accept_rate": 0.587719738483429,
+        "S_min_eig": 0.0025037545572961614,
+        "S_max_eig": 0.6908735592749764,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.0025037545572961614,
+          0.017284345155676985,
+          0.09238562726328284,
+          0.19695271374876738,
+          0.6908735592749764
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 4900,
+      "loss_sum": -101.35335788174959,
+      "train_energy_estimator": -100.77546691894531,
+      "energies": [
+        -25.503835819892743,
+        -21.339808540596422,
+        -20.463141380086476,
+        -17.640044295193707,
+        -16.40652784598025
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 229.37769239672383,
+      "sampler_accept_rate": 0.41748046875,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 366.0943298339844,
+      "eval": {
+        "accept_rate": 0.5961151123046875,
+        "burn_accept_rate": 0.595996081829071,
+        "S_min_eig": 0.0029916682378694883,
+        "S_max_eig": 0.6862219568190763,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.0029916682378694883,
+          0.01248725799721835,
+          0.12236996026481982,
+          0.17592918648333808,
+          0.6862219568190763
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 5000,
+      "loss_sum": -101.0525329511045,
+      "train_energy_estimator": -101.94178771972656,
+      "energies": [
+        -24.999347303432295,
+        -20.982599055985293,
+        -20.0531903592013,
+        -18.217960617852928,
+        -16.79943561463269
+      ],
+      "reference": null,
+      "reference_source": "own ED skipped because N=32 > max_sites=14",
+      "abs_errors": null,
+      "trace_error": null,
+      "condition_number_S": 281.2708061677575,
+      "sampler_accept_rate": 0.410797119140625,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 552.7468872070312,
+      "eval": {
+        "accept_rate": 0.5779647827148438,
+        "burn_accept_rate": 0.5867919921875,
+        "S_min_eig": 0.002594992074333339,
+        "S_max_eig": 0.7298955127466795,
+        "S_rank": 5,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.002594992074333339,
+          0.01703497318831902,
+          0.06668257909761917,
+          0.18379196151950053,
+          0.7298955127466795
+        ],
+        "method": "sampled_span_q"
+      }
+    }
+  ]
+}
