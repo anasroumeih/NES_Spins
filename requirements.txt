@@ -3,5 +3,6 @@ jaxlib
 numpy
 scipy
 matplotlib
+flax
 # Optional, only if you want NetKet references:
 # netket

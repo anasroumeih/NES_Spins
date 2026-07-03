@@ -7,19 +7,12 @@ from .hamiltonians import HamiltonianSpec, diag_energy
 
 
 def amplitude_matrix(apply_fun, params, bundle: jnp.ndarray) -> jnp.ndarray:
-    """A[i, j] = psi_i(sigma_j), shape (k states, k replicas).
-
-    This is the physical NES amplitude matrix.
-    Do not add a diagonal jitter here.
-    """
-    vals = apply_fun(params, bundle)  # (k configs, k states)
-    return vals.T
+    """Physical NES matrix A[i, j] = psi_i(sigma_j), with no determinant jitter."""
+    return apply_fun(params, bundle).T
 
 
 def signed_logdet_bundle(apply_fun, params, bundle: jnp.ndarray):
-    """Returns sign(det A), log(abs(det A))."""
-    A = amplitude_matrix(apply_fun, params, bundle)
-    return jnp.linalg.slogdet(A)
+    return jnp.linalg.slogdet(amplitude_matrix(apply_fun, params, bundle))
 
 
 def logabsdet_bundle(apply_fun, params, bundle: jnp.ndarray):
@@ -27,9 +20,7 @@ def logabsdet_bundle(apply_fun, params, bundle: jnp.ndarray):
 
 
 def batch_logabsdet(apply_fun, params, bundles: jnp.ndarray):
-    return jax.vmap(
-        lambda b: logabsdet_bundle(apply_fun, params, b)
-    )(bundles)
+    return jax.vmap(lambda b: logabsdet_bundle(apply_fun, params, b))(bundles)
 
 
 def _local_energy_bundle_valid(
@@ -39,14 +30,10 @@ def _local_energy_bundle_valid(
     hspec: HamiltonianSpec,
     bonds: jnp.ndarray,
 ):
-    """NES local energy assuming det(A) is finite and nonzero."""
+    """NES local energy for a finite nonzero determinant bundle."""
     A = amplitude_matrix(apply_fun, params, bundle)
     k, N = bundle.shape
-
-    # Solve A X = I instead of calling inv(A).
-    # This does not modify A; it is only numerically preferable.
     Ainv = jnp.linalg.solve(A, jnp.eye(k, dtype=A.dtype))
-
     e = jnp.sum(diag_energy(bundle, hspec, bonds))
 
     if hspec.name == "tfim":
@@ -54,43 +41,26 @@ def _local_energy_bundle_valid(
             for site in range(N):
                 new_config = bundle[rep].at[site].multiply(-1)
                 v = apply_fun(params, new_config[None, :])[0]
-                ratio = (Ainv @ v)[rep]
-                e = e - hspec.g * ratio
-
+                e = e - hspec.g * (Ainv @ v)[rep]
     elif hspec.name == "heisenberg":
         for rep in range(k):
             s = bundle[rep]
-
             for b in range(bonds.shape[0]):
-                i = bonds[b, 0]
-                j = bonds[b, 1]
-
+                i, j = bonds[b, 0], bonds[b, 1]
                 active = s[i] != s[j]
                 new_config = s.at[i].multiply(-1).at[j].multiply(-1)
-
                 v = apply_fun(params, new_config[None, :])[0]
-                ratio = (Ainv @ v)[rep]
-
-                e = e + jnp.where(active, 0.5 * hspec.J * ratio, 0.0)
-
+                e = e + jnp.where(active, 0.5 * hspec.J * (Ainv @ v)[rep], 0.0)
     elif hspec.name == "toric_code":
         stars = bonds[0]
-
         for rep in range(k):
             s = bundle[rep]
-
             for a in range(stars.shape[0]):
-                idx = stars[a]
-                new_config = s.at[idx].multiply(-1)
-
+                new_config = s.at[stars[a]].multiply(-1)
                 v = apply_fun(params, new_config[None, :])[0]
-                ratio = (Ainv @ v)[rep]
-
-                e = e - hspec.Je * ratio
-
+                e = e - hspec.Je * (Ainv @ v)[rep]
     else:
         raise ValueError(hspec.name)
-
     return e
 
 
@@ -101,25 +71,14 @@ def local_energy_bundle(
     hspec: HamiltonianSpec,
     bonds: jnp.ndarray,
 ):
-    """NES local energy for one bundle.
-
-    Singular bundles have zero physical probability under |det A|².
-    They should never survive Metropolis sampling; return NaN if one
-    somehow reaches this function so the issue is visible.
-    """
+    """Return NaN only for an impossible (zero-probability) singular bundle."""
     _, logabs = signed_logdet_bundle(apply_fun, params, bundle)
     valid = jnp.isfinite(logabs)
-
+    dtype = amplitude_matrix(apply_fun, params, bundle).dtype
     return jax.lax.cond(
         valid,
-        lambda _: _local_energy_bundle_valid(
-            apply_fun,
-            params,
-            bundle,
-            hspec,
-            bonds,
-        ),
-        lambda _: jnp.array(jnp.nan, dtype=jnp.float32),
+        lambda _: _local_energy_bundle_valid(apply_fun, params, bundle, hspec, bonds),
+        lambda _: jnp.asarray(jnp.nan, dtype=dtype),
         operand=None,
     )
 
@@ -132,13 +91,7 @@ def batch_local_energy(
     bonds: jnp.ndarray,
 ):
     return jax.vmap(
-        lambda b: local_energy_bundle(
-            apply_fun,
-            params,
-            b,
-            hspec,
-            bonds,
-        )
+        lambda b: local_energy_bundle(apply_fun, params, b, hspec, bonds)
     )(bundles)
 
 
@@ -149,25 +102,10 @@ def vmc_surrogate_loss(
     hspec: HamiltonianSpec,
     bonds: jnp.ndarray,
 ):
-    """Score-function VMC surrogate for the exact NES determinant."""
-    e_loc = batch_local_energy(
-        apply_fun,
-        params,
-        bundles,
-        hspec,
-        bonds,
-    )
-
+    """Penalty-free real VMC gradient surrogate for the exact NES determinant."""
+    e_loc = batch_local_energy(apply_fun, params, bundles, hspec, bonds)
     e_mean = jnp.mean(e_loc)
-
-    logabs = batch_logabsdet(
-        apply_fun,
-        params,
-        bundles,
-    )
-
+    logabs = batch_logabsdet(apply_fun, params, bundles)
     centered = jax.lax.stop_gradient(e_loc - e_mean)
-
     loss = jnp.mean(2.0 * centered * logabs)
-
     return loss, e_mean

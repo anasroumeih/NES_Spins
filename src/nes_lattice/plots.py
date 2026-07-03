@@ -79,3 +79,4 @@ def print_final(path: str | Path):
     print("Trace error:       ", final.get("trace_error"))
     print("cond(S):           ", final.get("condition_number_S"))
     print("acceptance:        ", final.get("sampler_accept_rate"))
+    print("invalid bundles:   ", final.get("invalid_bundle_fraction"))

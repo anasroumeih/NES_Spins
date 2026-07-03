@@ -21,36 +21,42 @@ from .sampler import initialize_valid_bundles, make_bundle_sampler
 
 @dataclass
 class TrainConfig:
-    # Lattice/system. 2D is the default; 1D is the exception, e.g. shape=(10,).
     shape: tuple[int, ...] = (4, 4)
     hamiltonian: Literal["tfim", "heisenberg", "toric_code", "toric"] = "tfim"
     k: int = 2
     J: float = 1.0
     g: float = 1.0
-    Je: float | None = None      # toric-code star coupling; defaults to J
-    Jm: float | None = None      # toric-code plaquette coupling; defaults to J
+    Je: float | None = None
+    Jm: float | None = None
     pbc: bool = True
     magnetization: int | None = None
 
-    # Model choices: "ffn", "rbm", "cnn".
-    model: Literal["ffn", "rbm", "cnn"] = "ffn"
+    # Ansatz.
+    model: Literal["ffn", "rbm", "cnn", "vit"] = "ffn"
     hidden: tuple[int, ...] = (64, 64)
     rbm_hidden: int = 32
     channels: tuple[int, ...] = (16, 16)
     kernel_size: int = 3
+    vit_patch_size: int = 2
+    vit_d_model: int = 64
+    vit_num_layers: int = 2
+    vit_num_heads: int = 4
+    vit_mlp_ratio: int = 2
+    vit_use_positional_embeddings: bool = True
+    vit_log_amplitude_clip: float = 20.0
     init_scale: float = 0.05
     dtype: str = "float32"
 
-    # Stochastic NES-VMC.
+    # Stochastic exact-NES determinant sampling; no determinant jitter.
     steps: int = 1000
     lr: float = 2e-3
     n_chains: int = 64
-    n_samples: int = 8          # collected per chain per optimization step => n_chains*n_samples bundles
+    n_samples: int = 8
     sweep_steps: int | None = None
     burn_in: int | None = None
     grad_clip: float | None = 10.0
 
-    # Evaluation/logging.
+    # Evaluation/logging. This is still the optional Ritz-span diagnostic.
     print_every: int = 100
     eval_exact_if_sites_leq: int = 16
     eval_samples: int = 32
@@ -59,18 +65,20 @@ class TrainConfig:
     own_ed_max_sites: int = 14
     netket_max_states: int = 2_000_000
     jitter: float = 1e-6
-
     seed: int = 0
 
     def __post_init__(self):
         self.shape = normalize_shape(self.shape)
         self.hidden = tuple(self.hidden)
         self.channels = tuple(self.channels)
-        n_move_sites = 2 * num_sites(self.shape) if str(self.hamiltonian).lower() in ("toric", "tc", "toric_code") else num_sites(self.shape)
+        toric = str(self.hamiltonian).lower() in ("toric", "tc", "toric_code")
+        n_move_sites = 2 * num_sites(self.shape) if toric else num_sites(self.shape)
         if self.sweep_steps is None:
             self.sweep_steps = max(1, n_move_sites)
         if self.burn_in is None:
             self.burn_in = 10 * max(1, n_move_sites)
+        if self.model == "vit" and len(self.shape) != 2:
+            raise ValueError("model='vit' requires a 2D shape, for example shape=(4, 4).")
 
 
 def make_apply_fun(mspec: ModelSpec):
@@ -98,6 +106,13 @@ def train(cfg: TrainConfig):
         rbm_hidden=cfg.rbm_hidden,
         channels=cfg.channels,
         kernel_size=cfg.kernel_size,
+        vit_patch_size=cfg.vit_patch_size,
+        vit_d_model=cfg.vit_d_model,
+        vit_num_layers=cfg.vit_num_layers,
+        vit_num_heads=cfg.vit_num_heads,
+        vit_mlp_ratio=cfg.vit_mlp_ratio,
+        vit_use_positional_embeddings=cfg.vit_use_positional_embeddings,
+        vit_log_amplitude_clip=cfg.vit_log_amplitude_clip,
         scale=cfg.init_scale,
         n_sites=hspec.N,
         input_channels=hspec.model_input_channels,
@@ -109,7 +124,7 @@ def train(cfg: TrainConfig):
     key, key_params, key_init = jax.random.split(key, 3)
     params = init_model(key_params, mspec)
     opt = init_adam(params)
-    bundles, key = initialize_valid_bundles(
+    bundles, _ = initialize_valid_bundles(
         apply_fun=apply_fun,
         params=params,
         key=key_init,
@@ -119,6 +134,7 @@ def train(cfg: TrainConfig):
         move_type=hspec.move_type,
         n_sites=hspec.N,
     )
+
     sample_fn = make_bundle_sampler(
         apply_fun=apply_fun,
         shape=cfg.shape,
@@ -134,8 +150,7 @@ def train(cfg: TrainConfig):
     @jax.jit
     def train_step(params, opt, samples):
         def loss_fn(p):
-            loss, energy = vmc_surrogate_loss(apply_fun,p, samples, hspec, bonds, )
-            return loss, energy
+            return vmc_surrogate_loss(apply_fun, p, samples, hspec, bonds)
         (loss, energy), grads = jax.value_and_grad(loss_fn, has_aux=True)(params)
         grads, grad_norm = clip_grads(grads, cfg.grad_clip)
         params, opt = adam_step(params, grads, opt, cfg.lr)
@@ -175,11 +190,9 @@ def train(cfg: TrainConfig):
             if reference is not None:
                 exact = [float(x) for x in reference]
                 abs_errors = [float(abs(a - b)) for a, b in zip(energies, reference)]
-                trace_error = float(abs(np.sum(energies[: len(reference)]) - np.sum(reference)))
+                trace_error = float(abs(np.sum(energies[:len(reference)]) - np.sum(reference)))
             else:
-                exact = None
-                abs_errors = None
-                trace_error = None
+                exact = abs_errors = trace_error = None
             rec = {
                 "step": int(step),
                 "loss_sum": loss_sum,
@@ -204,8 +217,8 @@ def train(cfg: TrainConfig):
             params, opt, loss, energy, grad_norm = train_step(params, opt, samples)
             last_train_energy = float(energy)
             last_accept = float(stats["accept_rate"])
-            last_grad_norm = float(grad_norm)
             last_invalid_fraction = float(stats["invalid_final_fraction"])
+            last_grad_norm = float(grad_norm)
 
     return params, history
 
@@ -213,8 +226,7 @@ def train(cfg: TrainConfig):
 def save_history(history, path: str | Path, cfg: TrainConfig):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    payload = {"config": asdict(cfg), "history": history}
-    path.write_text(json.dumps(payload, indent=2))
+    path.write_text(json.dumps({"config": asdict(cfg), "history": history}, indent=2))
     return path
 
 

@@ -6,7 +6,7 @@ from typing import Literal
 import jax
 import jax.numpy as jnp
 
-ModelType = Literal["ffn", "rbm", "cnn"]
+ModelType = Literal["ffn", "rbm", "cnn", "vit"]
 
 
 @dataclass(frozen=True)
@@ -14,10 +14,20 @@ class ModelSpec:
     model: ModelType = "ffn"
     shape: tuple[int, ...] = (4, 4)
     k: int = 2
-    hidden: tuple[int, ...] = (64, 64)      # FFN hidden layers
-    rbm_hidden: int = 32                    # RBM hidden units per state
-    channels: tuple[int, ...] = (16, 16)    # CNN channels
+    hidden: tuple[int, ...] = (64, 64)       # FFN hidden layers
+    rbm_hidden: int = 32                     # RBM hidden units per state
+    channels: tuple[int, ...] = (16, 16)     # CNN channels
     kernel_size: int = 3
+
+    # ViT / NetKet-tutorial-style Flax model parameters.
+    vit_patch_size: int = 2
+    vit_d_model: int = 64
+    vit_num_layers: int = 2
+    vit_num_heads: int = 4
+    vit_mlp_ratio: int = 2
+    vit_use_positional_embeddings: bool = True
+    vit_log_amplitude_clip: float = 20.0
+
     scale: float = 0.05
     n_sites: int | None = None              # actual number of spin variables
     input_channels: int = 1                 # 2 for toric-code edge variables on a 2D cell lattice
@@ -46,6 +56,21 @@ def _param_dtype(params):
     return jnp.float32
 
 
+def _vit_kwargs(spec: ModelSpec) -> dict:
+    return {
+        "shape": spec.shape,
+        "k": spec.k,
+        "input_channels": spec.input_channels,
+        "patch_size": spec.vit_patch_size,
+        "d_model": spec.vit_d_model,
+        "num_layers": spec.vit_num_layers,
+        "num_heads": spec.vit_num_heads,
+        "mlp_ratio": spec.vit_mlp_ratio,
+        "use_positional_embeddings": spec.vit_use_positional_embeddings,
+        "dtype": spec.dtype,
+    }
+
+
 def init_model(key: jax.Array, spec: ModelSpec):
     if spec.model == "ffn":
         return init_ffn(key, spec.N, spec.k, spec.hidden, spec.scale, _dtype(spec))
@@ -62,6 +87,9 @@ def init_model(key: jax.Array, spec: ModelSpec):
             _dtype(spec),
             input_channels=spec.input_channels,
         )
+    if spec.model == "vit":
+        from .vit import init_vit
+        return init_vit(key, **_vit_kwargs(spec))
     raise ValueError(spec.model)
 
 
@@ -72,6 +100,14 @@ def apply_model(params, spins: jnp.ndarray, spec: ModelSpec) -> jnp.ndarray:
         return apply_rbm(params, spins)
     if spec.model == "cnn":
         return apply_cnn(params, spins, spec.shape)
+    if spec.model == "vit":
+        from .vit import apply_vit
+        return apply_vit(
+            params,
+            spins,
+            log_amplitude_clip=spec.vit_log_amplitude_clip,
+            **_vit_kwargs(spec),
+        )
     raise ValueError(spec.model)
 
 
@@ -124,8 +160,6 @@ def init_rbm(
     dtype=jnp.float32,
 ):
     k1, k2, k3 = jax.random.split(key, 3)
-
-    # Separate RBM for each NES state.
     a = scale * jax.random.normal(k1, (k, N), dtype=dtype)
     b = scale * jax.random.normal(k2, (k, n_hidden), dtype=dtype)
     W = scale * jax.random.normal(
@@ -133,29 +167,18 @@ def init_rbm(
         (k, N, n_hidden),
         dtype=dtype,
     ) / jnp.sqrt(jnp.asarray(N, dtype=dtype))
-
-    # State-dependent tiny prefactors break row symmetry.
     pref = 0.01 * jnp.arange(k, dtype=dtype)
-
     return {"a": a, "b": b, "W": W, "pref": pref}
 
 
 def apply_rbm(params, spins):
     dtype = _param_dtype(params)
     s = spins.astype(dtype)
-
-    # logpsi[..., state]
     visible = jnp.einsum("...n,kn->...k", s, params["a"])
     theta = jnp.einsum("...n,knh->...kh", s, params["W"]) + params["b"]
-
-    # log(2 cosh theta), written stably
     hidden = jnp.sum(jnp.logaddexp(theta, -theta), axis=-1)
-
     logpsi = params["pref"] + visible + hidden
-
-    # Remove baseline log(2)*M to keep amplitudes moderate.
     logpsi = logpsi - jnp.log(jnp.asarray(2.0, dtype=dtype)) * params["b"].shape[-1]
-
     return jnp.exp(jnp.clip(logpsi, -30.0, 30.0))
 
 
@@ -174,26 +197,20 @@ def init_cnn(
     if len(shape) == 1:
         if input_channels != 1:
             raise ValueError("1D CNN currently expects input_channels=1")
-        spatial_shape = (1, shape[0])
-    elif len(shape) == 2:
-        spatial_shape = shape
-    else:
+    elif len(shape) != 2:
         raise ValueError("CNN supports only 1D or 2D")
 
     keys = jax.random.split(key, len(channels) + 1)
-
     convs = []
     in_ch = int(input_channels)
 
     for out_ch, kk in zip(channels, keys[:-1]):
         fan_in = kernel_size * kernel_size * in_ch
-
         W = scale * jax.random.normal(
             kk,
             (kernel_size, kernel_size, in_ch, out_ch),
             dtype=dtype,
         ) / jnp.sqrt(jnp.asarray(fan_in, dtype=dtype))
-
         b = jnp.zeros((out_ch,), dtype=dtype)
         convs.append({"W": W, "b": b})
         in_ch = out_ch
@@ -203,22 +220,14 @@ def init_cnn(
         (in_ch, k),
         dtype=dtype,
     ) / jnp.sqrt(jnp.asarray(in_ch, dtype=dtype))
-
     bout = 0.01 * jnp.arange(k, dtype=dtype)
-
     return {"convs": convs, "Wout": Wout, "bout": bout}
 
 
 def _periodic_conv2d(x, W, b):
     kh, kw, _, _ = W.shape
     ph, pw = kh // 2, kw // 2
-
-    xpad = jnp.pad(
-        x,
-        ((0, 0), (ph, ph), (pw, pw), (0, 0)),
-        mode="wrap",
-    )
-
+    xpad = jnp.pad(x, ((0, 0), (ph, ph), (pw, pw), (0, 0)), mode="wrap")
     y = jax.lax.conv_general_dilated(
         xpad,
         W,
@@ -226,14 +235,12 @@ def _periodic_conv2d(x, W, b):
         padding="VALID",
         dimension_numbers=("NHWC", "HWIO", "NHWC"),
     )
-
     return y + b
 
 
 def apply_cnn(params, spins, shape: tuple[int, ...]):
     dtype = _param_dtype(params)
     s = spins.astype(dtype)
-
     orig_batch = s.shape[:-1]
     flat = s.reshape((-1, s.shape[-1]))
     input_channels = params["convs"][0]["W"].shape[2]
@@ -256,5 +263,4 @@ def apply_cnn(params, spins, shape: tuple[int, ...]):
 
     pooled = jnp.mean(x, axis=(1, 2))
     out = pooled @ params["Wout"] + params["bout"]
-
     return out.reshape((*orig_batch, out.shape[-1]))
