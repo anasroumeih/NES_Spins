@@ -56,6 +56,12 @@ class TrainConfig:
     burn_in: int | None = None
     grad_clip: float | None = 10.0
 
+    # Toric-code ground-manifold sampler.  With single_flip_prob=0, the
+    # star/loop kernel remains in B_p=+1 and is appropriate for k<=4 ground states.
+    toric_loop_prob: float = 0.10
+    toric_single_flip_prob: float = 0.0
+    toric_cover_sectors: bool = True
+
     # Evaluation/logging. This is still the optional Ritz-span diagnostic.
     print_every: int = 100
     eval_exact_if_sites_leq: int = 16
@@ -79,6 +85,15 @@ class TrainConfig:
             self.burn_in = 10 * max(1, n_move_sites)
         if self.model == "vit" and len(self.shape) != 2:
             raise ValueError("model='vit' requires a 2D shape, for example shape=(4, 4).")
+        if not (0.0 <= self.toric_loop_prob <= 1.0):
+            raise ValueError("toric_loop_prob must lie in [0, 1].")
+        if not (0.0 <= self.toric_single_flip_prob <= 1.0):
+            raise ValueError("toric_single_flip_prob must lie in [0, 1].")
+        if self.toric_loop_prob + self.toric_single_flip_prob > 1.0:
+            raise ValueError(
+                "toric_loop_prob + toric_single_flip_prob must be <= 1; "
+                "the remaining probability is used for star moves."
+            )
 
 
 def make_apply_fun(mspec: ModelSpec):
@@ -133,6 +148,7 @@ def train(cfg: TrainConfig):
         shape=cfg.shape,
         move_type=hspec.move_type,
         n_sites=hspec.N,
+        toric_cover_sectors=cfg.toric_cover_sectors,
     )
 
     sample_fn = make_bundle_sampler(
@@ -145,6 +161,8 @@ def train(cfg: TrainConfig):
         sweep_steps=cfg.sweep_steps,
         burn_in=cfg.burn_in,
         n_sites=hspec.N,
+        toric_loop_prob=cfg.toric_loop_prob,
+        toric_single_flip_prob=cfg.toric_single_flip_prob,
     )
 
     @jax.jit
@@ -171,6 +189,12 @@ def train(cfg: TrainConfig):
     last_accept = np.nan
     last_grad_norm = np.nan
     last_invalid_fraction = np.nan
+    last_star_accept = np.nan
+    last_loop_accept = np.nan
+    last_single_accept = np.nan
+    last_star_fraction = np.nan
+    last_loop_fraction = np.nan
+    last_single_fraction = np.nan
 
     for step in range(cfg.steps + 1):
         if step % cfg.print_every == 0 or step == cfg.steps:
@@ -185,6 +209,8 @@ def train(cfg: TrainConfig):
                 eval_samples=cfg.eval_samples,
                 eval_chains=cfg.eval_chains,
                 jitter=cfg.jitter,
+                toric_loop_prob=cfg.toric_loop_prob,
+                toric_single_flip_prob=cfg.toric_single_flip_prob,
             )
             loss_sum = float(np.sum(energies))
             if reference is not None:
@@ -204,6 +230,12 @@ def train(cfg: TrainConfig):
                 "trace_error": trace_error,
                 "condition_number_S": float(cond_S),
                 "sampler_accept_rate": float(last_accept),
+                "sampler_star_accept_rate": float(last_star_accept),
+                "sampler_loop_accept_rate": float(last_loop_accept),
+                "sampler_single_flip_accept_rate": float(last_single_accept),
+                "sampler_star_move_fraction": float(last_star_fraction),
+                "sampler_loop_move_fraction": float(last_loop_fraction),
+                "sampler_single_flip_move_fraction": float(last_single_fraction),
                 "invalid_bundle_fraction": float(last_invalid_fraction),
                 "grad_norm": float(last_grad_norm),
                 "eval": eval_stats,
@@ -217,6 +249,12 @@ def train(cfg: TrainConfig):
             params, opt, loss, energy, grad_norm = train_step(params, opt, samples)
             last_train_energy = float(energy)
             last_accept = float(stats["accept_rate"])
+            last_star_accept = float(stats.get("star_accept_rate", np.nan))
+            last_loop_accept = float(stats.get("loop_accept_rate", np.nan))
+            last_single_accept = float(stats.get("single_flip_accept_rate", np.nan))
+            last_star_fraction = float(stats.get("star_move_fraction", np.nan))
+            last_loop_fraction = float(stats.get("loop_move_fraction", np.nan))
+            last_single_fraction = float(stats.get("single_flip_move_fraction", np.nan))
             last_invalid_fraction = float(stats["invalid_final_fraction"])
             last_grad_norm = float(grad_norm)
 

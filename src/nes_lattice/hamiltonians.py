@@ -52,7 +52,11 @@ class HamiltonianSpec:
         # TFIM and toric code do not conserve magnetization.
         # Heisenberg conserves Sz, so use pair flips in the Sz=0 sector.
         if self.name == "toric_code":
-            return "single_flip"
+            # Star and winding-loop proposals preserve the plaquette-flux
+            # sector.  This is the intended sampler for the topological
+            # ground-space calculation; an optional rare single-edge move can
+            # still be enabled from TrainConfig for flux excitations.
+            return "toric"
         if self.magnetization is not None:
             return "pair_flip"
         return "single_flip"

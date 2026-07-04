@@ -156,4 +156,58 @@ def random_configs(key, n: int, shape: int | Iterable[int], magnetization: int |
     base = jnp.concatenate([jnp.ones(N // 2, dtype=jnp.int8), -jnp.ones(N // 2, dtype=jnp.int8)])
     keys = jax.random.split(key, n)
     return jax.vmap(lambda kk: jax.random.permutation(kk, base))(keys)
-#generates random starting spins for mcmc
+
+
+def toric_code_move_masks(shape: int | Iterable[int]) -> tuple[np.ndarray, np.ndarray]:
+    """Return Z-basis flip masks for toric-code Monte Carlo moves.
+
+    Returns
+    -------
+    star_masks, winding_masks:
+        ``star_masks`` has shape ``(Lx*Ly, 2*Lx*Ly)``.  Row ``s`` flips the
+        four edge spins of the star operator :math:`A_s`.
+
+        ``winding_masks`` has shape ``(2, 2*Lx*Ly)``.  The two rows are
+        non-contractible dual-lattice loops:
+
+        * row 0 flips every horizontal edge at fixed ``x=0``;
+        * row 1 flips every vertical edge at fixed ``y=0``.
+
+    Every one of these moves preserves all plaquette eigenvalues ``B_p``.
+    The winding masks are not products of star masks and therefore connect the
+    four topological sectors on the torus.
+    """
+    shape = normalize_shape(shape)
+    if len(shape) != 2:
+        raise ValueError("Toric-code moves require a 2D shape, e.g. shape=(Lx, Ly).")
+
+    Lx, Ly = shape
+    n_edges = toric_code_num_edges(shape)
+    stars, _ = toric_code_terms(shape, pbc=True)
+
+    star_masks = np.zeros((stars.shape[0], n_edges), dtype=np.int8)
+    for s, edges in enumerate(stars):
+        # XOR keeps this correct even in pathological tiny periodic cases.
+        for edge in edges:
+            star_masks[s, int(edge)] ^= np.int8(1)
+
+    winding_masks = np.zeros((2, n_edges), dtype=np.int8)
+
+    # A dual loop wrapping in the y direction crosses all horizontal edges at
+    # a fixed x.  Every plaquette intersects this set in 0 or 2 edges.
+    for y in range(Ly):
+        winding_masks[0, toric_code_edge_index(0, y, 0, shape)] = 1
+
+    # A dual loop wrapping in the x direction crosses all vertical edges at a
+    # fixed y.  Again each plaquette intersects it in 0 or 2 edges.
+    for x in range(Lx):
+        winding_masks[1, toric_code_edge_index(x, 0, 1, shape)] = 1
+
+    return star_masks, winding_masks
+
+
+def toric_code_plaquette_values(configs: np.ndarray, shape: int | Iterable[int]) -> np.ndarray:
+    """Return all B_p values for NumPy spin configurations of shape (..., N_edges)."""
+    _, plaquettes = toric_code_terms(shape, pbc=True)
+    configs = np.asarray(configs)
+    return np.prod(configs[..., plaquettes], axis=-1)

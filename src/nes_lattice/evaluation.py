@@ -37,6 +37,8 @@ def sampled_span_matrices(
     n_samples: int = 32,
     sweep_steps: int | None = None,
     burn_in: int | None = None,
+    toric_loop_prob: float = 0.10,
+    toric_single_flip_prob: float = 0.0,
 ):
     N = hspec.N
 
@@ -54,6 +56,8 @@ def sampled_span_matrices(
         sweep_steps,
         burn_in,
         n_sites=hspec.N,
+        toric_loop_prob=toric_loop_prob,
+        toric_single_flip_prob=toric_single_flip_prob,
     )
 
     k1, k2 = jax.random.split(key)
@@ -161,6 +165,8 @@ def evaluate_span(
     eval_samples: int = 32,
     eval_chains: int = 128,
     jitter: float = 1e-6,
+    toric_loop_prob: float = 0.10,
+    toric_single_flip_prob: float = 0.0,
 ):
     if hspec.N <= exact_if_sites_leq:
         S, H = exact_span_matrices(apply_fun, params, hspec, bonds)
@@ -177,6 +183,8 @@ def evaluate_span(
         key,
         n_chains=eval_chains,
         n_samples=eval_samples,
+        toric_loop_prob=toric_loop_prob,
+        toric_single_flip_prob=toric_single_flip_prob,
     )
     energies, cond, info = span_energies_from_matrices(S, H, jitter, return_info=True)
 
