@@ -30,38 +30,64 @@ def _local_energy_bundle_valid(
     hspec: HamiltonianSpec,
     bonds: jnp.ndarray,
 ):
-    """NES local energy for a finite nonzero determinant bundle."""
+    """NES local energy for a bundle with finite, nonzero determinant."""
     A = amplitude_matrix(apply_fun, params, bundle)
+    dtype = A.dtype
     k, N = bundle.shape
-    Ainv = jnp.linalg.solve(A, jnp.eye(k, dtype=A.dtype))
-    e = jnp.sum(diag_energy(bundle, hspec, bonds))
+
+    Ainv = jnp.linalg.solve(A, jnp.eye(k, dtype=dtype))
+
+    # Keep the full local-energy calculation in the ansatz dtype.
+    e = jnp.asarray(jnp.sum(diag_energy(bundle, hspec, bonds)), dtype=dtype)
 
     if hspec.name == "tfim":
+        g = jnp.asarray(hspec.g, dtype=dtype)
+
         for rep in range(k):
             for site in range(N):
                 new_config = bundle[rep].at[site].multiply(-1)
-                v = apply_fun(params, new_config[None, :])[0]
-                e = e - hspec.g * (Ainv @ v)[rep]
+                v = apply_fun(params, new_config[None, :])[0].astype(dtype)
+                ratio = (Ainv @ v)[rep]
+                e = e - g * ratio
+
     elif hspec.name == "heisenberg":
+        J = jnp.asarray(hspec.J, dtype=dtype)
+
         for rep in range(k):
             s = bundle[rep]
+
             for b in range(bonds.shape[0]):
-                i, j = bonds[b, 0], bonds[b, 1]
+                i = bonds[b, 0]
+                j = bonds[b, 1]
+
                 active = s[i] != s[j]
                 new_config = s.at[i].multiply(-1).at[j].multiply(-1)
-                v = apply_fun(params, new_config[None, :])[0]
-                e = e + jnp.where(active, 0.5 * hspec.J * (Ainv @ v)[rep], 0.0)
+
+                v = apply_fun(params, new_config[None, :])[0].astype(dtype)
+                ratio = (Ainv @ v)[rep]
+
+                e = e + jnp.where(active, 0.5 * J * ratio, 0.0)
+
     elif hspec.name == "toric_code":
+        Je = jnp.asarray(hspec.Je, dtype=dtype)
         stars = bonds[0]
+
         for rep in range(k):
             s = bundle[rep]
+
             for a in range(stars.shape[0]):
-                new_config = s.at[stars[a]].multiply(-1)
-                v = apply_fun(params, new_config[None, :])[0]
-                e = e - hspec.Je * (Ainv @ v)[rep]
+                idx = stars[a]
+                new_config = s.at[idx].multiply(-1)
+
+                v = apply_fun(params, new_config[None, :])[0].astype(dtype)
+                ratio = (Ainv @ v)[rep]
+
+                e = e - Je * ratio
+
     else:
         raise ValueError(hspec.name)
-    return e
+
+    return jnp.asarray(e, dtype=A.dtype)
 
 
 def local_energy_bundle(
@@ -71,15 +97,17 @@ def local_energy_bundle(
     hspec: HamiltonianSpec,
     bonds: jnp.ndarray,
 ):
-    """Return NaN only for an impossible (zero-probability) singular bundle."""
-    _, logabs = signed_logdet_bundle(apply_fun, params, bundle)
-    valid = jnp.isfinite(logabs)
-    dtype = amplitude_matrix(apply_fun, params, bundle).dtype
-    return jax.lax.cond(
-        valid,
-        lambda _: _local_energy_bundle_valid(apply_fun, params, bundle, hspec, bonds),
-        lambda _: jnp.asarray(jnp.nan, dtype=dtype),
-        operand=None,
+    """NES local energy for a valid determinant-sampled bundle.
+
+    The sampler initializes valid bundles and rejects singular proposals,
+    so every bundle reaching this function should have det(A) != 0.
+    """
+    return _local_energy_bundle_valid(
+        apply_fun,
+        params,
+        bundle,
+        hspec,
+        bonds,
     )
 
 
