@@ -8,7 +8,7 @@ import jax.numpy as jnp
 
 from .lattice import toric_code_edge_index, toric_code_terms
 
-ModelType = Literal["ffn", "rbm", "toric_rbm", "cnn", "vit"]
+ModelType = Literal["ffn", "resffn", "rbm", "toric_rbm", "cnn", "vit"]
 
 
 @dataclass(frozen=True)
@@ -76,6 +76,8 @@ def _vit_kwargs(spec: ModelSpec) -> dict:
 def init_model(key: jax.Array, spec: ModelSpec):
     if spec.model == "ffn":
         return init_ffn(key, spec.N, spec.k, spec.hidden, spec.scale, _dtype(spec))
+    if spec.model == "resffn":
+        return init_resffn(key, spec.N, spec.k, spec.hidden, spec.scale, _dtype(spec))
     if spec.model == "rbm":
         return init_rbm(key, spec.N, spec.k, spec.rbm_hidden, spec.scale, _dtype(spec))
     if spec.model == "toric_rbm":
@@ -107,6 +109,8 @@ def init_model(key: jax.Array, spec: ModelSpec):
 def apply_model(params, spins: jnp.ndarray, spec: ModelSpec) -> jnp.ndarray:
     if spec.model == "ffn":
         return apply_ffn(params, spins)
+    if spec.model == "resffn":
+        return apply_resffn(params, spins)
     if spec.model == "rbm":
         return apply_rbm(params, spins)
     if spec.model == "toric_rbm":
@@ -160,6 +164,98 @@ def apply_ffn(params, spins):
         x = jnp.tanh(x @ layer["W"] + layer["b"])
 
     return x @ params["layers"][-1]["W"] + params["layers"][-1]["b"]
+
+
+# ---------- Residual FFN ----------
+
+def init_resffn(
+    key,
+    N: int,
+    k: int,
+    hidden=(256, 256, 256),
+    scale: float = 0.02,
+    dtype=jnp.float32,
+):
+    """Initialize a residual fully-connected ansatz.
+
+    ``hidden`` controls the residual stack.  Its length is the number of
+    residual blocks, and each entry is that block's width.  For example,
+    ``hidden=(512, 512, 512)`` builds three width-512 residual blocks.
+    """
+    if len(hidden) < 1:
+        raise ValueError("resffn requires at least one hidden width.")
+
+    n_blocks = len(hidden)
+    n_keys = 2 + 3 * n_blocks
+    keys = list(jax.random.split(key, n_keys))
+    stem_key = keys.pop(0)
+    out_key = keys.pop(0)
+
+    first_width = int(hidden[0])
+    W_in = scale * jax.random.normal(
+        stem_key,
+        (N, first_width),
+        dtype=dtype,
+    ) / jnp.sqrt(jnp.asarray(N, dtype=dtype))
+    b_in = jnp.zeros((first_width,), dtype=dtype)
+
+    blocks = []
+    current = first_width
+    for width in hidden:
+        width = int(width)
+        k1 = keys.pop(0)
+        k2 = keys.pop(0)
+        kskip = keys.pop(0)
+
+        W1 = scale * jax.random.normal(
+            k1,
+            (current, width),
+            dtype=dtype,
+        ) / jnp.sqrt(jnp.asarray(current, dtype=dtype))
+        b1 = jnp.zeros((width,), dtype=dtype)
+
+        W2 = scale * jax.random.normal(
+            k2,
+            (width, width),
+            dtype=dtype,
+        ) / jnp.sqrt(jnp.asarray(width, dtype=dtype))
+        b2 = jnp.zeros((width,), dtype=dtype)
+
+        if current == width:
+            Wskip = None
+        else:
+            Wskip = scale * jax.random.normal(
+                kskip,
+                (current, width),
+                dtype=dtype,
+            ) / jnp.sqrt(jnp.asarray(current, dtype=dtype))
+
+        blocks.append({"W1": W1, "b1": b1, "W2": W2, "b2": b2, "Wskip": Wskip})
+        current = width
+
+    W_out = scale * jax.random.normal(
+        out_key,
+        (current, k),
+        dtype=dtype,
+    ) / jnp.sqrt(jnp.asarray(current, dtype=dtype))
+    b_out = 0.01 * jnp.arange(k, dtype=dtype)
+
+    return {"input": {"W": W_in, "b": b_in}, "blocks": blocks, "output": {"W": W_out, "b": b_out}}
+
+
+def apply_resffn(params, spins):
+    dtype = _param_dtype(params)
+    x = spins.astype(dtype)
+    x = jnp.tanh(x @ params["input"]["W"] + params["input"]["b"])
+
+    residual_scale = 1.0 / jnp.sqrt(jnp.asarray(len(params["blocks"]), dtype=dtype))
+    for block in params["blocks"]:
+        y = jnp.tanh(x @ block["W1"] + block["b1"])
+        y = y @ block["W2"] + block["b2"]
+        skip = x if block["Wskip"] is None else x @ block["Wskip"]
+        x = jnp.tanh(skip + residual_scale * y)
+
+    return x @ params["output"]["W"] + params["output"]["b"]
 
 
 # ---------- RBM ----------

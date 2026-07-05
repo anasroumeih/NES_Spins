@@ -32,7 +32,7 @@ class TrainConfig:
     magnetization: int | None = None
 
     # Ansatz.
-    model: Literal["ffn", "rbm", "toric_rbm", "cnn", "vit"] = "ffn"
+    model: Literal["ffn", "resffn", "rbm", "toric_rbm", "cnn", "vit"] = "ffn"
     hidden: tuple[int, ...] = (64, 64)
     rbm_hidden: int = 32
     channels: tuple[int, ...] = (16, 16)

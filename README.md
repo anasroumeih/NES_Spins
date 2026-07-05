@@ -6,7 +6,7 @@ It supports:
 
 - 2D lattices by default, with 1D as the exception: `shape=(4,4)` or `shape=(10,)`
 - Hamiltonians: `tfim`, `heisenberg`
-- ansätze: `ffn`, `rbm`, `toric_rbm`, `cnn`, `vit`
+- ansätze: `ffn`, `resffn`, `rbm`, `toric_rbm`, `cnn`, `vit`
 - stochastic NES bundle sampling from `|det A|^2`
 - Adam optimization, no SR
 - optional NetKet references, plus own dense ED for small systems
@@ -121,6 +121,33 @@ cfg = TrainConfig(
     sweep_steps=128,
     burn_in=1024,
     toric_loop_prob=0.0,
+    toric_single_flip_prob=0.0,
+    toric_cover_sectors=True,
+)
+```
+
+### Toric-code exploratory residual FFN
+
+Use `resffn` when you want a deeper random-initialized ansatz without hard
+toric-code sector projectors. The entries in `hidden` define the residual
+blocks, so `hidden=(512, 512, 512)` means three width-512 residual blocks.
+
+```python
+cfg = TrainConfig(
+    shape=(4, 4),
+    hamiltonian="toric_code",
+    k=4,
+    model="resffn",
+    hidden=(512, 512, 512),
+    init_scale=0.005,
+    steps=20000,
+    lr=2e-5,
+    grad_clip=0.5,
+    n_chains=1024,
+    n_samples=64,
+    sweep_steps=128,
+    burn_in=1024,
+    toric_loop_prob=0.10,
     toric_single_flip_prob=0.0,
     toric_cover_sectors=True,
 )
