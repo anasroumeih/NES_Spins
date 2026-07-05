@@ -6,7 +6,9 @@ from typing import Literal
 import jax
 import jax.numpy as jnp
 
-ModelType = Literal["ffn", "rbm", "cnn", "vit"]
+from .lattice import toric_code_edge_index, toric_code_terms
+
+ModelType = Literal["ffn", "rbm", "toric_rbm", "cnn", "vit"]
 
 
 @dataclass(frozen=True)
@@ -76,6 +78,15 @@ def init_model(key: jax.Array, spec: ModelSpec):
         return init_ffn(key, spec.N, spec.k, spec.hidden, spec.scale, _dtype(spec))
     if spec.model == "rbm":
         return init_rbm(key, spec.N, spec.k, spec.rbm_hidden, spec.scale, _dtype(spec))
+    if spec.model == "toric_rbm":
+        return init_toric_rbm(
+            key,
+            spec.shape,
+            spec.k,
+            spec.rbm_hidden,
+            spec.scale,
+            _dtype(spec),
+        )
     if spec.model == "cnn":
         return init_cnn(
             key,
@@ -98,6 +109,8 @@ def apply_model(params, spins: jnp.ndarray, spec: ModelSpec) -> jnp.ndarray:
         return apply_ffn(params, spins)
     if spec.model == "rbm":
         return apply_rbm(params, spins)
+    if spec.model == "toric_rbm":
+        return apply_toric_rbm(params, spins, spec.shape)
     if spec.model == "cnn":
         return apply_cnn(params, spins, spec.shape)
     if spec.model == "vit":
@@ -180,6 +193,74 @@ def apply_rbm(params, spins):
     logpsi = params["pref"] + visible + hidden
     logpsi = logpsi - jnp.log(jnp.asarray(2.0, dtype=dtype)) * params["b"].shape[-1]
     return jnp.exp(jnp.clip(logpsi, -30.0, 30.0))
+
+
+# ---------- Toric-code sector RBM ----------
+
+def init_toric_rbm(
+    key,
+    shape: tuple[int, ...],
+    k: int,
+    n_hidden: int = 32,
+    scale: float = 0.03,
+    dtype=jnp.float32,
+):
+    """RBM heads projected into toric-code flux and Wilson-loop sectors.
+
+    This keeps the ordinary RBM untouched and only changes the support of this
+    toric-specific ansatz.  Each head is assigned a Wilson sector by ``head % 4``
+    and is exactly zero outside the flux-free ``B_p=+1`` manifold.
+    """
+    if len(shape) != 2:
+        raise ValueError("toric_rbm requires a 2D toric-code shape.")
+    n_edges = 2
+    for L in shape:
+        n_edges *= int(L)
+    return init_rbm(key, n_edges, k, n_hidden, scale, dtype)
+
+
+def _toric_projectors(spins: jnp.ndarray, shape: tuple[int, ...], k: int, dtype):
+    """Exact flux-free and Wilson-sector projectors for flat edge spins."""
+    if len(shape) != 2:
+        raise ValueError("toric_rbm requires a 2D toric-code shape.")
+
+    Lx, Ly = int(shape[0]), int(shape[1])
+    _, plaquettes_np = toric_code_terms(shape, pbc=True)
+    plaquettes = jnp.asarray(plaquettes_np)
+
+    horizontal_loop = jnp.asarray(
+        [toric_code_edge_index(x, 0, 0, shape) for x in range(Lx)]
+    )
+    vertical_loop = jnp.asarray(
+        [toric_code_edge_index(0, y, 1, shape) for y in range(Ly)]
+    )
+
+    b_p = jnp.prod(spins[:, plaquettes], axis=-1)
+    flux_free = jnp.prod(0.5 * (b_p + 1.0), axis=-1).astype(dtype)
+
+    wx = jnp.prod(spins[:, horizontal_loop], axis=-1)
+    wy = jnp.prod(spins[:, vertical_loop], axis=-1)
+
+    labels = jnp.arange(k)
+    target_x = (1 - 2 * (labels & 1)).astype(dtype)
+    target_y = (1 - 2 * ((labels >> 1) & 1)).astype(dtype)
+
+    sector_x = 0.5 * (wx[:, None].astype(dtype) * target_x[None, :] + 1.0)
+    sector_y = 0.5 * (wy[:, None].astype(dtype) * target_y[None, :] + 1.0)
+    return flux_free[:, None] * sector_x * sector_y
+
+
+def apply_toric_rbm(params, spins, shape: tuple[int, ...]):
+    """Apply independent RBM heads with exact toric-code sector support."""
+    dtype = _param_dtype(params)
+    s = spins.astype(dtype)
+    orig_batch = s.shape[:-1]
+    flat = s.reshape((-1, s.shape[-1]))
+
+    rbm_vals = apply_rbm(params, flat)
+    projectors = _toric_projectors(flat, shape, rbm_vals.shape[-1], dtype)
+    out = rbm_vals * projectors
+    return out.reshape((*orig_batch, out.shape[-1]))
 
 
 # ---------- CNN ----------

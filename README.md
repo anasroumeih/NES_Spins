@@ -6,7 +6,7 @@ It supports:
 
 - 2D lattices by default, with 1D as the exception: `shape=(4,4)` or `shape=(10,)`
 - Hamiltonians: `tfim`, `heisenberg`
-- ansätze: `ffn`, `rbm`, `cnn`
+- ansätze: `ffn`, `rbm`, `toric_rbm`, `cnn`, `vit`
 - stochastic NES bundle sampling from `|det A|^2`
 - Adam optimization, no SR
 - optional NetKet references, plus own dense ED for small systems
@@ -98,6 +98,34 @@ cfg = TrainConfig(
 
 For Heisenberg, `magnetization=0` is used by default when the number of sites is even.
 
+### Toric-code ground manifold, sector RBM
+
+Use `toric_rbm` for the four topological ground states. It keeps the ordinary
+`rbm` model unchanged, but multiplies each head by exact `B_p=+1` and
+Wilson-sector projectors, so the NES determinant spans the four torus sectors
+without an overlap penalty.
+
+```python
+cfg = TrainConfig(
+    shape=(4, 4),
+    hamiltonian="toric_code",
+    k=4,
+    model="toric_rbm",
+    rbm_hidden=256,
+    init_scale=0.02,
+    steps=15000,
+    lr=1e-4,
+    grad_clip=1.0,
+    n_chains=512,
+    n_samples=64,
+    sweep_steps=128,
+    burn_in=1024,
+    toric_loop_prob=0.0,
+    toric_single_flip_prob=0.0,
+    toric_cover_sectors=True,
+)
+```
+
 ## What is stochastic now?
 
 The old toy version optimized exact span matrices by enumerating all `2^N` basis states. This version trains the NES determinant wavefunction using Metropolis bundles:
@@ -126,7 +154,8 @@ Expected limitations:
 - RBM outputs are positive per state, so harder excited states may need larger hidden size or FFN/CNN
 - sampled span-matrix evaluation becomes noisy for large systems
 - NetKet reference is optional and version-dependent
-- no symmetry-sector targeting except the default Heisenberg `Sz=0` sector
+- symmetry-sector targeting is limited to Heisenberg `Sz=0` and toric-code
+  `toric_rbm` Wilson/flux projectors
 
 Diagnostics to watch:
 

@@ -32,7 +32,7 @@ class TrainConfig:
     magnetization: int | None = None
 
     # Ansatz.
-    model: Literal["ffn", "rbm", "cnn", "vit"] = "ffn"
+    model: Literal["ffn", "rbm", "toric_rbm", "cnn", "vit"] = "ffn"
     hidden: tuple[int, ...] = (64, 64)
     rbm_hidden: int = 32
     channels: tuple[int, ...] = (16, 16)
@@ -85,6 +85,10 @@ class TrainConfig:
             self.burn_in = 10 * max(1, n_move_sites)
         if self.model == "vit" and len(self.shape) != 2:
             raise ValueError("model='vit' requires a 2D shape, for example shape=(4, 4).")
+        if self.model == "toric_rbm" and not toric:
+            raise ValueError("model='toric_rbm' is only valid with hamiltonian='toric_code'.")
+        if self.model == "toric_rbm" and len(self.shape) != 2:
+            raise ValueError("model='toric_rbm' requires a 2D toric-code shape.")
         if not (0.0 <= self.toric_loop_prob <= 1.0):
             raise ValueError("toric_loop_prob must lie in [0, 1].")
         if not (0.0 <= self.toric_single_flip_prob <= 1.0):
