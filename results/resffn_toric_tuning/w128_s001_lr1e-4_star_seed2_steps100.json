@@ -1,0 +1,183 @@
+{
+  "config": {
+    "shape": [
+      4,
+      4
+    ],
+    "hamiltonian": "toric_code",
+    "k": 4,
+    "J": 1.0,
+    "g": 1.0,
+    "Je": 1.0,
+    "Jm": 1.0,
+    "pbc": true,
+    "magnetization": null,
+    "model": "resffn",
+    "hidden": [
+      128,
+      128
+    ],
+    "rbm_hidden": 32,
+    "channels": [
+      16,
+      16
+    ],
+    "kernel_size": 3,
+    "vit_patch_size": 2,
+    "vit_d_model": 64,
+    "vit_num_layers": 2,
+    "vit_num_heads": 4,
+    "vit_mlp_ratio": 2,
+    "vit_use_positional_embeddings": true,
+    "vit_log_amplitude_clip": 20.0,
+    "init_scale": 0.01,
+    "dtype": "float32",
+    "steps": 100,
+    "lr": 0.0001,
+    "n_chains": 64,
+    "n_samples": 4,
+    "sweep_steps": 32,
+    "burn_in": 64,
+    "grad_clip": 1.0,
+    "toric_loop_prob": 0.0,
+    "toric_single_flip_prob": 0.0,
+    "toric_cover_sectors": true,
+    "print_every": 100,
+    "eval_exact_if_sites_leq": 16,
+    "eval_samples": 8,
+    "eval_chains": 128,
+    "reference": "auto",
+    "own_ed_max_sites": 14,
+    "netket_max_states": 2000000,
+    "jitter": 1e-06,
+    "seed": 2
+  },
+  "history": [
+    {
+      "step": 0,
+      "loss_sum": -115.88833854942499,
+      "train_energy_estimator": NaN,
+      "energies": [
+        -32.00015627516213,
+        -28.010795764384387,
+        -27.99993947698404,
+        -27.877447032894445
+      ],
+      "reference": [
+        -32.0,
+        -32.0,
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.00015627516212646242,
+        3.989204235615613,
+        4.000060523015961,
+        4.122552967105555
+      ],
+      "trace_error": 12.111661450575014,
+      "condition_number_S": 205807.52678955594,
+      "sampler_accept_rate": NaN,
+      "sampler_star_accept_rate": NaN,
+      "sampler_loop_accept_rate": NaN,
+      "sampler_single_flip_accept_rate": NaN,
+      "sampler_star_move_fraction": NaN,
+      "sampler_loop_move_fraction": NaN,
+      "sampler_single_flip_move_fraction": NaN,
+      "invalid_bundle_fraction": NaN,
+      "grad_norm": NaN,
+      "eval": {
+        "accept_rate": 0.99896240234375,
+        "burn_accept_rate": 0.9986816644668579,
+        "burn_loop_accept_rate": 0.0,
+        "burn_loop_move_fraction": 0.0,
+        "burn_single_flip_accept_rate": 0.0,
+        "burn_single_flip_move_fraction": 0.0,
+        "burn_star_accept_rate": 0.9986816644668579,
+        "burn_star_move_fraction": 1.0,
+        "loop_accept_rate": 0.0,
+        "loop_move_fraction": 0.0,
+        "single_flip_accept_rate": 0.0,
+        "single_flip_move_fraction": 0.0,
+        "star_accept_rate": 0.99896240234375,
+        "star_move_fraction": 1.0,
+        "S_min_eig": 4.858805897685361e-06,
+        "S_max_eig": 0.9999788249531324,
+        "S_rank": 4,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          4.858805897685361e-06,
+          6.669828075094377e-06,
+          9.703941617393246e-06,
+          0.9999788249531324
+        ],
+        "method": "sampled_span_q"
+      }
+    },
+    {
+      "step": 100,
+      "loss_sum": -115.99505429273589,
+      "train_energy_estimator": -115.99996948242188,
+      "energies": [
+        -32.00085919624033,
+        -28.000200634607136,
+        -27.999268213906667,
+        -27.994726247981763
+      ],
+      "reference": [
+        -32.0,
+        -32.0,
+        -32.0,
+        -32.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        0.0008591962403272646,
+        3.999799365392864,
+        4.000731786093333,
+        4.005273752018237
+      ],
+      "trace_error": 12.004945707264113,
+      "condition_number_S": 6467.5087339580095,
+      "sampler_accept_rate": 0.6361083984375,
+      "sampler_star_accept_rate": 0.6361083984375,
+      "sampler_loop_accept_rate": 0.0,
+      "sampler_single_flip_accept_rate": 0.0,
+      "sampler_star_move_fraction": 1.0,
+      "sampler_loop_move_fraction": 0.0,
+      "sampler_single_flip_move_fraction": 0.0,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.3499421179294586,
+      "eval": {
+        "accept_rate": 0.998291015625,
+        "burn_accept_rate": 0.997802734375,
+        "burn_loop_accept_rate": 0.0,
+        "burn_loop_move_fraction": 0.0,
+        "burn_single_flip_accept_rate": 0.0,
+        "burn_single_flip_move_fraction": 0.0,
+        "burn_star_accept_rate": 0.997802734375,
+        "burn_star_move_fraction": 1.0,
+        "loop_accept_rate": 0.0,
+        "loop_move_fraction": 0.0,
+        "single_flip_accept_rate": 0.0,
+        "single_flip_move_fraction": 0.0,
+        "star_accept_rate": 0.998291015625,
+        "star_move_fraction": 1.0,
+        "S_min_eig": 0.0001545235652639559,
+        "S_max_eig": 0.9993825079469653,
+        "S_rank": 4,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          0.0001545235652639559,
+          0.00022406249444049316,
+          0.00023888981160048568,
+          0.9993825079469653
+        ],
+        "method": "sampled_span_q"
+      }
+    }
+  ]
+}

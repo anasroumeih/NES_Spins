@@ -6,7 +6,7 @@ It supports:
 
 - 2D lattices by default, with 1D as the exception: `shape=(4,4)` or `shape=(10,)`
 - Hamiltonians: `tfim`, `heisenberg`
-- ansätze: `ffn`, `resffn`, `rbm`, `toric_rbm`, `cnn`, `vit`
+- ansätze: `ffn`, `resffn`, `toric_resffn`, `rbm`, `toric_rbm`, `cnn`, `vit`
 - stochastic NES bundle sampling from `|det A|^2`
 - Adam optimization, no SR
 - optional NetKet references, plus own dense ED for small systems
@@ -126,6 +126,34 @@ cfg = TrainConfig(
 )
 ```
 
+### Toric-code ground manifold, sector ResFFN
+
+Use `toric_resffn` for a residual-FFN core with the same exact flux and
+Wilson-sector projectors. This keeps the residual ansatz trainable on the
+fourfold toric-code ground manifold instead of drifting into the common
+one-ground-plus-three-star-excitations plateau of an unconstrained ResFFN.
+
+```python
+cfg = TrainConfig(
+    shape=(4, 4),
+    hamiltonian="toric_code",
+    k=4,
+    model="toric_resffn",
+    hidden=(128, 128),
+    init_scale=0.005,
+    steps=100,
+    lr=1e-4,
+    grad_clip=1.0,
+    n_chains=64,
+    n_samples=4,
+    sweep_steps=32,
+    burn_in=64,
+    toric_loop_prob=0.0,
+    toric_single_flip_prob=0.0,
+    toric_cover_sectors=True,
+)
+```
+
 ### Toric-code exploratory residual FFN
 
 Use `resffn` when you want a deeper random-initialized ansatz without hard
@@ -182,7 +210,7 @@ Expected limitations:
 - sampled span-matrix evaluation becomes noisy for large systems
 - NetKet reference is optional and version-dependent
 - symmetry-sector targeting is limited to Heisenberg `Sz=0` and toric-code
-  `toric_rbm` Wilson/flux projectors
+  `toric_resffn`/`toric_rbm` Wilson/flux projectors
 
 Diagnostics to watch:
 

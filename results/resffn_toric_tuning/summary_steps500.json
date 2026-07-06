@@ -1,0 +1,73 @@
+[
+  {
+    "name": "w128_s0005_lr5e-4_star_seed4",
+    "seconds": 143.3859224319458,
+    "steps": 500,
+    "energies": [
+      -32.00161211926452,
+      -28.003473706326965,
+      -28.001180752975294,
+      -28.000300229700414
+    ],
+    "max_abs_error": 3.9996997702995856,
+    "trace_error": 11.993433191732805,
+    "S_rank": 4,
+    "condition_number_S": 12.987925396623535,
+    "sampler_accept_rate": 0.6397705078125,
+    "grad_norm": 0.4059942960739136,
+    "config": {
+      "shape": [
+        4,
+        4
+      ],
+      "hamiltonian": "toric_code",
+      "k": 4,
+      "J": 1.0,
+      "g": 1.0,
+      "Je": 1.0,
+      "Jm": 1.0,
+      "pbc": true,
+      "magnetization": null,
+      "model": "resffn",
+      "hidden": [
+        128,
+        128
+      ],
+      "rbm_hidden": 32,
+      "channels": [
+        16,
+        16
+      ],
+      "kernel_size": 3,
+      "vit_patch_size": 2,
+      "vit_d_model": 64,
+      "vit_num_layers": 2,
+      "vit_num_heads": 4,
+      "vit_mlp_ratio": 2,
+      "vit_use_positional_embeddings": true,
+      "vit_log_amplitude_clip": 20.0,
+      "init_scale": 0.005,
+      "dtype": "float32",
+      "steps": 500,
+      "lr": 0.0005,
+      "n_chains": 64,
+      "n_samples": 4,
+      "sweep_steps": 32,
+      "burn_in": 64,
+      "grad_clip": 1.0,
+      "toric_loop_prob": 0.0,
+      "toric_single_flip_prob": 0.0,
+      "toric_cover_sectors": true,
+      "print_every": 500,
+      "eval_exact_if_sites_leq": 16,
+      "eval_samples": 8,
+      "eval_chains": 128,
+      "reference": "auto",
+      "own_ed_max_sites": 14,
+      "netket_max_states": 2000000,
+      "jitter": 1e-06,
+      "seed": 4
+    },
+    "history_path": "C:\\Users\\ANAS ROUMEIH\\Desktop\\Master Thesis\\NES_Spins\\results\\resffn_toric_tuning\\w128_s0005_lr5e-4_star_seed4_steps500.json"
+  }
+]
