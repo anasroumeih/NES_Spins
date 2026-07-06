@@ -1,0 +1,267 @@
+{
+  "config": {
+    "shape": [
+      2,
+      2
+    ],
+    "hamiltonian": "toric_code",
+    "k": 2,
+    "J": 1.0,
+    "g": 1.0,
+    "Je": 1.0,
+    "Jm": 1.0,
+    "pbc": true,
+    "magnetization": null,
+    "model": "vit",
+    "hidden": [
+      64,
+      64
+    ],
+    "rbm_hidden": 32,
+    "channels": [
+      16,
+      16
+    ],
+    "kernel_size": 3,
+    "vit_patch_size": 1,
+    "vit_d_model": 64,
+    "vit_num_layers": 4,
+    "vit_num_heads": 4,
+    "vit_mlp_ratio": 2,
+    "vit_use_positional_embeddings": false,
+    "vit_log_amplitude_clip": 20.0,
+    "init_scale": 0.05,
+    "dtype": "float32",
+    "steps": 2000,
+    "lr": 0.0002,
+    "n_chains": 128,
+    "n_samples": 18,
+    "sweep_steps": 32,
+    "burn_in": 16,
+    "grad_clip": 1.0,
+    "toric_loop_prob": 0.1,
+    "toric_single_flip_prob": 0.0,
+    "toric_cover_sectors": true,
+    "print_every": 500,
+    "eval_exact_if_sites_leq": 12,
+    "eval_samples": 64,
+    "eval_chains": 256,
+    "reference": "auto",
+    "own_ed_max_sites": 14,
+    "netket_max_states": 2000000,
+    "jitter": 1e-06,
+    "seed": 1
+  },
+  "history": [
+    {
+      "step": 0,
+      "loss_sum": -3.2433547699017655,
+      "train_energy_estimator": NaN,
+      "energies": [
+        -3.23703297611836,
+        -0.006321793783405472
+      ],
+      "reference": [
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.7629670238816395,
+        7.993678206216595
+      ],
+      "trace_error": 12.756645230098234,
+      "condition_number_S": 3.610174566031098,
+      "sampler_accept_rate": NaN,
+      "sampler_star_accept_rate": NaN,
+      "sampler_loop_accept_rate": NaN,
+      "sampler_single_flip_accept_rate": NaN,
+      "sampler_star_move_fraction": NaN,
+      "sampler_loop_move_fraction": NaN,
+      "sampler_single_flip_move_fraction": NaN,
+      "invalid_bundle_fraction": NaN,
+      "grad_norm": NaN,
+      "eval": {
+        "S_min_eig": 754.5883848564084,
+        "S_max_eig": 2724.1957948310915,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          754.5883848564084,
+          2724.1957948310915
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 500,
+      "loss_sum": -3.9300723343200223,
+      "train_energy_estimator": -11.98392391204834,
+      "energies": [
+        -3.844751459352183,
+        -0.08532087496783913
+      ],
+      "reference": [
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.155248540647817,
+        7.914679125032161
+      ],
+      "trace_error": 12.069927665679977,
+      "condition_number_S": 10.650688380843418,
+      "sampler_accept_rate": 0.3297933042049408,
+      "sampler_star_accept_rate": 0.2999909520149231,
+      "sampler_loop_accept_rate": 0.5931163430213928,
+      "sampler_single_flip_accept_rate": 0.0,
+      "sampler_star_move_fraction": 0.8983290195465088,
+      "sampler_loop_move_fraction": 0.1016710102558136,
+      "sampler_single_flip_move_fraction": 0.0,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 4.046971797943115,
+      "eval": {
+        "S_min_eig": 662.0026009299067,
+        "S_max_eig": 7050.78340981228,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          662.0026009299067,
+          7050.78340981228
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1000,
+      "loss_sum": -3.9011343851102893,
+      "train_energy_estimator": -12.00681209564209,
+      "energies": [
+        -3.9301710951026503,
+        0.029036709992361187
+      ],
+      "reference": [
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.069828904897349,
+        8.029036709992361
+      ],
+      "trace_error": 12.09886561488971,
+      "condition_number_S": 5.091210064794081,
+      "sampler_accept_rate": 0.3306884765625,
+      "sampler_star_accept_rate": 0.2981994152069092,
+      "sampler_loop_accept_rate": 0.6286384463310242,
+      "sampler_single_flip_accept_rate": 0.0,
+      "sampler_star_move_fraction": 0.9016791582107544,
+      "sampler_loop_move_fraction": 0.0983208566904068,
+      "sampler_single_flip_move_fraction": 0.0,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.79449063539505,
+      "eval": {
+        "S_min_eig": 658.0743820484078,
+        "S_max_eig": 3350.3949172679986,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          658.0743820484078,
+          3350.3949172679986
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1500,
+      "loss_sum": -3.838514502949812,
+      "train_energy_estimator": -11.968306541442871,
+      "energies": [
+        -3.971941528377892,
+        0.13342702542807994
+      ],
+      "reference": [
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.028058471622108,
+        8.13342702542808
+      ],
+      "trace_error": 12.161485497050188,
+      "condition_number_S": 5.042036619053151,
+      "sampler_accept_rate": 0.3711887001991272,
+      "sampler_star_accept_rate": 0.34537073969841003,
+      "sampler_loop_accept_rate": 0.6052703857421875,
+      "sampler_single_flip_accept_rate": 0.0,
+      "sampler_star_move_fraction": 0.9006618857383728,
+      "sampler_loop_move_fraction": 0.0993381068110466,
+      "sampler_single_flip_move_fraction": 0.0,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 2.7787957191467285,
+      "eval": {
+        "S_min_eig": 330.05462796251834,
+        "S_max_eig": 1664.1475204749815,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          330.05462796251834,
+          1664.1475204749815
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2000,
+      "loss_sum": -3.8167830332547013,
+      "train_energy_estimator": -11.984204292297363,
+      "energies": [
+        -3.9846715901041003,
+        0.16788855684939885
+      ],
+      "reference": [
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.0153284098959,
+        8.167888556849398
+      ],
+      "trace_error": 12.183216966745299,
+      "condition_number_S": 5.990310738252186,
+      "sampler_accept_rate": 0.3224826455116272,
+      "sampler_star_accept_rate": 0.2961627244949341,
+      "sampler_loop_accept_rate": 0.5668061375617981,
+      "sampler_single_flip_accept_rate": 0.0,
+      "sampler_star_move_fraction": 0.9027506709098816,
+      "sampler_loop_move_fraction": 0.0972493514418602,
+      "sampler_single_flip_move_fraction": 0.0,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.3896189332008362,
+      "eval": {
+        "S_min_eig": 336.996763860168,
+        "S_max_eig": 2018.7153333078006,
+        "S_rank": 2,
+        "S_floor": 1e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          336.996763860168,
+          2018.7153333078006
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "config": {
+    "shape": [
+      2,
+      2
+    ],
+    "hamiltonian": "toric_code",
+    "k": 4,
+    "J": 1.0,
+    "g": 1.0,
+    "Je": 1.0,
+    "Jm": 1.0,
+    "pbc": true,
+    "magnetization": null,
+    "model": "vit",
+    "hidden": [
+      64,
+      64
+    ],
+    "rbm_hidden": 32,
+    "channels": [
+      16,
+      16
+    ],
+    "kernel_size": 3,
+    "vit_patch_size": 1,
+    "vit_d_model": 64,
+    "vit_num_layers": 4,
+    "vit_num_heads": 4,
+    "vit_mlp_ratio": 2,
+    "vit_use_positional_embeddings": true,
+    "vit_log_amplitude_clip": 20.0,
+    "init_scale": 0.05,
+    "dtype": "float32",
+    "steps": 2000,
+    "lr": 0.0005,
+    "n_chains": 128,
+    "n_samples": 18,
+    "sweep_steps": 32,
+    "burn_in": 32,
+    "grad_clip": 10.0,
+    "toric_loop_prob": 0.0,
+    "toric_single_flip_prob": 0.0,
+    "toric_cover_sectors": true,
+    "print_every": 500,
+    "eval_exact_if_sites_leq": 12,
+    "eval_samples": 64,
+    "eval_chains": 256,
+    "reference": "auto",
+    "own_ed_max_sites": 14,
+    "netket_max_states": 2000000,
+    "jitter": 1e-06,
+    "seed": 1
+  },
+  "history": [
+    {
+      "step": 0,
+      "loss_sum": -5.046140874487082,
+      "train_energy_estimator": NaN,
+      "energies": [
+        -3.96058978933592,
+        -1.0679328354467736,
+        -0.11862695719657197,
+        0.10100870749218366
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.03941021066408,
+        6.932067164553226,
+        7.881373042803428,
+        8.101008707492184
+      ],
+      "trace_error": 26.953859125512917,
+      "condition_number_S": 18.812721640306787,
+      "sampler_accept_rate": NaN,
+      "sampler_star_accept_rate": NaN,
+      "sampler_loop_accept_rate": NaN,
+      "sampler_single_flip_accept_rate": NaN,
+      "sampler_star_move_fraction": NaN,
+      "sampler_loop_move_fraction": NaN,
+      "sampler_single_flip_move_fraction": NaN,
+      "invalid_bundle_fraction": NaN,
+      "grad_norm": NaN,
+      "eval": {
+        "S_min_eig": 924.7705936242915,
+        "S_max_eig": 17397.451758995063,
+        "S_rank": 4,
+        "S_floor": 1.7397451758995063e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          924.7705936242915,
+          1522.8450883809799,
+          11794.662417398096,
+          17397.451758995063
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 500,
+      "loss_sum": -6.527922970640082,
+      "train_energy_estimator": -23.999847412109375,
+      "energies": [
+        -4.079558964474935,
+        -3.525501618539765,
+        0.14084608806415597,
+        0.9362915243104616
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.920441035525065,
+        4.474498381460235,
+        8.140846088064157,
+        8.936291524310462
+      ],
+      "trace_error": 25.472077029359916,
+      "condition_number_S": 9273.861923282346,
+      "sampler_accept_rate": 0.4990505576133728,
+      "sampler_star_accept_rate": 0.4990505576133728,
+      "sampler_loop_accept_rate": 0.0,
+      "sampler_single_flip_accept_rate": 0.0,
+      "sampler_star_move_fraction": 1.0,
+      "sampler_loop_move_fraction": 0.0,
+      "sampler_single_flip_move_fraction": 0.0,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.09652199596166611,
+      "eval": {
+        "S_min_eig": 1582.891114639855,
+        "S_max_eig": 14679513.636760503,
+        "S_rank": 4,
+        "S_floor": 0.0014679513636760503,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          1582.891114639855,
+          15810.1465492392,
+          41889.32826116196,
+          14679513.636760503
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1000,
+      "loss_sum": -7.11550265537015,
+      "train_energy_estimator": -23.999542236328125,
+      "energies": [
+        -4.20614149537885,
+        -3.6290808283572855,
+        0.15015185035120857,
+        0.5695678180147765
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.7938585046211504,
+        4.370919171642715,
+        8.15015185035121,
+        8.569567818014777
+      ],
+      "trace_error": 24.88449734462985,
+      "condition_number_S": 15029.934286787338,
+      "sampler_accept_rate": 0.4998914897441864,
+      "sampler_star_accept_rate": 0.4998914897441864,
+      "sampler_loop_accept_rate": 0.0,
+      "sampler_single_flip_accept_rate": 0.0,
+      "sampler_star_move_fraction": 1.0,
+      "sampler_loop_move_fraction": 0.0,
+      "sampler_single_flip_move_fraction": 0.0,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.5434170365333557,
+      "eval": {
+        "S_min_eig": 1210.552094091449,
+        "S_max_eig": 18194518.42492728,
+        "S_rank": 4,
+        "S_floor": 0.001819451842492728,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          1210.552094091449,
+          14009.13564184867,
+          84430.70667271513,
+          18194518.42492728
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 1500,
+      "loss_sum": -7.4168752269642,
+      "train_energy_estimator": -24.00021743774414,
+      "energies": [
+        -4.23213945610192,
+        -3.6365748349797005,
+        0.059931844250023306,
+        0.39190721986739574
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        3.76786054389808,
+        4.363425165020299,
+        8.059931844250023,
+        8.391907219867395
+      ],
+      "trace_error": 24.5831247730358,
+      "condition_number_S": 13469.585683611871,
+      "sampler_accept_rate": 0.497490793466568,
+      "sampler_star_accept_rate": 0.497490793466568,
+      "sampler_loop_accept_rate": 0.0,
+      "sampler_single_flip_accept_rate": 0.0,
+      "sampler_star_move_fraction": 1.0,
+      "sampler_loop_move_fraction": 0.0,
+      "sampler_single_flip_move_fraction": 0.0,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.4747203588485718,
+      "eval": {
+        "S_min_eig": 1028.8259160742546,
+        "S_max_eig": 13857858.830082648,
+        "S_rank": 4,
+        "S_floor": 0.0013857858830082649,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          1028.8259160742546,
+          13070.578149558341,
+          219431.74119351472,
+          13857858.830082648
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 2000,
+      "loss_sum": -6.052272573931241,
+      "train_energy_estimator": -24.000865936279297,
+      "energies": [
+        -3.990618894386134,
+        -3.239723763697431,
+        0.3334005022410189,
+        0.8446695819113054
+      ],
+      "reference": [
+        -8.0,
+        -8.0,
+        -8.0,
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        4.0093811056138655,
+        4.760276236302569,
+        8.33340050224102,
+        8.844669581911305
+      ],
+      "trace_error": 25.94772742606876,
+      "condition_number_S": 25814.470504468703,
+      "sampler_accept_rate": 0.497802734375,
+      "sampler_star_accept_rate": 0.497802734375,
+      "sampler_loop_accept_rate": 0.0,
+      "sampler_single_flip_accept_rate": 0.0,
+      "sampler_star_move_fraction": 1.0,
+      "sampler_loop_move_fraction": 0.0,
+      "sampler_single_flip_move_fraction": 0.0,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.056117258965969086,
+      "eval": {
+        "S_min_eig": 823.6257239554453,
+        "S_max_eig": 21261461.957769524,
+        "S_rank": 4,
+        "S_floor": 0.0021261461957769526,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          823.6257239554453,
+          22033.851669905143,
+          154278.18348894364,
+          21261461.957769524
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    }
+  ]
+}

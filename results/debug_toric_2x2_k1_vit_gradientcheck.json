@@ -1,0 +1,133 @@
+{
+  "config": {
+    "shape": [
+      2,
+      2
+    ],
+    "hamiltonian": "toric_code",
+    "k": 1,
+    "J": 1.0,
+    "g": 1.0,
+    "Je": 1.0,
+    "Jm": 1.0,
+    "pbc": true,
+    "magnetization": null,
+    "model": "vit",
+    "hidden": [
+      64,
+      64
+    ],
+    "rbm_hidden": 32,
+    "channels": [
+      16,
+      16
+    ],
+    "kernel_size": 3,
+    "vit_patch_size": 1,
+    "vit_d_model": 32,
+    "vit_num_layers": 2,
+    "vit_num_heads": 4,
+    "vit_mlp_ratio": 2,
+    "vit_use_positional_embeddings": true,
+    "vit_log_amplitude_clip": 20.0,
+    "init_scale": 0.05,
+    "dtype": "float32",
+    "steps": 4000,
+    "lr": 0.0002,
+    "n_chains": 128,
+    "n_samples": 12,
+    "sweep_steps": 16,
+    "burn_in": 16,
+    "grad_clip": 1.0,
+    "toric_loop_prob": 0.1,
+    "toric_single_flip_prob": 0.05,
+    "toric_cover_sectors": false,
+    "print_every": 4000,
+    "eval_exact_if_sites_leq": 12,
+    "eval_samples": 64,
+    "eval_chains": 256,
+    "reference": "auto",
+    "own_ed_max_sites": 14,
+    "netket_max_states": 2000000,
+    "jitter": 1e-06,
+    "seed": 2
+  },
+  "history": [
+    {
+      "step": 0,
+      "loss_sum": -1.2842743431062638,
+      "train_energy_estimator": NaN,
+      "energies": [
+        -1.2842743431062638
+      ],
+      "reference": [
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        6.715725656893737
+      ],
+      "trace_error": 6.715725656893737,
+      "condition_number_S": 1.0,
+      "sampler_accept_rate": NaN,
+      "sampler_star_accept_rate": NaN,
+      "sampler_loop_accept_rate": NaN,
+      "sampler_single_flip_accept_rate": NaN,
+      "sampler_star_move_fraction": NaN,
+      "sampler_loop_move_fraction": NaN,
+      "sampler_single_flip_move_fraction": NaN,
+      "invalid_bundle_fraction": NaN,
+      "grad_norm": NaN,
+      "eval": {
+        "S_min_eig": 10768.677734375,
+        "S_max_eig": 10768.677734375,
+        "S_rank": 1,
+        "S_floor": 1.0768677734375e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          10768.677734375
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    },
+    {
+      "step": 4000,
+      "loss_sum": -5.74966577628094,
+      "train_energy_estimator": -6.000007152557373,
+      "energies": [
+        -5.74966577628094
+      ],
+      "reference": [
+        -8.0
+      ],
+      "reference_source": "toric_code_exact_4fold_ground_degeneracy",
+      "abs_errors": [
+        2.25033422371906
+      ],
+      "trace_error": 2.25033422371906,
+      "condition_number_S": 1.0,
+      "sampler_accept_rate": 0.4276936948299408,
+      "sampler_star_accept_rate": 0.5026781558990479,
+      "sampler_loop_accept_rate": 0.0,
+      "sampler_single_flip_accept_rate": 0.0,
+      "sampler_star_move_fraction": 0.850830078125,
+      "sampler_loop_move_fraction": 0.0975748747587204,
+      "sampler_single_flip_move_fraction": 0.0515950545668602,
+      "invalid_bundle_fraction": 0.0,
+      "grad_norm": 0.014640271663665771,
+      "eval": {
+        "S_min_eig": 43030.56640625,
+        "S_max_eig": 43030.56640625,
+        "S_rank": 1,
+        "S_floor": 4.303056640625e-06,
+        "S_num_clipped": 0,
+        "S_eigenvalues": [
+          43030.56640625
+        ],
+        "method": "exact_span",
+        "accept_rate": null
+      }
+    }
+  ]
+}
