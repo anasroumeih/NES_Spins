@@ -7,29 +7,36 @@ from .evaluation import own_ed_reference
 
 
 def toric_code_ground_reference(hspec: HamiltonianSpec, k: int):
-    """Analytic toric-code ground-state reference on a periodic square lattice.
+    """Analytic toric-code low-energy reference on a periodic square lattice.
 
-    On the torus, the lowest four states are exactly degenerate with
-        E0 = -Je * N_stars - Jm * N_plaquettes.
-    This only returns a reference when k <= 4, because the excited spectrum is
-    not represented by this simple degeneracy statement.
+    On a torus, the first four states are exactly degenerate ground states with
+    E0 = -Je*N_stars - Jm*N_plaquettes.  For k=5 we additionally include the
+    first excitation energy E0 + 4*min(Je,Jm), corresponding to the cheapest
+    pair of star or plaquette excitations.  This is intended as a reference for
+    the common Je=Jm=1 toric-code benchmark.
     """
     if hspec.name != "toric_code":
         return None, "not a toric-code Hamiltonian"
     if not hspec.pbc:
         return None, "toric-code analytic degeneracy reference requires pbc=True"
-    if k > 4:
-        return None, "toric-code analytic ground reference only covers the four degenerate ground states"
-    e0 = toric_code_exact_ground_energy(hspec)
-    return np.full(k, e0, dtype=np.float64), "toric_code_exact_4fold_ground_degeneracy"
+    if k > 5:
+        return None, "toric-code analytic reference currently covers k <= 5 only"
+
+    e0 = float(toric_code_exact_ground_energy(hspec))
+    if k <= 4:
+        return np.full(k, e0, dtype=np.float64), "toric_code_exact_4fold_ground_degeneracy"
+
+    gap = 4.0 * min(float(hspec.Je), float(hspec.Jm))
+    vals = np.asarray([e0, e0, e0, e0, e0 + gap], dtype=np.float64)
+    return vals, "toric_code_exact_4fold_ground_plus_first_excitation"
 
 
 def netket_reference_energies(hspec: HamiltonianSpec, k: int, max_states: int = 2_000_000):
     """Optional NetKet Lanczos/exact reference.
 
-    This is intentionally optional: the project still runs without NetKet. For
-    larger systems, NetKet's sparse operators/Lanczos are much more appropriate
-    than the tiny dense ED fallback in this project.
+    This is intentionally optional: the project still runs without NetKet.
+    For larger systems, NetKet's sparse operators/Lanczos are much more
+    appropriate than the tiny dense ED fallback in this project.
     """
     if hspec.name == "toric_code":
         return None, "NetKet reference for toric_code is not implemented in this project; using analytic/own ED instead"
@@ -50,7 +57,6 @@ def netket_reference_energies(hspec: HamiltonianSpec, k: int, max_states: int = 
 
         if hspec.name == "tfim":
             hi = nk.hilbert.Spin(s=0.5, N=hspec.N)
-            # NetKet Ising convention: H = -J sum sz_i sz_j - h sum sx_i
             op = nk.operator.Ising(hilbert=hi, graph=graph, h=hspec.g, J=hspec.J)
         elif hspec.name == "heisenberg":
             if hspec.magnetization == 0:
