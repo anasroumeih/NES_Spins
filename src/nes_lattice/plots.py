@@ -80,3 +80,22 @@ def print_final(path: str | Path):
     print("cond(S):           ", final.get("condition_number_S"))
     print("acceptance:        ", final.get("sampler_accept_rate"))
     print("invalid bundles:   ", final.get("invalid_bundle_fraction"))
+def plot_variance(save_path):
+    hist = load_history(save_path)["history"]
+
+    steps = [h["step"] for h in hist if "state_energy_variances" in h]
+    vars = [h["state_energy_variances"] for h in hist if "state_energy_variances" in h]
+
+    vars = np.asarray(vars)          # (n_logs, k)
+
+    fig, ax = plt.subplots()
+
+    for i in range(vars.shape[1]):
+        ax.plot(steps, vars[:, i], label=f"state {i}")
+
+    ax.set_xlabel("training step")
+    ax.set_ylabel("variance")
+    ax.set_title("Energy variance during training")
+    ax.legend()
+
+    return fig, ax
