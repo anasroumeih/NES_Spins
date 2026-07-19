@@ -18,7 +18,7 @@ from .nes import vmc_surrogate_loss
 from .references import get_reference_energies
 from .sampler import initialize_valid_bundles, make_bundle_sampler
 from .sr import sr_precondition_gradient
-from .variance import variance_from_bundles
+from .variance import energy_matrix_from_bundles
 
 
 @dataclass
@@ -85,7 +85,8 @@ class TrainConfig:
     toric_single_flip_prob: float = 0.0
     toric_cover_sectors: bool = True
 
-    # Evaluation/logging.  This is still the optional Ritz-span diagnostic.
+    # Evaluation/logging.  The default energy estimator is the NES sampled
+    # local-energy-matrix estimator.  Ritz can still be used as a diagnostic.
     print_every: int = 100
     eval_exact_if_sites_leq: int = 16
     eval_samples: int = 32
@@ -94,6 +95,7 @@ class TrainConfig:
     own_ed_max_sites: int = 14
     netket_max_states: int = 2_000_000
     jitter: float = 1e-6
+    energy_eval_method: Literal["nes_matrix", "ritz", "both", "none"] = "nes_matrix"
 
     # NES S12 variance logging.  This computes variance from the local energy
     # matrix, not from the Ritz energies.
@@ -134,6 +136,8 @@ class TrainConfig:
             raise ValueError("lr_decay_every must be positive.")
         if self.sr_diag_shift <= 0.0:
             raise ValueError("sr_diag_shift must be positive.")
+        if self.energy_eval_method not in ("nes_matrix", "ritz", "both", "none"):
+            raise ValueError("energy_eval_method must be one of: nes_matrix, ritz, both, none.")
 
 
 def make_apply_fun(mspec: ModelSpec):
@@ -214,7 +218,7 @@ def train(cfg: TrainConfig):
     apply_fun = make_apply_fun(mspec)
 
     key = jax.random.PRNGKey(cfg.seed)
-    key, key_params, key_init = jax.random.split(key, 3)
+    key, key_params, key_init, key_eval_init = jax.random.split(key, 4)
     params = init_model(key_params, mspec)
     opt = init_adam(params) if cfg.optimizer == "adam" else None
 
@@ -237,6 +241,32 @@ def train(cfg: TrainConfig):
         move_type=hspec.move_type,
         n_chains=cfg.n_chains,
         n_samples=cfg.n_samples,
+        sweep_steps=cfg.sweep_steps,
+        burn_in=cfg.burn_in,
+        n_sites=hspec.N,
+        toric_loop_prob=cfg.toric_loop_prob,
+        toric_single_flip_prob=cfg.toric_single_flip_prob,
+    )
+
+    eval_bundles, _ = initialize_valid_bundles(
+        apply_fun=apply_fun,
+        params=params,
+        key=key_eval_init,
+        n_chains=cfg.eval_chains,
+        k=cfg.k,
+        shape=cfg.shape,
+        move_type=hspec.move_type,
+        n_sites=hspec.N,
+        toric_cover_sectors=cfg.toric_cover_sectors,
+    )
+
+    eval_sample_fn = make_bundle_sampler(
+        apply_fun=apply_fun,
+        shape=cfg.shape,
+        k=cfg.k,
+        move_type=hspec.move_type,
+        n_chains=cfg.eval_chains,
+        n_samples=cfg.eval_samples,
         sweep_steps=cfg.sweep_steps,
         burn_in=cfg.burn_in,
         n_sites=hspec.N,
@@ -305,33 +335,84 @@ def train(cfg: TrainConfig):
         )
 
         if do_print:
-            key, key_eval = jax.random.split(key)
-            energies, cond_S, eval_stats = evaluate_span(
-                apply_fun,
-                params,
-                hspec,
-                bonds,
-                key_eval,
-                exact_if_sites_leq=cfg.eval_exact_if_sites_leq,
-                eval_samples=cfg.eval_samples,
-                eval_chains=cfg.eval_chains,
-                jitter=cfg.jitter,
-                toric_loop_prob=cfg.toric_loop_prob,
-                toric_single_flip_prob=cfg.toric_single_flip_prob,
-            )
+            energies = None
+            cond_S = np.nan
+            eval_stats = {}
+            ritz_energies = None
+            ritz_cond_S = np.nan
+            ritz_eval_stats = None
+            matrix_stats = None
+            matrix_sampler_stats = None
 
-            variance_stats = None
-            if do_variance:
-                key, key_var = jax.random.split(key)
-                var_samples, _, var_sampler_stats = sample_fn(params, key_var, bundles)
-                variance_stats = variance_from_bundles(
+            need_matrix_eval = cfg.energy_eval_method in ("nes_matrix", "both") or do_variance
+            if need_matrix_eval:
+                key, key_eval = jax.random.split(key)
+                eval_samples_bundles, eval_bundles, matrix_sampler_stats = eval_sample_fn(
+                    params,
+                    key_eval,
+                    eval_bundles,
+                )
+                matrix_stats = energy_matrix_from_bundles(
                     apply_fun,
                     params,
-                    var_samples,
+                    eval_samples_bundles,
                     hspec,
                     bonds,
+                    compute_variance=do_variance,
                 )
-                variance_stats["variance_sampler_accept_rate"] = float(var_sampler_stats["accept_rate"])
+                matrix_energies = np.asarray(
+                    matrix_stats["energy_matrix_eigvals"],
+                    dtype=np.float64,
+                )
+
+            if cfg.energy_eval_method in ("ritz", "both"):
+                key, key_ritz = jax.random.split(key)
+                ritz_energies, ritz_cond_S, ritz_eval_stats = evaluate_span(
+                    apply_fun,
+                    params,
+                    hspec,
+                    bonds,
+                    key_ritz,
+                    exact_if_sites_leq=cfg.eval_exact_if_sites_leq,
+                    eval_samples=cfg.eval_samples,
+                    eval_chains=cfg.eval_chains,
+                    jitter=cfg.jitter,
+                    toric_loop_prob=cfg.toric_loop_prob,
+                    toric_single_flip_prob=cfg.toric_single_flip_prob,
+                )
+                ritz_energies = np.asarray(ritz_energies, dtype=np.float64)
+
+            if cfg.energy_eval_method == "nes_matrix":
+                energies = matrix_energies
+                cond_S = float(matrix_stats.get("energy_matrix_eigvec_cond", np.nan))
+                eval_stats = {
+                    "method": "sampled_nes_energy_matrix",
+                    "accept_rate": float(matrix_sampler_stats["accept_rate"]),
+                    "n_energy_matrix_samples": int(matrix_stats["n_energy_matrix_samples"]),
+                    "eigvals_imag": matrix_stats.get("energy_matrix_eigvals_imag"),
+                }
+            elif cfg.energy_eval_method == "both":
+                energies = matrix_energies
+                cond_S = float(matrix_stats.get("energy_matrix_eigvec_cond", np.nan))
+                eval_stats = {
+                    "method": "sampled_nes_energy_matrix",
+                    "accept_rate": float(matrix_sampler_stats["accept_rate"]),
+                    "n_energy_matrix_samples": int(matrix_stats["n_energy_matrix_samples"]),
+                    "eigvals_imag": matrix_stats.get("energy_matrix_eigvals_imag"),
+                    "ritz_energies": [float(x) for x in ritz_energies],
+                    "ritz_condition_number_S": float(ritz_cond_S),
+                    "ritz_eval": ritz_eval_stats,
+                }
+            elif cfg.energy_eval_method == "ritz":
+                energies = ritz_energies
+                cond_S = float(ritz_cond_S)
+                eval_stats = ritz_eval_stats
+            elif cfg.energy_eval_method == "none":
+                energies = np.asarray([last_train_energy], dtype=np.float64)
+                cond_S = np.nan
+                eval_stats = {"method": "none"}
+            else:
+                raise ValueError(f"unknown energy_eval_method {cfg.energy_eval_method}")
 
             loss_sum = float(np.sum(energies))
             if reference is not None:
@@ -345,6 +426,7 @@ def train(cfg: TrainConfig):
                 "step": int(step),
                 "optimizer": cfg.optimizer,
                 "lr": float(last_lr),
+                "energy_eval_method": cfg.energy_eval_method,
                 "loss_sum": loss_sum,
                 "train_energy_estimator": float(last_train_energy),
                 "energies": [float(x) for x in energies],
@@ -366,16 +448,25 @@ def train(cfg: TrainConfig):
                 "sr_residual_norm": float(last_sr_residual_norm),
                 "eval": eval_stats,
             }
-            if variance_stats is not None:
+            if matrix_stats is not None:
                 rec.update(
                     {
-                        "energy_matrix_eigvals": variance_stats["energy_matrix_eigvals"],
-                        "state_energy_variances": variance_stats["state_energy_variances"],
-                        "state_energy_std_errors": variance_stats["state_energy_std_errors"],
-                        "n_variance_samples": variance_stats["n_variance_samples"],
-                        "variance_eval": variance_stats,
+                        "energy_matrix_eigvals": matrix_stats["energy_matrix_eigvals"],
+                        "energy_matrix_mean": matrix_stats["energy_matrix_mean"],
+                        "energy_matrix_eigvals_imag": matrix_stats.get("energy_matrix_eigvals_imag"),
+                        "n_energy_matrix_samples": matrix_stats["n_energy_matrix_samples"],
+                        "energy_matrix_sampler_accept_rate": float(matrix_sampler_stats["accept_rate"]),
                     }
                 )
+                if do_variance:
+                    rec.update(
+                        {
+                            "state_energy_variances": matrix_stats["state_energy_variances"],
+                            "state_energy_std_errors": matrix_stats["state_energy_std_errors"],
+                            "n_variance_samples": matrix_stats["n_variance_samples"],
+                            "variance_eval": matrix_stats,
+                        }
+                    )
             history.append(rec)
             print(rec)
 
